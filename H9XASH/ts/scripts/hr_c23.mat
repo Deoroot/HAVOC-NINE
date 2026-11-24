@@ -1,0 +1,33 @@
+// hr_c23: Hive City remaster, the brown counter room (camera c23).
+// No ReflectScale anywhere: floors and walls stay dry. smoothness scales the _gloss map (R smoothness, G metalness from
+// the CC0 sets); "default" is the concrete-sound entry of materials.def. Low smoothness on the floor: no shine.
+"hr_c23_wallup"
+{
+	"material" "metal"
+	"smoothness" "0.4"
+}
+"hr_c23_walllo"
+{
+	"material" "metal"
+	"smoothness" "0.35"
+}
+"hr_c23_floor"
+{
+	"material" "default"
+	"smoothness" "0.25"
+}
+"hr_c23_desk"
+{
+	"material" "wood"
+	"smoothness" "0.4"
+}
+"hr_c23_pipe"
+{
+	"material" "metal"
+	"smoothness" "0.55"
+}
+"hr_c23_ceil"
+{
+	"material" "metal"
+	"smoothness" "0.35"
+}

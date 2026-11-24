@@ -1,0 +1,53 @@
+// hr_c05: Hive City remaster, the green corridor (camera c05).
+// No ReflectScale anywhere (the owner: floors were too reflective); the floor low in smoothness. smoothness scales the _gloss map
+// (R smoothness, G metalness); "default" is the concrete-sound entry of materials.def. The signs and the lamp are hive v1's own redrawn.
+"hr_c05_wall"
+{
+	"material" "default"
+	"smoothness" "0.25"
+}
+"hr_c05_floor"
+{
+	"material" "default"
+	"smoothness" "0.2"
+}
+"hr_c05_slope"
+{
+	"material" "metal"
+	"smoothness" "0.35"
+}
+"hr_c05_end"
+{
+	"material" "metal"
+	"smoothness" "0.4"
+}
+"hr_c05_upper"
+{
+	"material" "metal"
+	"smoothness" "0.35"
+}
+"hr_c05_trim"
+{
+	"material" "metal"
+	"smoothness" "0.45"
+}
+"hr_c05_cable"
+{
+	"material" "default"
+	"smoothness" "0.3"
+}
+"hr_c05_lamp"
+{
+	"material" "glass"
+	"smoothness" "0.4"
+}
+"{hr_c05_snack"
+{
+	"material" "default"
+	"smoothness" "0.3"
+}
+"{hr_c05_amoeba"
+{
+	"material" "default"
+	"smoothness" "0.3"
+}

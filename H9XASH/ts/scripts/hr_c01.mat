@@ -1,0 +1,43 @@
+// hr_c01: Hive City remaster, street outside Pawn Drawn.
+// No ReflectScale anywhere: floors and walls stay dry. smoothness scales the _gloss map (R smoothness,
+// G metalness, both from the CC0 sets); PrimeXT reads no metalness token; "default" is the concrete-sound entry of materials.def (shlak is flesh/slosh sounds), metalness lives in the _gloss maps.
+"hr_wall_panel"
+{
+	"material" "default"
+	"smoothness" "0.45"
+}
+"hr_wall_conc"
+{
+	"material" "default"
+	"smoothness" "0.35"
+}
+"hr_floor_conc"
+{
+	"material" "default"
+	"smoothness" "0.3"
+}
+"hr_ceil_metal"
+{
+	"material" "metal"
+	"smoothness" "0.6"
+}
+"hr_frame"
+{
+	"material" "metal"
+	"smoothness" "0.45"
+}
+"hr_shopfront"
+{
+	"material" "metal"
+	"smoothness" "0.55"
+}
+"hr_duct"
+{
+	"material" "metal"
+	"smoothness" "0.75"
+}
+"hr_trim_hazard"
+{
+	"material" "metal"
+	"smoothness" "0.5"
+}

@@ -1,0 +1,34 @@
+// hr_c19: Hive City remaster, the golden hall (camera c19).
+// No ReflectScale anywhere (the owner: floors were too reflective; the wood floor stays matte). smoothness scales the
+// _gloss map (R smoothness, G metalness). The wall and the gilt ceiling are hive v1's own howall3b and sinceiling3
+// redrawn with normal maps from their carving (mat/custom.mjs).
+"hr_c19_wall"
+{
+	"material" "default"
+	"smoothness" "0.25"
+}
+"hr_c19_ceil"
+{
+	"material" "metal"
+	"smoothness" "0.5"
+}
+"hr_c19_gilt"
+{
+	"material" "metal"
+	"smoothness" "0.45"
+}
+"hr_c19_floor"
+{
+	"material" "wood"
+	"smoothness" "0.08"
+}
+"hr_c19_wood"
+{
+	"material" "wood"
+	"smoothness" "0.2"
+}
+"hr_c19_stone"
+{
+	"material" "default"
+	"smoothness" "0.2"
+}

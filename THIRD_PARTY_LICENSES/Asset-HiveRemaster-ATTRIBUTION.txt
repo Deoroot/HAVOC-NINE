@@ -1,0 +1,794 @@
+CREDITS for h9_tsrp_hive_rm (Hive City remaster)
+================================================
+The remaster keeps the layout, entities and gameplay of h9_tsrp_hive (Alexandria, Paradise City and Xenon City combined).
+Everything new in it was made with SMAK (the studio maker asset kit): the models in ts/models/hr, the textures in
+hr_hive.wad, and the PrimeXT normal/gloss maps (ts/textures/hr_*_norm.tga, _gloss.tga) and material scripts
+(ts/scripts/hr_c*.mat). The textures are Poly Haven materials (CC0 1.0, https://polyhaven.com, no attribution required;
+credited here gladly), re-toned and cut to 256 colours, or hive v1's own textures redrawn (credited with h9_tsrp_hive and
+its source maps: alexandria_msr_b5 / paradisecity_revival / xenoncity_true_b3v2 and their wads; see creds_attribution.txt).
+The furniture and props that are not in ts/models/hr are the ones h9_tsrp_hive already uses.
+
+This file is the merge of the per-zone CREDITS.txt files (zones c02 to c27), c01-mat/out/CREDITS.txt and the c01 props
+(c01-props, SMAK models hr_bin, hr_box, hr_box_open, hr_bulklamp, hr_conduit, hr_conduit2, hr_junction).
+
+c01 props: skins from Poly Haven (CC0 1.0; https://polyhaven.com/a/<name>):
+  hvb_dark: polyhaven:rusty_metal_sheet CC0 (Poly Haven, polyhaven.com)
+  hvb_steel: polyhaven:rusty_metal_sheet CC0 (Poly Haven, polyhaven.com)
+  hvc_grey: polyhaven:blue_metal_plate CC0 (Poly Haven, polyhaven.com)
+  hvc_metal: polyhaven:rusty_metal_sheet CC0 (Poly Haven, polyhaven.com)
+  hvc_olive: polyhaven:blue_metal_plate CC0 (Poly Haven, polyhaven.com)
+  hvc_red: polyhaven:blue_metal_plate CC0 (Poly Haven, polyhaven.com)
+  hvn_junk: polyhaven:wood_table_worn CC0 (Poly Haven, polyhaven.com)
+  hvn_lid: polyhaven:rusty_metal_sheet CC0 (Poly Haven, polyhaven.com)
+  hvn_steel: polyhaven:rusty_metal_sheet CC0 (Poly Haven, polyhaven.com)
+
+------------------------------------------------------------------------
+zone c01 (materials)
+------------------------------------------------------------------------
+CC0 sources for hr_c01.wad (Poly Haven, CC0 1.0). Re-toned, marked and cut to 256 colours by the SMAK materials pack; hr_trim_hazard has hazard stripes painted over rusty_metal_04.
+
+hr_ceil_metal: Metal Plate 02, Poly Haven material metal_plate_02
+URL: https://polyhaven.com/a/metal_plate_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_duct: Worn Shutter, Poly Haven material worn_shutter
+URL: https://polyhaven.com/a/worn_shutter
+Authors: Dimitrios Savva (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_floor_conc: Concrete Floor Worn 02, Poly Haven material concrete_floor_worn_02
+URL: https://polyhaven.com/a/concrete_floor_worn_02
+Authors: Dimitrios Savva (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_frame: Blue Metal Plate, Poly Haven material blue_metal_plate
+URL: https://polyhaven.com/a/blue_metal_plate
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_shopfront: Rusty Metal Sheet, Poly Haven material rusty_metal_sheet
+URL: https://polyhaven.com/a/rusty_metal_sheet
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_trim_hazard: Rusty Metal 04, Poly Haven material rusty_metal_04
+URL: https://polyhaven.com/a/rusty_metal_04
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_wall_conc: Concrete Wall 006, Poly Haven material concrete_wall_006
+URL: https://polyhaven.com/a/concrete_wall_006
+Authors: Dario Barresi (Processing), Charlotte Baglioni (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_wall_panel: Concrete Wall 008, Poly Haven material concrete_wall_008
+URL: https://polyhaven.com/a/concrete_wall_008
+Authors: Dario Barresi (Processing ), Charlotte Baglioni (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+
+------------------------------------------------------------------------
+zone c02
+------------------------------------------------------------------------
+Sources for hr_c02.wad. Poly Haven sets (CC0 1.0), re-toned, marked and cut to 256 colours by the SMAK materials pack;
+hr_c02_bins, hr_c02_binside are hive v1's own textures redrawn; {hr_c02_amoeba is drawn anew on v1's layout; hr_c02_lamp and the posters are drawn (mat/custom.mjs).
+
+hr_c02_bins: hive v1's XCRATE7C (h9_tsrp_hive), drawn at 192x128, re-toned, a normal map added for PrimeXT; grain from Poly Haven rusty_metal_02 (CC0 1.0, polyhaven.com)
+hr_c02_binside: hive v1's XCRATE11A (h9_tsrp_hive), drawn at 128x96, re-toned, a normal map added for PrimeXT; grain from Poly Haven rusty_metal_02 (CC0 1.0, polyhaven.com)
+hr_c02_black: hive v1's new (h9_tsrp_hive), drawn at 128x128, re-toned, a normal map added for PrimeXT; grain from Poly Haven rusty_metal_02 (CC0 1.0, polyhaven.com)
+hr_c02_ceil: Concrete Slab Wall, Poly Haven material concrete_slab_wall
+URL: https://polyhaven.com/a/concrete_slab_wall
+Authors: Dimitrios Savva (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c02_cyblue: hive v1's own texture (h9_tsrp_hive), copied unchanged under a zone name so this zone can set its texlight
+hr_c02_cylite: hive v1's own texture (h9_tsrp_hive), copied unchanged under a zone name so this zone can set its texlight
+hr_c02_floor: Concrete Floor Worn 02, Poly Haven material concrete_floor_worn_02
+URL: https://polyhaven.com/a/concrete_floor_worn_02
+Authors: Dimitrios Savva (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c02_lamp: hive v1's GREEN_ORANGE (h9_tsrp_hive), drawn at 128x32, re-toned, a normal map added for PrimeXT; drawn
+hr_c02_poster1: hive v1's new (h9_tsrp_hive), drawn at 128x192, re-toned, a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c02_poster2: hive v1's new (h9_tsrp_hive), drawn at 128x192, re-toned, a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c02_steel: Rusty Metal Sheet, Poly Haven material rusty_metal_sheet
+URL: https://polyhaven.com/a/rusty_metal_sheet
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c02_trim: Rusty Metal 02, Poly Haven material rusty_metal_02
+URL: https://polyhaven.com/a/rusty_metal_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c02_wall: Concrete Wall 008, Poly Haven material concrete_wall_008
+URL: https://polyhaven.com/a/concrete_wall_008
+Authors: Dario Barresi (Processing ), Charlotte Baglioni (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+{hr_c02_amoeba: hive v1's {PC_AMOEBA (h9_tsrp_hive), drawn at 512x512, re-toned, a normal map added for PrimeXT; drawn anew as neon tubes on v1's layout
+models/hr/c02_box.mdl, c02_acunit.mdl: SMAK models (zones/c02/props/src); skins from Poly Haven blue_metal_plate, wood_table_worn (CC0)
+
+------------------------------------------------------------------------
+zone c04
+------------------------------------------------------------------------
+hr_c04_blocks: Concrete Block Wall 03, Poly Haven material concrete_block_wall_03
+URL: https://polyhaven.com/a/concrete_block_wall_03
+Authors: Charlotte Baglioni (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+Downloaded through the Poly Haven API (Powered by Poly Haven).
+Downloaded 2026-11-21; made a GoldSrc texture (256x256, 256 colours) and its set kept at 1K by SMAK's materials pack.
+hr_c04_ceil: Rusty Metal Sheet, Poly Haven material rusty_metal_sheet
+URL: https://polyhaven.com/a/rusty_metal_sheet
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+Downloaded through the Poly Haven API (Powered by Poly Haven).
+Downloaded 2026-11-21; made a GoldSrc texture (512x512, 256 colours) and its set kept at 1K by SMAK's materials pack.
+hr_c04_floor: Concrete Floor Worn 02, Poly Haven material concrete_floor_worn_02
+URL: https://polyhaven.com/a/concrete_floor_worn_02
+Authors: Dimitrios Savva (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+Downloaded through the Poly Haven API (Powered by Poly Haven).
+Downloaded 2026-11-21; made a GoldSrc texture (512x512, 256 colours) and its set kept at 1K by SMAK's materials pack.
+hr_c04_frame: Rusty Metal 04, Poly Haven material rusty_metal_04
+URL: https://polyhaven.com/a/rusty_metal_04
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+Downloaded through the Poly Haven API (Powered by Poly Haven).
+Downloaded 2026-11-21; made a GoldSrc texture (256x256, 256 colours) and its set kept at 1K by SMAK's materials pack.
+hr_c04_grille: Rusty Metal 04, Poly Haven material rusty_metal_04
+URL: https://polyhaven.com/a/rusty_metal_04
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+Downloaded through the Poly Haven API (Powered by Poly Haven).
+Downloaded 2026-11-21; made a GoldSrc texture (128x128, 256 colours) and its set kept at 1K by SMAK's materials pack.
+hr_c04_pillar: Metal Plate 02, Poly Haven material metal_plate_02
+URL: https://polyhaven.com/a/metal_plate_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+Downloaded through the Poly Haven API (Powered by Poly Haven).
+Downloaded 2026-11-21; made a GoldSrc texture (512x512, 256 colours) and its set kept at 1K by SMAK's materials pack.
+hr_c04_neon: the letters of the shipped map's own {PC_UNCLEPIKKY (Hive City), redrawn as a glow for an additive panel.
+
+------------------------------------------------------------------------
+zone c05
+------------------------------------------------------------------------
+Sources for hr_c05.wad. Poly Haven sets (CC0 1.0), re-toned, marked and cut to 256 colours by the SMAK materials pack;
+{hr_c05_snack, {hr_c05_amoeba, hr_c05_lamp are hive v1's own {PC_SNACK, {PC_AMOEBA, GREEN_GLOW redrawn (mat/custom.mjs).
+
+hr_c05_cable: Corrugated Iron 02, Poly Haven material corrugated_iron_02
+URL: https://polyhaven.com/a/corrugated_iron_02
+Authors: Jenelle van Heerden (Processing), Sergej Majboroda (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c05_end: Rusty Metal Sheet, Poly Haven material rusty_metal_sheet
+URL: https://polyhaven.com/a/rusty_metal_sheet
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c05_floor: Concrete Floor 02, Poly Haven material concrete_floor_02
+URL: https://polyhaven.com/a/concrete_floor_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c05_lamp: hive v1's GREEN_GLOW (h9_tsrp_hive), drawn at 256x64, re-toned, grain and a normal map added for PrimeXT; no outside source
+hr_c05_slope: Rusty Metal Sheet, Poly Haven material rusty_metal_sheet
+URL: https://polyhaven.com/a/rusty_metal_sheet
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c05_trim: Blue Metal Plate, Poly Haven material blue_metal_plate
+URL: https://polyhaven.com/a/blue_metal_plate
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c05_upper: Metal Plate 02, Poly Haven material metal_plate_02
+URL: https://polyhaven.com/a/metal_plate_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c05_wall: Concrete Wall 008, Poly Haven material concrete_wall_008
+URL: https://polyhaven.com/a/concrete_wall_008
+Authors: Dario Barresi (Processing ), Charlotte Baglioni (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+{hr_c05_amoeba: hive v1's {PC_AMOEBA (h9_tsrp_hive), drawn at 256x256, re-toned, grain and a normal map added for PrimeXT; no outside source
+{hr_c05_snack: hive v1's {PC_SNACK (h9_tsrp_hive), drawn at 256x256, re-toned, grain and a normal map added for PrimeXT; no outside source
+models/hr/c05_cases.mdl, c05_spool.mdl, c05_jbox.mdl: SMAK models (zones/c05/props/src), skins from Poly Haven blue_metal_plate (CC0)
+
+------------------------------------------------------------------------
+zone c06
+------------------------------------------------------------------------
+CC0 sources for hr_c06.wad (Poly Haven, CC0 1.0). Re-toned, marked and cut to 256 colours by the SMAK materials pack.
+
+hr_c06_armor: Rusty Metal Sheet, Poly Haven material rusty_metal_sheet
+URL: https://polyhaven.com/a/rusty_metal_sheet
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c06_cable: Corrugated Iron 02, Poly Haven material corrugated_iron_02
+URL: https://polyhaven.com/a/corrugated_iron_02
+Authors: Jenelle van Heerden (Processing), Sergej Majboroda (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c06_ceil: Metal Plate 02, Poly Haven material metal_plate_02
+URL: https://polyhaven.com/a/metal_plate_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c06_floor: Concrete Floor 02, Poly Haven material concrete_floor_02
+URL: https://polyhaven.com/a/concrete_floor_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c06_trim: Blue Metal Plate, Poly Haven material blue_metal_plate
+URL: https://polyhaven.com/a/blue_metal_plate
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c06_wall: Rusty Metal Sheet, Poly Haven material rusty_metal_sheet
+URL: https://polyhaven.com/a/rusty_metal_sheet
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+{hr_c06_grate: Metal Grate Rusty, Poly Haven material metal_grate_rusty
+URL: https://polyhaven.com/a/metal_grate_rusty
+Authors: Rob Tuytel (Processing), Dimitrios Savva (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+models/hr/c06_tubelamp.mdl, c06_switchbox.mdl: SMAK models (zones/c06/props/src), skins from Poly Haven rusty_metal_sheet (CC0)
+
+------------------------------------------------------------------------
+zone c07
+------------------------------------------------------------------------
+Sources for hr_c07.wad. Poly Haven sets (CC0 1.0), re-toned, marked and cut to 256 colours by the SMAK materials pack;
+hr_c07_relief, _door, _sign, _glow, _lamp are hive v1's own textures redrawn (mat/custom.mjs).
+
+hr_c07_ceil: Metal Plate 02, Poly Haven material metal_plate_02
+URL: https://polyhaven.com/a/metal_plate_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c07_conc: Concrete Wall 008, Poly Haven material concrete_wall_008
+URL: https://polyhaven.com/a/concrete_wall_008
+Authors: Dario Barresi (Processing ), Charlotte Baglioni (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c07_door: hive v1's DOOR_BLAST2 (h9_tsrp_hive), drawn at 512x256, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c07_floor: Concrete Floor 02, Poly Haven material concrete_floor_02
+URL: https://polyhaven.com/a/concrete_floor_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c07_glow: hive v1's {PC_MR (h9_tsrp_hive), drawn at 256x256, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c07_lamp: hive v1's CYBER_BLUE (h9_tsrp_hive), drawn at 128x64, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c07_panel: Precast Concrete Wall, Poly Haven material precast_concrete_wall
+URL: https://polyhaven.com/a/precast_concrete_wall
+Authors: Dimitrios Savva (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c07_relief: hive v1's PRISONWALL11 (h9_tsrp_hive), drawn at 512x512, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c07_sign: hive v1's {PC_MR (h9_tsrp_hive), drawn at 512x512, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c07_trim: Blue Metal Plate, Poly Haven material blue_metal_plate
+URL: https://polyhaven.com/a/blue_metal_plate
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+
+------------------------------------------------------------------------
+zone c08
+------------------------------------------------------------------------
+CC0 sources for hr_c08.wad (Poly Haven, CC0 1.0). Re-toned, marked and cut to 256 colours by the SMAK materials pack.
+
+hr_c08_blue: Rusty Painted Metal, Poly Haven material rusty_painted_metal
+URL: https://polyhaven.com/a/rusty_painted_metal
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c08_ceil: Metal Plate 02, Poly Haven material metal_plate_02
+URL: https://polyhaven.com/a/metal_plate_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c08_conc: Concrete Wall 008, Poly Haven material concrete_wall_008
+URL: https://polyhaven.com/a/concrete_wall_008
+Authors: Dario Barresi (Processing ), Charlotte Baglioni (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c08_floor: Concrete Floor Worn 02, Poly Haven material concrete_floor_worn_02
+URL: https://polyhaven.com/a/concrete_floor_worn_02
+Authors: Dimitrios Savva (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c08_pipe: Rusty Metal 02, Poly Haven material rusty_metal_02
+URL: https://polyhaven.com/a/rusty_metal_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c08_slats: Green Metal Rust, Poly Haven material green_metal_rust
+URL: https://polyhaven.com/a/green_metal_rust
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c08_trim: Blue Metal Plate, Poly Haven material blue_metal_plate
+URL: https://polyhaven.com/a/blue_metal_plate
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c08_vent: Painted Metal Shutter, Poly Haven material painted_metal_shutter
+URL: https://polyhaven.com/a/painted_metal_shutter
+Authors: Dario Barresi (Baking), Rico Cilliers (Processing ), Charlotte Baglioni (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c08_wall: Rusty Metal Sheet, Poly Haven material rusty_metal_sheet
+URL: https://polyhaven.com/a/rusty_metal_sheet
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c08_white: Rusty Painted Metal, Poly Haven material rusty_painted_metal
+URL: https://polyhaven.com/a/rusty_painted_metal
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+
+------------------------------------------------------------------------
+zone c13
+------------------------------------------------------------------------
+Sources for hr_c13.wad. Poly Haven sets (CC0 1.0), re-toned and marked (v1's panel rails, seams, hazard band, plate, hole grid redrawn as marks)
+and cut to 256 colours by the SMAK materials pack; hr_c13_sign is hive v1's sign_cocktails redrawn LED by LED; hr_c13_ceil,
+_door, _door2 are hive v1's metal13dn, gryrstdr1, metaldoor2dn drawn at twice the size; hr_c13_lamp and _tube are drawn by program.
+
+hr_c13_ceil: hive v1's metal13dn (h9_tsrp_hive), drawn at 256x256, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c13_door: hive v1's gryrstdr1 (h9_tsrp_hive), drawn at 128x256, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c13_door2: hive v1's metaldoor2dn (h9_tsrp_hive), drawn at 128x256, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c13_floor: Blue Metal Plate, Poly Haven material blue_metal_plate
+URL: https://polyhaven.com/a/blue_metal_plate
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c13_lamp: hive v1's none (drawn) (h9_tsrp_hive), drawn at 64x128, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c13_pillar: Metal Plate 02, Poly Haven material metal_plate_02
+URL: https://polyhaven.com/a/metal_plate_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c13_rail: Rusty Painted Metal, Poly Haven material rusty_painted_metal
+URL: https://polyhaven.com/a/rusty_painted_metal
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c13_sign: hive v1's sign_cocktails (h9_tsrp_hive), drawn at 512x512, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c13_signbk: hive v1's sign_cocktails (h9_tsrp_hive), drawn at 512x512, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c13_trim: Blue Metal Plate, Poly Haven material blue_metal_plate
+URL: https://polyhaven.com/a/blue_metal_plate
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c13_tube: hive v1's none (drawn) (h9_tsrp_hive), drawn at 64x16, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c13_wall1: Concrete Wall 008, Poly Haven material concrete_wall_008
+URL: https://polyhaven.com/a/concrete_wall_008
+Authors: Dario Barresi (Processing ), Charlotte Baglioni (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c13_wall1b: Concrete Wall 008, Poly Haven material concrete_wall_008
+URL: https://polyhaven.com/a/concrete_wall_008
+Authors: Dario Barresi (Processing ), Charlotte Baglioni (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c13_wall2: Concrete Wall 008, Poly Haven material concrete_wall_008
+URL: https://polyhaven.com/a/concrete_wall_008
+Authors: Dario Barresi (Processing ), Charlotte Baglioni (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+
+------------------------------------------------------------------------
+zone c14
+------------------------------------------------------------------------
+Sources for hr_c14.wad. Poly Haven sets (CC0 1.0), re-toned and marked (v1's panel rails, seams, hazard band, plate, hole grid redrawn as marks)
+and cut to 256 colours by the SMAK materials pack; hr_c14_sign is hive v1's ax_heavensent neon line redrawn as neon tubes;
+hr_c14_ceil is hive v1's metal13dn drawn at twice the size; hr_c14_signbk, _neon and _lamp are drawn by program.
+
+hr_c14_ceil: hive v1's metal13dn (h9_tsrp_hive), drawn at 256x256, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c14_lamp: hive v1's none (drawn) (h9_tsrp_hive), drawn at 64x128, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c14_neon: hive v1's ~light3a (h9_tsrp_hive), drawn at 64x16, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c14_pillar: Rusty Painted Metal, Poly Haven material rusty_painted_metal
+URL: https://polyhaven.com/a/rusty_painted_metal
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c14_rail: Rusty Painted Metal, Poly Haven material rusty_painted_metal
+URL: https://polyhaven.com/a/rusty_painted_metal
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c14_sign: hive v1's ax_heavensent (h9_tsrp_hive), drawn at 512x96, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c14_signbk: hive v1's ax_heavensent (h9_tsrp_hive), drawn at 256x64, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c14_tread: Blue Metal Plate, Poly Haven material blue_metal_plate
+URL: https://polyhaven.com/a/blue_metal_plate
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c14_trim: Metal Plate, Poly Haven material metal_plate
+URL: https://polyhaven.com/a/metal_plate
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c14_under: Rusty Metal 02, Poly Haven material rusty_metal_02
+URL: https://polyhaven.com/a/rusty_metal_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c14_wall: Concrete Wall 008, Poly Haven material concrete_wall_008
+URL: https://polyhaven.com/a/concrete_wall_008
+Authors: Dario Barresi (Processing ), Charlotte Baglioni (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c14_wallb: Concrete Wall 008, Poly Haven material concrete_wall_008
+URL: https://polyhaven.com/a/concrete_wall_008
+Authors: Dario Barresi (Processing ), Charlotte Baglioni (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+
+------------------------------------------------------------------------
+zone c15
+------------------------------------------------------------------------
+Sources for hr_c15.wad. Poly Haven sets (CC0 1.0), re-toned, marked and cut to 256 colours by the SMAK materials pack (zones/c15/mat/custom.mjs);
+hr_c15_grass is hive v1's cd_grass redrawn; hr_c15_glass, _tube, _lamp are drawn after hive v1's po_lightgrtyel and ~light3b.
+Props (out/models/hr/c15_*.mdl): SMAK scripts in zones/c15/props/src over Poly Haven green_metal_rust and blue_metal_plate (CC0).
+
+hr_c15_curb: Concrete Wall 009, Poly Haven material concrete_wall_009
+URL: https://polyhaven.com/a/concrete_wall_009
+Authors: Charlotte Baglioni (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c15_glass: drawn after hive v1's po_lightgrtyel (a lit glass-block wall), at 256
+hr_c15_grass: hive v1's cd_grass (h9_tsrp_hive) drawn at 512 (Catmull-Rom), darkened
+hr_c15_lamp: drawn, a warm lamp lens
+hr_c15_pave: Concrete Floor Worn 02, Poly Haven material concrete_floor_worn_02
+URL: https://polyhaven.com/a/concrete_floor_worn_02
+Authors: Dimitrios Savva (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c15_trim: Metal Plate 02, Poly Haven material metal_plate_02
+URL: https://polyhaven.com/a/metal_plate_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c15_tube: drawn after hive v1's ~light3b (two cyan tubes), at 256x64
+hr_c15_wall: Concrete Wall 008, Poly Haven material concrete_wall_008
+URL: https://polyhaven.com/a/concrete_wall_008
+Authors: Dario Barresi (Processing ), Charlotte Baglioni (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+
+------------------------------------------------------------------------
+zone c16
+------------------------------------------------------------------------
+Sources for hr_c16.wad. Poly Haven sets (CC0 1.0), re-toned, marked and cut to 256 colours by the SMAK materials pack;
+hr_c16_24hr, _kline, _arrow, _open, _lamp are drawn by SMAK's signs pack after hive v1's sign_24, sign_kline, logo_biofuel2, sign_open;
+hr_c16_coffee and hr_c16_kanji are hive v1's sign_coffee1 and sign_character redrawn at twice the size (mat/custom.mjs).
+
+hr_c16_ceil: Concrete Wall 009, Poly Haven material concrete_wall_009
+URL: https://polyhaven.com/a/concrete_wall_009
+Authors: Charlotte Baglioni (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c16_coffee: hive v1's sign_coffee1 (h9_tsrp_hive), drawn at 512x512 and sharpened
+hr_c16_conc: Concrete Wall 007, Poly Haven material concrete_wall_007
+URL: https://polyhaven.com/a/concrete_wall_007
+Authors: Dario Barresi (Processing), Rico Cilliers (Tiling), Charlotte Baglioni (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c16_dark: Concrete Wall 006, Poly Haven material concrete_wall_006
+URL: https://polyhaven.com/a/concrete_wall_006
+Authors: Dario Barresi (Processing), Charlotte Baglioni (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c16_flag: Concrete Floor Worn 02, Poly Haven material concrete_floor_worn_02
+URL: https://polyhaven.com/a/concrete_floor_worn_02
+Authors: Dimitrios Savva (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c16_kanji: hive v1's sign_character (h9_tsrp_hive), drawn at 512x512 and sharpened
+hr_c16_rib: Ribbed Concrete Wall, Poly Haven material ribbed_concrete_wall
+URL: https://polyhaven.com/a/ribbed_concrete_wall
+Authors: Charlotte Baglioni (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c16_trim: Metal Plate 02, Poly Haven material metal_plate_02
+URL: https://polyhaven.com/a/metal_plate_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c16_walk: Concrete Floor Worn 02, Poly Haven material concrete_floor_worn_02
+URL: https://polyhaven.com/a/concrete_floor_worn_02
+Authors: Dimitrios Savva (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+
+------------------------------------------------------------------------
+zone c17
+------------------------------------------------------------------------
+Sources for hr_c17.wad. Poly Haven sets (CC0 1.0), re-toned, marked and cut to 256 colours by the SMAK materials pack;
+hr_c17_lamp is drawn by program (mat/custom.mjs); the signs are drawn by packs/signs from mat/signs.json, after hive v1's own.
+
+hr_c17_band: Concrete Wall 008, Poly Haven material concrete_wall_008
+URL: https://polyhaven.com/a/concrete_wall_008
+Authors: Dario Barresi (Processing ), Charlotte Baglioni (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c17_cable: Corrugated Iron 02, Poly Haven material corrugated_iron_02
+URL: https://polyhaven.com/a/corrugated_iron_02
+Authors: Jenelle van Heerden (Processing), Sergej Majboroda (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c17_ceil: Concrete Wall 006, Poly Haven material concrete_wall_006
+URL: https://polyhaven.com/a/concrete_wall_006
+Authors: Dario Barresi (Processing), Charlotte Baglioni (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c17_conc: Concrete Wall 008, Poly Haven material concrete_wall_008
+URL: https://polyhaven.com/a/concrete_wall_008
+Authors: Dario Barresi (Processing ), Charlotte Baglioni (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c17_drum: Rusty Metal 02, Poly Haven material rusty_metal_02
+URL: https://polyhaven.com/a/rusty_metal_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c17_duct: Rusty Painted Metal, Poly Haven material rusty_painted_metal
+URL: https://polyhaven.com/a/rusty_painted_metal
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c17_floor: Concrete Floor Worn 02, Poly Haven material concrete_floor_worn_02
+URL: https://polyhaven.com/a/concrete_floor_worn_02
+Authors: Dimitrios Savva (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c17_ie33: painted by SMAK's signs pack over hr_c17_drum, whose credit follows.
+hr_c17_drum: Rusty Metal 02, Poly Haven material rusty_metal_02
+URL: https://polyhaven.com/a/rusty_metal_02
+Authors: Rob Tuytel (All)
+hr_c17_trim: Blue Metal Plate, Poly Haven material blue_metal_plate
+URL: https://polyhaven.com/a/blue_metal_plate
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c17_wall: Rusty Metal Sheet, Poly Haven material rusty_metal_sheet
+URL: https://polyhaven.com/a/rusty_metal_sheet
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+
+------------------------------------------------------------------------
+zone c18
+------------------------------------------------------------------------
+Sources for hr_c18.wad. Poly Haven sets (CC0 1.0), re-toned, marked and cut to 256 colours by the SMAK materials pack;
+hr_c18_offic and hr_c18_win are hive v1's sintexture facade redrawn at twice the size on hr_c18_conc (its windows, and the lit ones);
+hr_c18_rekall and hr_c18_fsg are hive v1's logo_rekall1 and ax_fsg redrawn at twice the size (mat/custom.mjs); hr_c18_lamp is drawn there.
+
+hr_c18_conc: Concrete Wall 007, Poly Haven material concrete_wall_007
+URL: https://polyhaven.com/a/concrete_wall_007
+Authors: Dario Barresi (Processing), Rico Cilliers (Tiling), Charlotte Baglioni (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c18_fsg: hive v1's ax_fsg (h9_tsrp_hive), drawn at 512x512 and sharpened
+hr_c18_fsg_d: hr_c18_fsg at a fifth, the dark backing under its additive panel
+hr_c18_lamp: drawn (a warm lens)
+hr_c18_offic: hive v1's sintexture (h9_tsrp_hive) redrawn at 512 on hr_c18_conc (Poly Haven concrete_wall_007, CC0)
+hr_c18_panel: Precast Concrete Wall, Poly Haven material precast_concrete_wall
+URL: https://polyhaven.com/a/precast_concrete_wall
+Authors: Dimitrios Savva (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c18_rekall: hive v1's logo_rekall1 (h9_tsrp_hive), drawn at 512x256 and sharpened
+hr_c18_rekall_d: hr_c18_rekall at a fifth, the dark backing under its additive panel
+hr_c18_skirt: Concrete Wall 006, Poly Haven material concrete_wall_006
+URL: https://polyhaven.com/a/concrete_wall_006
+Authors: Dario Barresi (Processing), Charlotte Baglioni (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c18_trim: Metal Plate 02, Poly Haven material metal_plate_02
+URL: https://polyhaven.com/a/metal_plate_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c18_win: hive v1's sintexture's windows, the lit ones, for an additive panel
+
+------------------------------------------------------------------------
+zone c19
+------------------------------------------------------------------------
+Sources for hr_c19.wad. Poly Haven sets (CC0 1.0), re-toned, marked and cut to 256 colours by the SMAK materials pack;
+hr_c19_wall and hr_c19_ceil are hive v1's own howall3b and sinceiling3 redrawn (mat/custom.mjs).
+
+hr_c19_ceil: hive v1's sinceiling3 (h9_tsrp_hive), drawn at 512x512, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven rusty_painted_metal (CC0 1.0, polyhaven.com)
+hr_c19_floor: hive v1's WOODFLOOR02_256 (h9_tsrp_hive), drawn at 512x512, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven smoked_walnut_veneer, dark_planks (CC0 1.0, polyhaven.com)
+hr_c19_gilt: hive v1's (drawn) (h9_tsrp_hive), drawn at 256x256, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven rusty_painted_metal, concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c19_stone: Concrete Wall 008, Poly Haven material concrete_wall_008
+URL: https://polyhaven.com/a/concrete_wall_008
+Authors: Dario Barresi (Processing ), Charlotte Baglioni (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c19_wall: hive v1's howall3b (h9_tsrp_hive), drawn at 512x512, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008, smoked_walnut_veneer, rusty_painted_metal (CC0 1.0, polyhaven.com)
+hr_c19_wood: Smoked Walnut Veneer, Poly Haven material smoked_walnut_veneer
+URL: https://polyhaven.com/a/smoked_walnut_veneer
+Authors: Jenelle van Heerden (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+
+------------------------------------------------------------------------
+zone c20
+------------------------------------------------------------------------
+Sources for hr_c20.wad. Poly Haven sets (CC0 1.0), re-toned, marked and cut to 256 colours by the SMAK materials pack;
+hr_c20_ceil, _crate, _lamp, _door are drawn over those sets (mat/custom.mjs); the signs (_ribs, _open, _plate, _vsign) are drawn by packs/signs from mat/signs.json, after hive v1's own.
+
+hr_c20_cable: Corrugated Iron 02, Poly Haven material corrugated_iron_02
+URL: https://polyhaven.com/a/corrugated_iron_02
+Authors: Jenelle van Heerden (Processing), Sergej Majboroda (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c20_ceil: Metal Plate 02, Poly Haven material metal_plate_02
+URL: https://polyhaven.com/a/metal_plate_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c20_crate: Corrugated Iron 02, Poly Haven material corrugated_iron_02
+URL: https://polyhaven.com/a/corrugated_iron_02
+Authors: Jenelle van Heerden (Processing), Sergej Majboroda (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c20_door: Metal Plate 02, Poly Haven material metal_plate_02
+URL: https://polyhaven.com/a/metal_plate_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c20_floor: Concrete Floor Worn 02, Poly Haven material concrete_floor_worn_02
+URL: https://polyhaven.com/a/concrete_floor_worn_02
+Authors: Dimitrios Savva (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c20_frame: Rusty Painted Metal, Poly Haven material rusty_painted_metal
+URL: https://polyhaven.com/a/rusty_painted_metal
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c20_steel: Rusty Metal Sheet, Poly Haven material rusty_metal_sheet
+URL: https://polyhaven.com/a/rusty_metal_sheet
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c20_trim: Blue Metal Plate, Poly Haven material blue_metal_plate
+URL: https://polyhaven.com/a/blue_metal_plate
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c20_wall: Concrete Wall 008, Poly Haven material concrete_wall_008
+URL: https://polyhaven.com/a/concrete_wall_008
+Authors: Dario Barresi (Processing ), Charlotte Baglioni (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+
+------------------------------------------------------------------------
+zone c21
+------------------------------------------------------------------------
+Sources for hr_c21.wad. Poly Haven sets (CC0 1.0), re-toned, marked and cut to 256 colours by the SMAK materials pack (zones/c21/mat/custom.mjs);
+hr_c21_grass is hive v1's cd_grass redrawn; hr_c21_tube is drawn after hive v1's green_orange; hr_c21_lamp drawn.
+
+hr_c21_brick: Concrete Wall 008, Poly Haven material concrete_wall_008
+URL: https://polyhaven.com/a/concrete_wall_008
+Authors: Dario Barresi (Processing ), Charlotte Baglioni (Photography)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c21_cap: Concrete Wall 009, Poly Haven material concrete_wall_009
+URL: https://polyhaven.com/a/concrete_wall_009
+Authors: Charlotte Baglioni (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c21_grass: hive v1's cd_grass (h9_tsrp_hive) drawn at 512 (Catmull-Rom), darkened, a few dry leaves
+hr_c21_lamp: drawn, a warm lamp lens
+hr_c21_pave: Concrete Floor Worn 02, Poly Haven material concrete_floor_worn_02
+URL: https://polyhaven.com/a/concrete_floor_worn_02
+Authors: Dimitrios Savva (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c21_trim: Metal Plate 02, Poly Haven material metal_plate_02
+URL: https://polyhaven.com/a/metal_plate_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c21_tube: drawn after hive v1's green_orange (a lit lamp), at 256x64
+
+------------------------------------------------------------------------
+zone c22
+------------------------------------------------------------------------
+CC0 sources for hr_c22.wad (Poly Haven, CC0 1.0). Re-toned, marked (seams, rivets, streaks, grime; the ceiling's grating bars) and cut to 256 colours by the SMAK materials pack. hr_c22_tube, hr_c22_notice and hr_c22_clip are drawn (zones/c22/mat/procedural.mjs), no source.
+
+hr_c22_ceil: Metal Plate 02, Poly Haven material metal_plate_02
+URL: https://polyhaven.com/a/metal_plate_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+Downloaded through the Poly Haven API (Powered by Poly Haven).
+Downloaded 2026-11-21; made a GoldSrc texture (256x256, 256 colours) and its set kept at 1K by SMAK's materials pack.
+hr_c22_floor: Large Floor Tiles 02, Poly Haven material large_floor_tiles_02
+URL: https://polyhaven.com/a/large_floor_tiles_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+Downloaded through the Poly Haven API (Powered by Poly Haven).
+Downloaded 2026-11-21; made a GoldSrc texture (256x256, 256 colours) and its set kept at 1K by SMAK's materials pack.
+hr_c22_steel: Metal Plate 02, Poly Haven material metal_plate_02
+URL: https://polyhaven.com/a/metal_plate_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+Downloaded through the Poly Haven API (Powered by Poly Haven).
+Downloaded 2026-11-21; made a GoldSrc texture (256x256, 256 colours) and its set kept at 1K by SMAK's materials pack.
+hr_c22_wall: Blue Metal Plate, Poly Haven material blue_metal_plate
+URL: https://polyhaven.com/a/blue_metal_plate
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+Downloaded through the Poly Haven API (Powered by Poly Haven).
+Downloaded 2026-11-21; made a GoldSrc texture (256x256, 256 colours) and its set kept at 1K by SMAK's materials pack.
+
+------------------------------------------------------------------------
+zone c23
+------------------------------------------------------------------------
+CC0 sources for hr_c23.wad (Poly Haven, CC0 1.0). Re-toned, marked and cut to 256 colours by the SMAK materials pack. Props (models/hr/c23_*.mdl) wear Poly Haven rusty_metal_sheet and green_metal_rust, toned.
+
+hr_c23_desk: Smoked Walnut Veneer, Poly Haven material smoked_walnut_veneer
+URL: https://polyhaven.com/a/smoked_walnut_veneer
+Authors: Jenelle van Heerden (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c23_floor: Floor Tiles 08, Poly Haven material floor_tiles_08
+URL: https://polyhaven.com/a/floor_tiles_08
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c23_pipe: Rusty Metal 03, Poly Haven material rusty_metal_03
+URL: https://polyhaven.com/a/rusty_metal_03
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c23_walllo: Rusty Metal Sheet, Poly Haven material rusty_metal_sheet
+URL: https://polyhaven.com/a/rusty_metal_sheet
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c23_wallup: Green Metal Rust, Poly Haven material green_metal_rust
+URL: https://polyhaven.com/a/green_metal_rust
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c23_ceil: Blue Metal Plate, Poly Haven material blue_metal_plate
+URL: https://polyhaven.com/a/blue_metal_plate
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+
+------------------------------------------------------------------------
+zone c24
+------------------------------------------------------------------------
+CC0 sources for hr_c24.wad (Poly Haven, CC0 1.0). Re-toned, marked (seams, rivets, streaks, grime) and cut to 256 colours by the SMAK materials pack. hr_c24_tube is drawn (zones/c24/mat/procedural.mjs), no source.
+
+hr_c24_floor: Large Floor Tiles 02, Poly Haven material large_floor_tiles_02
+URL: https://polyhaven.com/a/large_floor_tiles_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+Downloaded through the Poly Haven API (Powered by Poly Haven).
+Downloaded 2026-11-22; made a GoldSrc texture (512x512, 256 colours) and its set kept at 1K by SMAK's materials pack.
+
+hr_c24_frame: Metal Plate 02, Poly Haven material metal_plate_02
+URL: https://polyhaven.com/a/metal_plate_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+Downloaded through the Poly Haven API (Powered by Poly Haven).
+Downloaded 2026-11-22; made a GoldSrc texture (256x256, 256 colours) and its set kept at 1K by SMAK's materials pack.
+
+hr_c24_steel: Blue Metal Plate, Poly Haven material blue_metal_plate
+URL: https://polyhaven.com/a/blue_metal_plate
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+Downloaded through the Poly Haven API (Powered by Poly Haven).
+Downloaded 2026-11-22; made a GoldSrc texture (256x256, 256 colours) and its set kept at 1K by SMAK's materials pack.
+
+hr_c24_teal: Blue Metal Plate, Poly Haven material blue_metal_plate
+URL: https://polyhaven.com/a/blue_metal_plate
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+Downloaded through the Poly Haven API (Powered by Poly Haven).
+Downloaded 2026-11-22; made a GoldSrc texture (256x256, 256 colours) and its set kept at 1K by SMAK's materials pack.
+
+hr_c24_wood: Japanese Cedar Planks, Poly Haven material japanese_cedar_planks
+URL: https://polyhaven.com/a/japanese_cedar_planks
+Authors: Charlotte Baglioni (Scanning), Rico Cilliers (Processing )
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+Downloaded through the Poly Haven API (Powered by Poly Haven).
+Downloaded 2026-11-22; made a GoldSrc texture (256x256, 256 colours) and its set kept at 1K by SMAK's materials pack.
+
+
+------------------------------------------------------------------------
+zone c25
+------------------------------------------------------------------------
+Sources for hr_c25.wad. hr_c25_drape and hr_c25_wall are hive v1's CDS_WOODWALL redrawn (velvet folds; upright boards);
+hr_c25_ceil, _steel, _door, _rail are hive v1's CEILING_PANEL1, PV_SSDOORTRIM, DOOR_BLAST2, GENOWOOD1 drawn at 2x with CC0 grain
+(Poly Haven concrete_wall_008) and a normal from their relief; hr_c25_lamp is drawn by program; the rest are Poly Haven sets (CC0 1.0),
+re-toned and cut to 256 colours by the SMAK materials pack. Models: models/hr/c25_case.mdl, c25_cylinder.mdl, SMAK models (zones/c25/props/src),
+the case skinned from Poly Haven green_metal_rust (CC0), the cylinder drawn.
+
+hr_c25_ceil: hive v1's CEILING_PANEL1 (h9_tsrp_hive), drawn at 256x256, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c25_door: hive v1's DOOR_BLAST2 (h9_tsrp_hive), drawn at 512x256, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c25_drape: hive v1's CDS_WOODWALL (h9_tsrp_hive), drawn at 512x512, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven none (CC0 1.0, polyhaven.com)
+hr_c25_lamp: hive v1's none (drawn) (h9_tsrp_hive), drawn at 128x32, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven none (CC0 1.0, polyhaven.com)
+hr_c25_pipe: Rusty Metal 03, Poly Haven material rusty_metal_03
+URL: https://polyhaven.com/a/rusty_metal_03
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c25_rail: hive v1's GENOWOOD1 (h9_tsrp_hive), drawn at 512x128, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c25_riser: Dark Planks, Poly Haven material dark_planks
+URL: https://polyhaven.com/a/dark_planks
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c25_steel: hive v1's PV_SSDOORTRIM (h9_tsrp_hive), drawn at 64x512, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven concrete_wall_008 (CC0 1.0, polyhaven.com)
+hr_c25_tread: Old Planks 02, Poly Haven material old_planks_02
+URL: https://polyhaven.com/a/old_planks_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c25_trim: Metal Plate 02, Poly Haven material metal_plate_02
+URL: https://polyhaven.com/a/metal_plate_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c25_wall: hive v1's CDS_WOODWALL (h9_tsrp_hive), drawn at 256x256, re-toned, grain and a normal map added for PrimeXT; grain from Poly Haven none (CC0 1.0, polyhaven.com)
+
+------------------------------------------------------------------------
+zone c26
+------------------------------------------------------------------------
+Sources for hr_c26.wad. Poly Haven sets (CC0 1.0), re-toned, marked and cut to 256 colours by the SMAK materials pack;
+{hr_c26_credits and hr_c26_door are hive v1's own {XC_CREDITS and C2A2_DR redrawn, hr_c26_lamp drawn (mat/custom.mjs).
+
+hr_c26_ceil: Rusty Metal Grid, Poly Haven material rusty_metal_grid
+URL: https://polyhaven.com/a/rusty_metal_grid
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c26_door: painted by SMAK's signs pack over hr_c26_red, whose credit follows.
+hr_c26_red: Rusty Painted Metal, Poly Haven material rusty_painted_metal
+URL: https://polyhaven.com/a/rusty_painted_metal
+Authors: Amal Kumar (All)
+hr_c26_floor: Metal Plate, Poly Haven material metal_plate
+URL: https://polyhaven.com/a/metal_plate
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c26_panel: Metal Plate 02, Poly Haven material metal_plate_02
+URL: https://polyhaven.com/a/metal_plate_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c26_trim: Blue Metal Plate, Poly Haven material blue_metal_plate
+URL: https://polyhaven.com/a/blue_metal_plate
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c26_wall: Rusty Metal Sheet, Poly Haven material rusty_metal_sheet
+URL: https://polyhaven.com/a/rusty_metal_sheet
+Authors: Amal Kumar (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+
+------------------------------------------------------------------------
+zone c27
+------------------------------------------------------------------------
+Sources for hr_c27.wad. Poly Haven sets (CC0 1.0), re-toned, marked and cut to 256 colours by the SMAK materials pack;
+hr_c27_wall carries hive v1's dk_wall1 panel lines (redrawn at twice the size as relief); hr_c27_strip (after v1's +0~light1) and hr_c27_lamp are drawn (mat/make.mjs), no source.
+
+hr_c27_floor: Metal Plate 02, Poly Haven material metal_plate_02
+URL: https://polyhaven.com/a/metal_plate_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c27_slab: Concrete Wall 009, Poly Haven material concrete_wall_009
+URL: https://polyhaven.com/a/concrete_wall_009
+Authors: Charlotte Baglioni (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c27_trim: Metal Plate 02, Poly Haven material metal_plate_02
+URL: https://polyhaven.com/a/metal_plate_02
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+hr_c27_wall: Blue Metal Plate, Poly Haven material blue_metal_plate
+URL: https://polyhaven.com/a/blue_metal_plate
+Authors: Rob Tuytel (All)
+Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.

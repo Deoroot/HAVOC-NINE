@@ -118,6 +118,7 @@ their own permissive licenses, which ship in the Emscripten release that `build-
 | `OFL-Orbitron.txt`, `OFL-Rajdhani.txt`, `OFL-ShareTechMono.txt` | the website's three typefaces (`havoc9.org/assets/fonts/`), served from the site | SIL Open Font License 1.1 |
 | `Asset-PPSh-41-ATTRIBUTION.txt` | PPSh-41 weapon models (zillious) | Creative Commons, attribution |
 | `Asset-LaserRifle-ATTRIBUTION.txt` | laser rifle weapon models (Jett Spaulding) | Creative Commons, attribution |
+| `Asset-HiveRemaster-ATTRIBUTION.txt` | the Hive City remaster h9_tsrp_hive_rm (`H9XASH/ts/models/hr/`, `textures/hr_*`, `scripts/hr_*.mat`, `hr_hive.wad`): Poly Haven materials | CC0 1.0 (public domain, no attribution required) |
 
 ## Everything else
 

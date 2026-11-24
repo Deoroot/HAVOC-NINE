@@ -1,0 +1,33 @@
+// hr_c04: Hive City remaster, the Uncle Pikky's hall (camera c04).
+// No ReflectScale anywhere (the owner: floors were too reflective). smoothness scales the _gloss map (R smoothness,
+// G metalness, both from the CC0 sets); "default" is the concrete-sound entry of materials.def.
+"hr_c04_blocks"
+{
+	"material" "default"
+	"smoothness" "0.3"
+}
+"hr_c04_floor"
+{
+	"material" "default"
+	"smoothness" "0.25"
+}
+"hr_c04_pillar"
+{
+	"material" "metal"
+	"smoothness" "0.6"
+}
+"hr_c04_ceil"
+{
+	"material" "metal"
+	"smoothness" "0.45"
+}
+"hr_c04_frame"
+{
+	"material" "metal"
+	"smoothness" "0.45"
+}
+"hr_c04_grille"
+{
+	"material" "metal"
+	"smoothness" "0.4"
+}

@@ -1,0 +1,73 @@
+// hr_c02: Hive City remaster, the Amoeba Music front (camera c02).
+// No ReflectScale anywhere (the owner: floors were too reflective). The Amoeba sign, the record bins and their sides are
+// hive v1's own pictures redrawn (mat/custom.mjs); the lamp is drawn.
+"hr_c02_wall"
+{
+	"material" "default"
+	"smoothness" "0.2"
+}
+"hr_c02_floor"
+{
+	"material" "default"
+	"smoothness" "0.22"
+}
+"hr_c02_ceil"
+{
+	"material" "default"
+	"smoothness" "0.2"
+}
+"hr_c02_steel"
+{
+	"material" "metal"
+	"smoothness" "0.35"
+}
+"hr_c02_trim"
+{
+	"material" "metal"
+	"smoothness" "0.4"
+}
+"hr_c02_bins"
+{
+	"material" "default"
+	"smoothness" "0.25"
+}
+"hr_c02_binside"
+{
+	"material" "metal"
+	"smoothness" "0.3"
+}
+"hr_c02_lamp"
+{
+	"material" "glass"
+	"smoothness" "0.4"
+}
+"{hr_c02_amoeba"
+{
+	"material" "glass"
+	"smoothness" "0.4"
+}
+"hr_c02_poster1"
+{
+	"material" "default"
+	"smoothness" "0.15"
+}
+"hr_c02_poster2"
+{
+	"material" "default"
+	"smoothness" "0.15"
+}
+"hr_c02_black"
+{
+	"material" "default"
+	"smoothness" "0.1"
+}
+"hr_c02_cyblue"
+{
+	"material" "glass"
+	"smoothness" "0.4"
+}
+"hr_c02_cylite"
+{
+	"material" "glass"
+	"smoothness" "0.4"
+}

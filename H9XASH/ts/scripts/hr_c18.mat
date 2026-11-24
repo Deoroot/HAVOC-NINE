@@ -1,0 +1,29 @@
+// hr_c18: Hive City remaster, the dusk skyline over the water (camera c18), lower city level.
+// No ReflectScale anywhere (the owner: floors were too reflective). smoothness scales the _gloss map (R smoothness,
+// G metalness); "default" is the concrete-sound entry of materials.def. The lit windows (hr_c18_win) are an additive
+// func_illusionary panel and glow by their texture; hr_c18_lamp is lit by the zone's info_texlights.
+"hr_c18_panel"
+{
+	"material" "default"
+	"smoothness" "0.2"
+}
+"hr_c18_conc"
+{
+	"material" "default"
+	"smoothness" "0.2"
+}
+"hr_c18_skirt"
+{
+	"material" "default"
+	"smoothness" "0.2"
+}
+"hr_c18_offic"
+{
+	"material" "default"
+	"smoothness" "0.25"
+}
+"hr_c18_trim"
+{
+	"material" "metal"
+	"smoothness" "0.35"
+}

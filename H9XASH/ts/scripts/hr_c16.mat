@@ -1,0 +1,38 @@
+// hr_c16: Hive City remaster, the sunken courtyard with the neon bar (camera c16).
+// No ReflectScale anywhere (the owner: floors were too reflective); the paving low in smoothness. smoothness scales the _gloss map
+// (R smoothness, G metalness); "default" is the concrete-sound entry of materials.def. The neon signs are additive (rendermode 5) and glow by their texture.
+"hr_c16_walk"
+{
+	"material" "default"
+	"smoothness" "0.15"
+}
+"hr_c16_flag"
+{
+	"material" "default"
+	"smoothness" "0.15"
+}
+"hr_c16_rib"
+{
+	"material" "default"
+	"smoothness" "0.2"
+}
+"hr_c16_conc"
+{
+	"material" "default"
+	"smoothness" "0.2"
+}
+"hr_c16_dark"
+{
+	"material" "default"
+	"smoothness" "0.2"
+}
+"hr_c16_ceil"
+{
+	"material" "default"
+	"smoothness" "0.2"
+}
+"hr_c16_trim"
+{
+	"material" "metal"
+	"smoothness" "0.35"
+}

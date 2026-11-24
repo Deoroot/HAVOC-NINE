@@ -1,0 +1,23 @@
+// hr_c27: Hive City remaster, the XE blue street (camera c27).
+// No ReflectScale anywhere (the owner: no excessive floor reflections); the floor plates a little smoother than the walls,
+// for the target's damp sheen only. smoothness scales the _gloss map (R smoothness, G metalness).
+"hr_c27_floor"
+{
+	"material" "metal"
+	"smoothness" "0.4"
+}
+"hr_c27_wall"
+{
+	"material" "metal"
+	"smoothness" "0.25"
+}
+"hr_c27_slab"
+{
+	"material" "default"
+	"smoothness" "0.2"
+}
+"hr_c27_trim"
+{
+	"material" "metal"
+	"smoothness" "0.35"
+}

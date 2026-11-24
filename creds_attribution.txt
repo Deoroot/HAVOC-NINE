@@ -22,3 +22,4 @@ rally mode's driving, cameras and car menu - behaviour studied from hl rally by 
 h9_car's driving model - method studied from diffusion's func_car by aynekko (no code taken)
 EntMod4 - now valve employee Drunken_F00l
 shovemod source - Styles
+h9_tsrp_hive_rm, the hive city remaster (its models, textures with their normal and gloss maps, material scripts and wad, made with smak) - deoroot, made with the studio maker asset kit; the materials are poly haven sets (cc0 1.0, polyhaven.com; rob tuytel, dimitrios savva, amal kumar, dario barresi, charlotte baglioni and others, see THIRD_PARTY_LICENSES/Asset-HiveRemaster-ATTRIBUTION.txt); the layout, entities and v1 textures redrawn are those of h9_tsrp_hive

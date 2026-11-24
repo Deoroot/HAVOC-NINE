@@ -1,0 +1,33 @@
+// hr_c26: Hive City remaster, the XE metal hall (camera c26).
+// No ReflectScale anywhere (the owner: floors were too reflective); the tread-plate floor low in smoothness. smoothness
+// scales the _gloss map (R smoothness, G metalness); "default" is the concrete-sound entry, "metal" the metal one.
+"hr_c26_wall"
+{
+	"material" "metal"
+	"smoothness" "0.4"
+}
+"hr_c26_panel"
+{
+	"material" "metal"
+	"smoothness" "0.4"
+}
+"hr_c26_floor"
+{
+	"material" "metal"
+	"smoothness" "0.2"
+}
+"hr_c26_ceil"
+{
+	"material" "metal"
+	"smoothness" "0.35"
+}
+"hr_c26_trim"
+{
+	"material" "metal"
+	"smoothness" "0.5"
+}
+"hr_c26_door"
+{
+	"material" "metal"
+	"smoothness" "0.3"
+}

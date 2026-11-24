@@ -1552,14 +1552,14 @@ stock tax_notice_flush()
 stock bool:tax_treasury()
 	return tax_evicts() && get_pcvar_num(p_Treasury) != 0
 
-// whether this map is h9_tsrp_hive, the one map that has more than one town
+// whether this map is h9_tsrp_hive or a remaster of it (h9_tsrp_hive_rm: the same three towns), the maps that have more than one town
 stock bool:tax_hive()
 {
 	new map[32]
 
 	get_mapname(map,31)
 
-	return equali(map,"h9_tsrp_hive") != 0
+	return equali(map,"h9_tsrp_hive",12) != 0
 }
 
 // the key of the town a property is in: on h9_tsrp_hive the city that the prefix of its internal name says (h9_jail, the property of the jail of Alexandria, is Alexandria's), on every other

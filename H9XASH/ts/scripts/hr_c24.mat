@@ -1,0 +1,28 @@
+// hr_c24: Hive City remaster, the wood-panelled room with the glass wall (camera c24).
+// No ReflectScale anywhere: the floor stays dry and dull (the owner: no excessive floor reflections). smoothness scales
+// the _gloss map; a low value on the floor.
+"hr_c24_wood"
+{
+	"material" "wood"
+	"smoothness" "0.35"
+}
+"hr_c24_steel"
+{
+	"material" "metal"
+	"smoothness" "0.4"
+}
+"hr_c24_teal"
+{
+	"material" "metal"
+	"smoothness" "0.45"
+}
+"hr_c24_frame"
+{
+	"material" "metal"
+	"smoothness" "0.45"
+}
+"hr_c24_floor"
+{
+	"material" "default"
+	"smoothness" "0.2"
+}

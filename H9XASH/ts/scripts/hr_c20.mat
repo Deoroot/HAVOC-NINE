@@ -1,0 +1,72 @@
+// hr_c20: Hive City remaster, the red neon shop street (camera c20).
+// No ReflectScale anywhere (the owner: floors were too reflective). smoothness scales the _gloss map.
+"hr_c20_floor"
+{
+	"material" "default"
+	"smoothness" "0.2"
+}
+"hr_c20_wall"
+{
+	"material" "default"
+	"smoothness" "0.2"
+}
+"hr_c20_steel"
+{
+	"material" "metal"
+	"smoothness" "0.35"
+}
+"hr_c20_frame"
+{
+	"material" "metal"
+	"smoothness" "0.4"
+}
+"hr_c20_trim"
+{
+	"material" "metal"
+	"smoothness" "0.4"
+}
+"hr_c20_ceil"
+{
+	"material" "metal"
+	"smoothness" "0.35"
+}
+"hr_c20_crate"
+{
+	"material" "metal"
+	"smoothness" "0.35"
+}
+"hr_c20_door"
+{
+	"material" "metal"
+	"smoothness" "0.4"
+}
+"hr_c20_cable"
+{
+	"material" "default"
+	"smoothness" "0.3"
+}
+"hr_c20_lamp"
+{
+	"material" "default"
+	"smoothness" "0.2"
+}
+"hr_c20_ribs"
+{
+	"material" "glass"
+	"smoothness" "0.5"
+}
+"hr_c20_open"
+{
+	"material" "glass"
+	"smoothness" "0.5"
+}
+"hr_c20_plate"
+{
+	"material" "metal"
+	"smoothness" "0.4"
+}
+"hr_c20_vsign"
+{
+	"material" "default"
+	"smoothness" "0.3"
+}

@@ -1,0 +1,52 @@
+// hr_c08: Hive City remaster, the cyan dark hall (camera c08).
+// No ReflectScale anywhere (the owner: floors too reflective); the floor kept low in smoothness.
+"hr_c08_wall"
+{
+	"material" "metal"
+	"smoothness" "0.4"
+}
+"hr_c08_blue"
+{
+	"material" "metal"
+	"smoothness" "0.35"
+}
+"hr_c08_white"
+{
+	"material" "metal"
+	"smoothness" "0.3"
+}
+"hr_c08_floor"
+{
+	"material" "default"
+	"smoothness" "0.2"
+}
+"hr_c08_ceil"
+{
+	"material" "metal"
+	"smoothness" "0.35"
+}
+"hr_c08_trim"
+{
+	"material" "metal"
+	"smoothness" "0.45"
+}
+"hr_c08_pipe"
+{
+	"material" "metal"
+	"smoothness" "0.45"
+}
+"hr_c08_slats"
+{
+	"material" "metal"
+	"smoothness" "0.3"
+}
+"hr_c08_conc"
+{
+	"material" "default"
+	"smoothness" "0.15"
+}
+"hr_c08_vent"
+{
+	"material" "metal"
+	"smoothness" "0.35"
+}

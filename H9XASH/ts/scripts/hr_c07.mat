@@ -1,0 +1,59 @@
+// hr_c07: Hive City remaster, the blue hall (camera c07).
+// No ReflectScale anywhere (the owner: floors were too reflective). smoothness scales the _gloss map (R smoothness,
+// G metalness); "default" is the concrete-sound entry of materials.def. The relief, door, sign, glow and lamp are hive
+// v1's own pictures redrawn with normal maps from their carving (mat/custom.mjs).
+"hr_c07_relief"
+{
+	"material" "default"
+	"smoothness" "0.2"
+}
+"hr_c07_floor"
+{
+	"material" "default"
+	"smoothness" "0.25"
+}
+"hr_c07_panel"
+{
+	"material" "default"
+	"smoothness" "0.3"
+}
+"hr_c07_conc"
+{
+	"material" "default"
+	"smoothness" "0.25"
+}
+"hr_c07_ceil"
+{
+	"material" "metal"
+	"smoothness" "0.45"
+}
+"hr_c07_trim"
+{
+	"material" "metal"
+	"smoothness" "0.45"
+}
+"hr_c07_door"
+{
+	"material" "metal"
+	"smoothness" "0.45"
+}
+"hr_c07_sign"
+{
+	"material" "glass"
+	"smoothness" "0.4"
+}
+"hr_c07_glow"
+{
+	"material" "glass"
+	"smoothness" "0.4"
+}
+"hr_c07_lamp"
+{
+	"material" "glass"
+	"smoothness" "0.4"
+}
+"hr_c07_hazard"
+{
+	"material" "metal"
+	"smoothness" "0.3"
+}

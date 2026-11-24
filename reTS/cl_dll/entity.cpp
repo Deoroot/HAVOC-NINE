@@ -134,6 +134,9 @@ int DLLEXPORT HUD_AddEntity(int type, struct cl_entity_s* ent, const char* model
 			return 0; // don't draw the player we are following in eye
 	}
 
+	extern void H9Pxr_AddEntity(int type, cl_entity_t* ent);
+	H9Pxr_AddEntity(type, ent); // H9: r_primext 1, the PrimeXT renderer lists it (h9_primext.cpp)
+
 	return 1;
 }
 

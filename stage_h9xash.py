@@ -140,7 +140,7 @@ LINUX_FILES = ['h9xash.sh', 'h9_userid.sh', 'README_LINUX.txt']
 ESSENTIALS = [slash(e) for e in (
     'HAVOC 9.exe', 'xash.dll', 'menu.dll', 'ref_gl.dll', 'SDL2.dll', 'filesystem_stdio.dll',
     'h9xash.bat', 'h9_userid.ps1', 'h9_networking.ps1', 'h9_cacerts.ps1', 'h9_vcruntime.ps1', 'redist\\vc14-x86\\msvcp140.dll', 'redist\\vc14-x86\\vcruntime140.dll', 'enter_userid.cmd',
-    'ts\\liblist.gam', 'ts\\gameinfo.txt', 'ts\\delta.lst', 'ts\\dlls\\mp.dll', 'ts\\cl_dlls\\client.dll',
+    'ts\\liblist.gam', 'ts\\gameinfo.txt', 'ts\\delta.lst', 'ts\\dlls\\mp.dll', 'ts\\cl_dlls\\client.dll', 'ts\\cl_dlls\\pxrender.dll',
     'ts\\autoexec.cfg', 'ts\\userconfig.cfg', 'ts\\addons\\metamod\\plugins.ini',
     'ts\\addons\\amxmodx\\configs\\plugins.ini', 'ts\\addons\\amxmodx\\configs\\amxx.cfg')] + LINUX_FILES
 

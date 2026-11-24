@@ -1,0 +1,37 @@
+TSM pxrender.dll -- PrimeXT's renderer for the reTS client, built from source
+==============================================================================
+
+What this is
+------------
+
+ts\cl_dlls\pxrender.dll is PrimeXT's client renderer (github.com/SNMetamorph/PrimeXT), adapted to
+The Specialists and H9 in reTS\cl_dll\primext\. client.dll loads it only when r_primext is 1 at
+start, and hands it the engine's render interface; with r_primext 0 it is never loaded and
+ref_gl.dll draws as before. Windows 32-bit only: other builds of the client have no
+HUD_GetRenderInterface and draw with ref_gl.
+
+It needs the files under ts\: glsl\ (the shaders, compiled into ts\cache\glsl\ on first use),
+gfx\*.dds, gfx\decals\decalinfo.txt with the puddle pictures, gfx\grass\grassinfo.txt,
+gfx\particles\effects.txt, scripts\default_ts.mat, scripts\materials.def and sprites
+ull.spr.
+
+Where each file came from and under which licence: reTS\PRIMEXT-SOURCES.md and
+reTS\PRIMEXT-LICENCES.md. The cvars: CVARS.md, "The PrimeXT renderer".
+
+Deployed file : pxrender.dll
+Built by      : CMake, Visual Studio 2026, Win32, Release; target pxrender (a dependency of
+                client), reTS\cl_dll\primext\CMakeLists.txt
+Built from    : branch primext-hive-remaster (HAVOC-NINE main 87170691 with primext-config
+                82fe2bfd merged, with the storage change under Size), 2026-11-24
+Size          : 795648 bytes (until 2026-11-24 the build was 55,666,176 bytes: the studio renderer and
+                the particle system were plain globals whose member arrays MSVC wrote into
+                initialised data; they are now built in zero-filled storage, gl_studio_init.cpp
+                and gl_rpart.cpp)
+SHA256        : 6C100C7F5C02AF46389BFF2ACC7144B0F6DD6370EABD2955592A465FE31EF1B7
+MD5           : f2fdd66e311254e8d5dcf3502d6998fa
+Goes with     : the client.dll of the same build (client.dll.patch, 2026-11-24 entry)
+
+Rollback
+--------
+
+Delete pxrender.dll, or set r_primext 0: client.dll then never loads it.

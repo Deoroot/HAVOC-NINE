@@ -1,0 +1,4 @@
+// H9 particle effects. Read by the renderer at each map start (gl_rpart.cpp).
+//
+// An effect is a name followed by a { } block of particle settings. Nothing in H9 starts one of these effects
+// yet and their images (gfx/particles/) are not shipped, so none is defined.

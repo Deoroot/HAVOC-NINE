@@ -23,6 +23,14 @@ again (git apply), in this order.
                       the look-ups only by maxClients, so on a server past 32 slots a
                       query from slot 33 and up is written past the table.
 
+  h9-physint.patch    metamod\src\dllapi.cpp: Server_GetPhysicsInterface is forwarded to the
+                      game library's own (mp.dll's: SV_CheckFeatures, which asks the engine for
+                      deluxemaps and large lightmaps for the PrimeXT renderer), and Metamod's own
+                      SV_CreateEntity is put on top of the game's table, the game's creator tried
+                      first. Upstream answers the engine itself and never asks the game, so mp.dll's
+                      export was never called (reTS\PRIMEXT-METAMOD.md). Plugins still do not see
+                      physint. The same change as reTS\PRIMEXT-metamod-physint.patch.
+
 Building (Windows): msvc\metamod.sln, Release|Win32, with the toolset of the Visual
 Studio at hand (/p:PlatformToolset=v145 for Visual Studio 2026; the project names only
 v120 to v142). Output: metamod\msvc\Release\metamod.dll. Interface version 5:13, the one

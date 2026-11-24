@@ -32,6 +32,10 @@
       "status": "native-only",
       "why": "A listen server's own player in presence: the browser build cannot host a server."
     },
+    "mainui-h9-primext.patch": {
+      "status": "native-only",
+      "why": "The PrimeXT renderer (r_primext, px_quality, pxrender.dll) is a Windows client library; the browser build has none, so Video options has no PrimeXT row there (#if !defined( __EMSCRIPTEN__ )) and Smooth edges and Glow keep driving r_scene_msaa and r_bloom."
+    },
     "engine-h9-upscale.patch": {
       "status": "native-only",
       "why": "The upscaler (h9_upscale, AMD FSR 1 as GLSL 1.10 shaders through the ARB shader objects) is desktop OpenGL code. ref/gl/gl_upscale.c compiles to a stand-in for the OpenGL ES and WebGL renderers (#if XASH_GLES): h9_upscale and h9_upscale_sharp are registered in every build, so a config line never errors, and h9_upscale 1 says once that this renderer has no upscaler and the plain blit stays. A WebGL port of the shaders is not part of this patch."

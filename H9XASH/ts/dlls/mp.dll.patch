@@ -661,3 +661,22 @@ Built from source rather than applied as a binary patch, so this entry's hash be
 the Patched line earlier in this file.
 
 mp.dll MD5 : ec013f6a7d28e83282d48bb5ba506b34
+
+The PrimeXT server half, and the main of 2026-11-24 (2026-11-24)
+-------------------------------------------------------------
+
+Built from branch primext-hive-remaster: HAVOC-NINE main 87170691 with the branch primext-config
+(82fe2bfd) merged. CMake, Visual Studio 2026, Win32, Release, targets hl and client.
+
+- Server_GetPhysicsInterface (dlls\primext_server.cpp): answers SV_CheckFeatures with deluxe data
+  and large lightmaps (0x14), for the PrimeXT renderer. The engine asks the library it loaded as
+  the game, which is metamod.dll: its 2026-11-24 build forwards the call here (metamod-r
+  h9-physint.patch). With an older metamod.dll the call never arrives and the game runs as before.
+- env_dynlight: PrimeXT's dynamic light entity (renderfx 71, switches in controller[0]; the
+  contract is reTS\PRIMEXT-ENTITIES.md), sent through AddToFullPack, and the server command
+  h9_pxt_lights.
+- Every change main had made to the game library up to 87170691.
+
+mp.dll size   : 1127424 bytes
+mp.dll SHA256 : CA05969A8F66FFD6E8DF1E7AFBDEDA2A9BC81C0136E75D0D6B1E8C635E9D2B3C
+mp.dll MD5    : 22edcf0f6fddb3a4fd78a185ec51e9ac

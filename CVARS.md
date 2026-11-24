@@ -18,6 +18,7 @@ player's own and are kept in their `config.cfg`.
 
 - [Part 1: the engine](#part-1-the-engine)
 - [Part 2: the module](#part-2-the-module-the-mods-own-libraries)
+  - [The PrimeXT renderer](#the-primext-renderer-r_primext-1)
 - [Part 3: the plugins](#part-3-the-plugins)
 
 ## Part 1: the engine
@@ -30,6 +31,7 @@ The Xash3D FWGS engine of H9XASH, with the H9 patch chain in `xash3d-h9-patches/
 | `cl_h9_cloakfix` | `1` | H9: show a server-side cloak on your own model instead of the client dll's own third person transparency | `engine-h9-cloak.patch` |
 | `cl_h9_joinscreen` | `1` | H9: the menu's join screen while a server is joined (0: the console, as upstream) | `engine-h9-joinscreen.patch` |
 | `cl_h9_motd` | `1` | H9: show a server's splash MOTD (a picture or a web page) in place of its text MOTD: 1 = on, 0 = the text MOTD | `engine-h9-motd.patch` |
+| `cl_h9_motd_debug` | `0` | H9: 1 writes what the splash MOTD's web page does, with the time, to h9_motd_debug.log in the game folder | `engine-h9-motd.patch` |
 | `cl_h9_motd_wine` | `0` | H9: under Wine or Proton, show a server's web page inside the game with Edge WebView2, without Chromium's sandbox: 0 = no, its picture or text and OPEN PAGE; 1 = yes; 2 = yes, with the GPU off | `engine-h9-motd.patch` |
 | `cl_h9_servers` | `1` | H9: ask havoc9.org which servers are authenticated, for the server browser's chain (cl_h9auth.c) | `engine-h9-serverauth.patch` |
 | `cl_h9_site` | (empty) | H9: for testing only, http://127.0.0.1:&lt;port&gt; or http://localhost:&lt;port&gt; in place of https://havoc9.org for the scoreboard's pictures | `engine-h9-avatars.patch` |
@@ -37,9 +39,16 @@ The Xash3D FWGS engine of H9XASH, with the H9 patch chain in `xash3d-h9-patches/
 | `cl_h9_userid` | (empty) | H9: this install's regenerable client id -- see docs/CUSTOM_XASH_USERID.txt | `engine-h9-userid.patch` |
 | `con_shownotify` | `0` | draw console notify lines over the game | `engine-h9-consoleoverlay.patch` |
 | `h9_autoconfig` | `1` | H9: exec mapconfigs/&lt;mapname&gt;.cfg once the map and its plugins are up | `engine-h9-autoconfig.patch` |
-| `h9_chatraise` | `16` | raise the chat input line by this many pixels, clear of the HUD in the lower left | `engine-h9-chatraise.patch` |
+| `h9_chatraise` | `16` | raise the chat input line by this many pixels, clear of the HUD in the lower left | `engine-h9-chatinput.patch` |
+| `h9_radio_buffer` | `4` | H9: internet radio, the seconds of audio it holds (2 to 15) | `engine-h9-radio.patch` |
+| `h9_radio_debug` | `0` | H9: internet radio, each step of the connection in the console | `engine-h9-radio.patch` |
+| `h9_radio_lan` | `0` | H9: 1 lets internet radio play a station on a loopback or private address (a server cannot set it) | `engine-h9-radio.patch` |
 | `h9_upscale` | `1` | upscale the scene rendered with r_scene_scale with AMD FSR 1, EASU then RCAS (0 off, 1 on) | `engine-h9-upscale.patch` |
 | `h9_upscale_sharp` | `0.84` | how strongly h9_upscale sharpens (RCAS): 0 none, 1 the most, 0.84 is AMD's recommended 0.25 stops | `engine-h9-upscale.patch` |
+| `r_bloom` | `1` | a soft light round what models draw additively (ice, lightning, flames) | `ref_gl.dll.patch` |
+| `r_bloom_radius` | `1.0` | how far r_bloom spreads (0.25 to 4) | `ref_gl.dll.patch` |
+| `r_bloom_scale` | `1.0` | how strong r_bloom is (0 to 4) | `ref_gl.dll.patch` |
+| `r_scene_msaa` | `4` | multisample the 3D scene off screen (0 off, 1 or 4 for 4 samples, 2 or 8), HUD is unaffected | `ref_gl.dll.patch` |
 | `ts_intro` | `1` | play the intro video before the main menu | `engine-h9-intro.patch` |
 | `ts_intro_vol` | `1` | how loud the intro video is: 0 silent, 1 full | `engine-h9-intro.patch` |
 | `ts_richpresence` | `1` | show your game on Discord (Rich Presence): 1 = on, 0 = off | `engine-h9-presence.patch` |
@@ -54,6 +63,9 @@ The Xash3D FWGS engine of H9XASH, with the H9 patch chain in `xash3d-h9-patches/
 | `_h9join` | `0` | H9: 1 while the join screen is up (set by the engine) | `engine-h9-joinscreen.patch` |
 | `_h9join_file` | (empty) | H9: the file the join screen downloads (set by the engine) | `engine-h9-joinscreen.patch` |
 | `_h9join_fileprog` | `0` | H9: that file's progress, 0 to 100 (set by the engine) | `engine-h9-joinscreen.patch` |
+| `_h9join_map` | (empty) | H9: the map the join screen loads (set by the engine) | `engine-h9-joinscreen.patch` |
+| `_h9join_mapnext` | (empty) | H9: the map a map change brings, for the join screen (set by the engine) | `engine-h9-joinscreen.patch` |
+| `_h9join_mode` | (empty) | H9: the mode that map plays, for the join screen (set by the engine) | `engine-h9-joinscreen.patch` |
 | `_h9join_server` | (empty) | H9: the server the join screen joins (set by the engine) | `engine-h9-joinscreen.patch` |
 | `_h9join_stage` | (empty) | H9: the join screen's stage (set by the engine) | `engine-h9-joinscreen.patch` |
 | `_h9join_total` | (empty) | H9: the downloads together, for the join screen (set by the engine) | `engine-h9-joinscreen.patch` |
@@ -147,6 +159,7 @@ reTS is the mod's game library (`mp.dll`) and client library (`client.dll`), reb
 | `h9_mechrocket_reload` | `3.0` | seconds a reload takes (0.5 to 30): the length of the launcher's reload animation | server library |
 | `h9_mechrocket_salvo` | `4` | rockets one trigger pull launches in burst mode (1 to 8); a clip with fewer launches what it holds. | server library |
 | `h9_mechrocket_selfdamage` | `0` | 1: a rocket's blast hurts the player who fired it, and pushes him | server library |
+| `h9_mechrocket_side` | `-12` | (no description yet) | server library |
 | `h9_mechrocket_speed` | `1100` | speed of the rocket, in units a second | server library |
 | `h9_mechrocket_spread` | `2.5` | degrees the rockets after the first may stray from the aim (0 to 15); the first goes straight, so a salvo of one is exact | server library |
 | `h9_mechrocket_stagger` | `0.12` | seconds between two rockets of a salvo (0.03 to 1). | server library |
@@ -157,6 +170,91 @@ reTS is the mod's game library (`mp.dll`) and client library (`client.dll`), reb
 | `mp_joinmidrace` | `1` | a player who picks a car while a race runs joins it from lap 0 (1); 0: he waits for the next race. | server library |
 | `mp_racelaps` | `0` | the laps of a race: 0 (the default) takes the map's own (race_rules laps); 1 or more overrides it | server library |
 | `mp_racewarmup` | `10` | the wait before each countdown, once a player is in (10) | server library |
+
+### The PrimeXT renderer (r_primext 1)
+
+With `r_primext 1` the client library loads PrimeXT's renderer (`cl_dlls/pxrender.dll`, built from `reTS/cl_dll/primext`) and it
+draws the scene. These are its cvars, and the client library's that drive it (`reTS/cl_dll/h9_primext.cpp`). While it draws, H9
+holds the engine's `r_scene_msaa` at 0, `r_bloom` at 0 and `r_scene_scale` at 1 (Part 1), whose off-screen target would cover
+its frame. Its saved settings are one table, `reTS/cl_dll/primext_cvars.h`, which the client library registers itself in a
+session started with `r_primext 0`, so `config.cfg` keeps them ("kept with r_primext 0"). MSAA is the engine's
+`gl_msaa_samples` (2 or more, at start). The cvars that name a GL extension (`gl_arb_*` and the like) are not listed.
+
+| Cvar | Default | What it does | Notes |
+|---|---|---|---|
+| `bump_vecs` | `0` | debug: bump vectors | not saved |
+| `cl_debug_rain` | `0` | debug view | not saved |
+| `cl_lod_bias` | `0` | model level-of-detail bias | kept with r_primext 0 |
+| `cl_lod_scale` | `5.0` | model level-of-detail distance scale | kept with r_primext 0 |
+| `cl_particle_lod` | `0` | particle level of detail | kept with r_primext 0 |
+| `cl_particles` | `1` | PrimeXT's particles | kept with r_primext 0 |
+| `cl_righthand` | `0` | the view model on the right hand | kept with r_primext 0 |
+| `cl_viewmodel_fov` | `90` | the view model's field of view (50 to 120) | kept with r_primext 0 |
+| `cl_viewmodel_znear` | `4.0` | the view model's near clip plane | kept with r_primext 0 |
+| `gl_allow_3dsky` | `1` | the 3D sky | kept with r_primext 0 |
+| `gl_allow_mirrors` | `1` | mirrors | kept with r_primext 0 |
+| `gl_allow_portals` | `1` | portals | kept with r_primext 0 |
+| `gl_allow_screens` | `1` | monitor screens | kept with r_primext 0 |
+| `gl_alpha2coverage` | `1` | alpha-to-coverage on grates and foliage (needs multisampling) | opengl.cfg; read at start; kept with r_primext 0 |
+| `gl_bump` | `1` | normal maps on the world and on models | kept with r_primext 0 |
+| `gl_cube_lod_bias` | `3` | how blurred cubemap reflections are (a mip bias) | kept with r_primext 0 |
+| `gl_debug_verbose` | `1` | debug: verbose GL debug messages (with a GL debug context) | not saved |
+| `gl_decals` | `1` | decals | kept with r_primext 0 |
+| `gl_decals_debug` | `0` | debug view | not saved |
+| `gl_dynlight` | `1` | dynamic lights | kept with r_primext 0 |
+| `gl_glows` | `1` | glow sprites | kept with r_primext 0 |
+| `gl_hdr` | `1` | HDR rendering; bloom and tone mapping run only with it | opengl.cfg; held at 1 by H9 with r_primext 1 (0 draws a black screen); kept with r_primext 0 |
+| `gl_lightstyles` | `1` | animated light styles | kept with r_primext 0 |
+| `gl_parallax` | `2` | parallax mapping: 0 off, 1 simple, 2 steep (the costliest) | px_quality 0/1/2: 0/1/2; kept with r_primext 0 |
+| `gl_posteffects` | `1` | the post-processing effects | kept with r_primext 0 |
+| `gl_realtime_puddles` | `1` | puddles reflect the scene: one 192x192 mirror pass for each floor plane with a puddle | px_quality 0/1/2: 0/1/1; kept with r_primext 0 |
+| `gl_recursion_depth` | `1` | how deep reflections and portals nest | kept with r_primext 0 |
+| `gl_renderer` | `1` | 0 hands every frame back to the engine; GL_Init sets 0 when it fails | not saved |
+| `gl_shadow_offset` | `0.02` | the depth bias of shadows | kept with r_primext 0 |
+| `gl_shadowmap_size` | `1024` | the size of a shadow map (128 to 2048) | px_quality 0/1/2: 512/1024/1024; kept with r_primext 0 |
+| `gl_show_basis` | `0` | debug view | not saved |
+| `gl_specular` | `1` | specular highlights | kept with r_primext 0 |
+| `gl_sun_shadows` | `1` | the sun's shadows (0 to 2) | kept with r_primext 0 |
+| `gl_sunshafts` | `1` | sun shafts | px_quality 0/1/2: 0/1/1; kept with r_primext 0 |
+| `gl_waterblur` | `1` | blur under water | kept with r_primext 0 |
+| `px_bloom` | `1` | bloom (with gl_hdr) | renamed from PrimeXT's r_bloom, a ref_gl cvar; px_quality 0/1/2: 0/1/1; kept with r_primext 0 |
+| `px_bloom_scale` | `0.7` | how strong px_bloom is | renamed from PrimeXT's r_bloom_scale, a ref_gl cvar; kept with r_primext 0 |
+| `px_quality` | `2` | the renderer's quality preset: 0 low, 1 medium, 2 high, 3 custom (sets nothing) | the client library's, so kept in both modes; sets the rows marked px_quality; one of them set by hand makes it 3 |
+| `px_shadows` | `4` | shadows of dynamic lights: 0 off, 1 hard, 2 PCF 2x2, 3 PCF 3x3, 4 Vogel disk | renamed from PrimeXT's r_shadows, a ref_gl cvar; px_quality 0/1/2: 1/2/4; kept with r_primext 0 |
+| `r_cubemap_realtime` | `0` | cubemaps drawn again while playing | kept with r_primext 0 |
+| `r_cubemap_reflection` | `1` | cubemap reflections on glossy surfaces | kept with r_primext 0 |
+| `r_dof` | `1` | depth of field; waits for an iron-sight zoom that TS does not set | kept with r_primext 0 |
+| `r_dof_change_time` | `0.8` | depth of field: how fast the focus changes | kept with r_primext 0 |
+| `r_dof_debug` | `0` | debug view | not saved |
+| `r_dof_focal_length` | `600.0` | depth of field: the focal length | kept with r_primext 0 |
+| `r_dof_fstop` | `8` | depth of field: the f-stop | kept with r_primext 0 |
+| `r_dof_hold_time` | `0.2` | depth of field: how long the focus holds | kept with r_primext 0 |
+| `r_grass` | `1` | grass | px_quality 0/1/2: 0/1/1; kept with r_primext 0 |
+| `r_grass_alpha` | `0.5` | grass transparency | kept with r_primext 0 |
+| `r_grass_fade_dist` | `2048` | how far grass fades over | kept with r_primext 0 |
+| `r_grass_fade_start` | `1024` | where grass starts to fade | kept with r_primext 0 |
+| `r_grass_lighting` | `1` | grass lit by the world | kept with r_primext 0 |
+| `r_grass_shadows` | `1` | grass in shadows | kept with r_primext 0 |
+| `r_lighting_brdf` | `0` | physically based shading, which reads the metalness of the _gloss maps; 0 is the classic model | kept with r_primext 0 |
+| `r_occlusion_culling` | `0` | occlusion queries to skip hidden objects | kept with r_primext 0 |
+| `r_postfx_enable` | `1.0` | the post-processing pass | not saved |
+| `r_primext` | `0` | 1: PrimeXT's renderer (cl_dlls/pxrender.dll) draws the scene; 0: the engine's renderer, as before | start only: read from the command line, config.cfg and userconfig.cfg as the client loads |
+| `r_primext_restore` | (empty) | the engine's r_scene_msaa, r_bloom and r_scene_scale as they were before r_primext 1 held them, put back at the next start with 0 | set by H9 |
+| `r_pssm_show_split` | `0` | debug view | not saved |
+| `r_pssm_split_weight` | `0.9` | how the sun's shadow cascades are split | kept with r_primext 0 |
+| `r_renderplayershadow` | `1` | the player's own shadow | kept with r_primext 0 |
+| `r_scissor_glass_debug` | `0` | debug view | not saved |
+| `r_scissor_light_debug` | `0` | debug view | not saved |
+| `r_show_cubemaps` | `0` | debug view | not saved |
+| `r_show_lightprobes` | `0` | debug view | not saved |
+| `r_show_luminance` | `0` | debug view | not saved |
+| `r_show_viewleaf` | `0` | debug view | not saved |
+| `r_showlightmaps` | `0` | debug view | not saved |
+| `r_studio_compatible` | `1` | draws models as GoldSrc does | kept with r_primext 0 |
+| `r_studio_decals` | `32` | decals on a model (10 to 256) | kept with r_primext 0 |
+| `r_sun_allowed` | `0` | the map's sun light | kept with r_primext 0 |
+| `r_sun_daytime` | `12` | the hour of the sun (12 is noon) | not saved |
+| `r_tonemap` | `1` | tone mapping (with gl_hdr) | kept with r_primext 0 |
 
 ## Part 3: the plugins
 
@@ -252,6 +350,17 @@ AMX Mod X plugins. Each section is one plugin, with the config file that carries
 | `h9_require_account` | `0` | 1: havoc9.org accounts only. |
 | `h9_require_account_grace` | `45` | seconds a game has to prove its account (10 to 300) |
 | `h9_require_release` | `1` | 0: any game may join. |
+
+#### h9_radio
+
+`src/h9_radio.sma`. Config: `h9_radio.cfg`. 4 cvars.
+
+| Cvar | Default | What it does |
+|---|---|---|
+| `h9_radio` | `0` | 1: players tune a station with /radio (the list is h9_radio_stations.ini), and this plugin plays the ambient rotation, under the same rule ts_matchmode uses (the match mode on, or a roleplay map with tsm_music_rp). |
+| `h9_radio_ambient` | `1` | (no description yet) |
+| `h9_radio_default` | (empty) | (no description yet) |
+| `h9_radio_volume` | `0.8` | (no description yet) |
 
 #### h9_rank
 

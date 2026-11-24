@@ -115,6 +115,9 @@ int DLLEXPORT HUD_GetStudioModelInterface(int version, struct r_studio_interface
 	// Initialize local variables, etc.
 	R_StudioInit();
 
+	extern void H9Pxr_StudioInterface(int version, struct engine_studio_api_s* pstudio);
+	H9Pxr_StudioInterface(version, pstudio); // H9: r_primext 1, the PrimeXT renderer's studio setup (h9_primext.cpp)
+
 	// Success
 	return 1;
 }

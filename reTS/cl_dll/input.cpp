@@ -1201,6 +1201,9 @@ void DLLEXPORT HUD_Shutdown()
 
 	H9Tts_Shutdown(); // H9: the speech thread of h9_tts.cpp, before the library goes
 
+	extern void H9Pxr_Shutdown();
+	H9Pxr_Shutdown(); // H9: the PrimeXT renderer's GL objects (h9_primext.cpp)
+
 	FileSystem_FreeFileSystem();
 	CL_UnloadParticleMan();
 }

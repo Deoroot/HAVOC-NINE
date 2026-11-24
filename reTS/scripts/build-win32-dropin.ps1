@@ -28,6 +28,8 @@ if ($env:RETS_REBUILD -ne "1") {
     Copy-Item (Join-Path $release "cl_dlls\client.dll") (Join-Path $cldlls "client.dll") -Force
     Copy-Item (Join-Path $release "dlls\mp.dll.patch") (Join-Path $dlls "mp.dll.patch") -Force
     Copy-Item (Join-Path $release "cl_dlls\client.dll.patch") (Join-Path $cldlls "client.dll.patch") -Force
+    # the release pair has no PrimeXT renderer: no pxrender.dll from an earlier source build may stay beside it
+    Remove-Item (Join-Path $cldlls "pxrender.dll") -Force -ErrorAction SilentlyContinue
     Write-Host "  reTS: pristine release_binaries -> binaries\ts\ (RETS_REBUILD=1 builds from source instead)"
     exit 0
 }
@@ -47,4 +49,19 @@ Copy-Item (Join-Path $buildDir "cl_dll\Release\client.dll") (Join-Path $cldlls "
 Copy-Item (Join-Path $release "dlls\mp.dll.patch") (Join-Path $dlls "mp.dll.patch") -Force
 Copy-Item (Join-Path $release "cl_dlls\client.dll.patch") (Join-Path $cldlls "client.dll.patch") -Force
 
-Write-Host "  reTS built from source -> binaries\ts\dlls\mp.dll, binaries\ts\cl_dlls\client.dll (verify ReTS_GetInterface-dependent natives before shipping this)"
+# The PrimeXT renderer (r_primext 1): client.dll loads cl_dlls\pxrender.dll, which the client target builds first
+# (Win32 with MSVC), and pxrender.dll reads the shaders and data files below from the game folder. They go into
+# binaries\ts\ so that xash.bat's layer 2 puts them in H9XASH\ts with the DLLs. The data files are H9's own, made by
+# reTS\tools\primext-data (PRIMEXT-LICENCES.md).
+$pxr = Join-Path $buildDir "cl_dll\primext\Release\pxrender.dll"
+if (-not (Test-Path $pxr)) { throw "no pxrender.dll at $pxr" }
+Copy-Item $pxr (Join-Path $cldlls "pxrender.dll") -Force
+$game = Join-Path $reTS "game\ts"
+$bin = Join-Path $reTS "binaries\ts"
+foreach ($dir in "glsl", "gfx", "scripts") {
+    Copy-Item (Join-Path $game $dir) $bin -Recurse -Force
+}
+New-Item -ItemType Directory -Force -Path (Join-Path $bin "sprites") | Out-Null
+Copy-Item (Join-Path $game "sprites\null.spr") (Join-Path $bin "sprites\null.spr") -Force
+
+Write-Host "  reTS built from source -> binaries\ts\dlls\mp.dll, binaries\ts\cl_dlls\client.dll and pxrender.dll, and the PrimeXT shaders and data (verify ReTS_GetInterface-dependent natives before shipping this)"

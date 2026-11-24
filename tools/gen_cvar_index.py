@@ -164,7 +164,9 @@ def engine_cvars():
     define = re.compile(r'^\+\s*(?:static\s+)?CVAR_DEFINE_AUTO\(\s*(\w+)\s*,\s*"([^"]*)"\s*,\s*([^,]+?)\s*,\s*"((?:[^"\\]|\\.)*)"')
     define2 = re.compile(r'^\+\s*(?:static\s+)?CVAR_DEFINE\(\s*\w+\s*,\s*"([^"]+)"\s*,\s*"([^"]*)"\s*,\s*([^,]+?)\s*,\s*"((?:[^"\\]|\\.)*)"')
     getter = re.compile(r'^\+\s*Cvar_Get\(\s*"([^"]+)"\s*,\s*"([^"]*)"\s*,\s*([^,]+?)\s*,\s*"((?:[^"\\]|\\.)*)"')
-    for path in tracked("xash3d-h9-patches/patches/*.patch"):
+    # the patch chain, then ref_gl's built patch, which also carries the webassembly patch's renderer part (r_scene_msaa,
+    # r_bloom*): those are not in the chain's own files
+    for path in tracked("xash3d-h9-patches/patches/*.patch", "H9XASH/ref_gl.dll.patch"):
         for line in text_of(path).split("\n"):
             m = define.match(line)
             if m:
@@ -228,6 +230,131 @@ def module_cvars():
     return sorted(rows.values(), key=lambda r: r["name"])
 
 
+# ---- 2b. the PrimeXT renderer (r_primext 1) ---------------------------------------------------------------------
+# PrimeXT's code gives its cvars no descriptions: these are written by hand.
+PRIMEXT_DESC = {
+    "r_primext": "1: PrimeXT's renderer (cl_dlls/pxrender.dll) draws the scene; 0: the engine's renderer, as before",
+    "r_primext_restore": "the engine's r_scene_msaa, r_bloom and r_scene_scale as they were before r_primext 1 held them, put back at the next start with 0",
+    "px_quality": "the renderer's quality preset: 0 low, 1 medium, 2 high, 3 custom (sets nothing)",
+    "gl_bump": "normal maps on the world and on models",
+    "gl_specular": "specular highlights",
+    "gl_parallax": "parallax mapping: 0 off, 1 simple, 2 steep (the costliest)",
+    "r_lighting_brdf": "physically based shading, which reads the metalness of the _gloss maps; 0 is the classic model",
+    "gl_cube_lod_bias": "how blurred cubemap reflections are (a mip bias)",
+    "r_cubemap_reflection": "cubemap reflections on glossy surfaces",
+    "r_cubemap_realtime": "cubemaps drawn again while playing",
+    "gl_dynlight": "dynamic lights",
+    "gl_lightstyles": "animated light styles",
+    "px_shadows": "shadows of dynamic lights: 0 off, 1 hard, 2 PCF 2x2, 3 PCF 3x3, 4 Vogel disk",
+    "gl_sun_shadows": "the sun's shadows (0 to 2)",
+    "r_sun_allowed": "the map's sun light",
+    "r_sun_daytime": "the hour of the sun (12 is noon)",
+    "gl_shadowmap_size": "the size of a shadow map (128 to 2048)",
+    "gl_shadow_offset": "the depth bias of shadows",
+    "r_pssm_split_weight": "how the sun's shadow cascades are split",
+    "r_renderplayershadow": "the player's own shadow",
+    "gl_hdr": "HDR rendering; bloom and tone mapping run only with it",
+    "gl_alpha2coverage": "alpha-to-coverage on grates and foliage (needs multisampling)",
+    "gl_posteffects": "the post-processing effects",
+    "gl_sunshafts": "sun shafts",
+    "r_tonemap": "tone mapping (with gl_hdr)",
+    "px_bloom": "bloom (with gl_hdr)",
+    "px_bloom_scale": "how strong px_bloom is",
+    "r_postfx_enable": "the post-processing pass",
+    "r_dof": "depth of field; waits for an iron-sight zoom that TS does not set",
+    "r_dof_hold_time": "depth of field: how long the focus holds",
+    "r_dof_change_time": "depth of field: how fast the focus changes",
+    "r_dof_focal_length": "depth of field: the focal length",
+    "r_dof_fstop": "depth of field: the f-stop",
+    "gl_waterblur": "blur under water",
+    "gl_glows": "glow sprites",
+    "gl_allow_mirrors": "mirrors",
+    "gl_allow_portals": "portals",
+    "gl_allow_screens": "monitor screens",
+    "gl_allow_3dsky": "the 3D sky",
+    "gl_recursion_depth": "how deep reflections and portals nest",
+    "gl_realtime_puddles": "puddles reflect the scene: one 192x192 mirror pass for each floor plane with a puddle",
+    "gl_decals": "decals",
+    "r_studio_decals": "decals on a model (10 to 256)",
+    "r_grass": "grass",
+    "r_grass_alpha": "grass transparency",
+    "r_grass_lighting": "grass lit by the world",
+    "r_grass_shadows": "grass in shadows",
+    "r_grass_fade_start": "where grass starts to fade",
+    "r_grass_fade_dist": "how far grass fades over",
+    "r_occlusion_culling": "occlusion queries to skip hidden objects",
+    "cl_righthand": "the view model on the right hand",
+    "cl_viewmodel_fov": "the view model's field of view (50 to 120)",
+    "cl_viewmodel_znear": "the view model's near clip plane",
+    "r_studio_compatible": "draws models as GoldSrc does",
+    "cl_lod_scale": "model level-of-detail distance scale",
+    "cl_lod_bias": "model level-of-detail bias",
+    "cl_particles": "PrimeXT's particles",
+    "cl_particle_lod": "particle level of detail",
+    "gl_renderer": "0 hands every frame back to the engine; GL_Init sets 0 when it fails",
+    "bump_vecs": "debug: bump vectors",
+    "gl_debug_verbose": "debug: verbose GL debug messages (with a GL debug context)",
+}
+RENAMED = {"px_shadows": "r_shadows", "px_bloom": "r_bloom", "px_bloom_scale": "r_bloom_scale"}
+
+
+def primext_cvars():
+    """The PrimeXT renderer's cvars (reTS/cl_dll/primext) and the cvars of client.dll that drive it (h9_primext.cpp)."""
+    rows = {}
+    table = {}
+    header = ROOT / "reTS" / "cl_dll" / "primext_cvars.h"
+    if header.exists():
+        for m in re.finditer(r'X\((\w+),\s*"([^"]*)",\s*(PXR_CV_[AG])\)', text_of(header)):
+            table[m.group(1)] = (m.group(2), m.group(3))
+    presets = {}
+    host = ROOT / "reTS" / "cl_dll" / "h9_primext.cpp"
+    source = text_of(host) if host.exists() else ""
+    for m in re.finditer(r'\{\s*"(\w+)"\s*,\s*\{\s*"([^"]*)"\s*,\s*"([^"]*)"\s*,\s*"([^"]*)"\s*\}\s*\}', source):
+        presets[m.group(1)] = m.groups()[1:]
+    for m in re.finditer(r'pfnRegisterVariable\(\s*"(r_primext[^"]*|px_[^"]*)"\s*,\s*"([^"]*)"\s*,\s*(\w+)', source):
+        rows[m.group(1)] = dict(name=m.group(1), default=m.group(2), saved="ARCHIVE" in m.group(3), gl=False,
+                                file=host.relative_to(ROOT).as_posix())
+    direct = re.compile(r'CVAR_REGISTER\(\s*"(\w+)"\s*,\s*"([^"]*)"\s*,\s*([^)]*)\)')
+    viatable = re.compile(r'PXR_CVAR_REGISTER\(\s*CVAR_REGISTER\s*,\s*(\w+)\s*\)')
+    for path in tracked("reTS/cl_dll/primext/client/render/*.cpp"):
+        src = text_of(path)
+        rel = path.relative_to(ROOT).as_posix()
+        for m in direct.finditer(src):
+            name, flags = m.group(1), m.group(3)
+            rows.setdefault(name, dict(name=name, default=m.group(2), saved="ARCHIVE" in flags, gl="GLCONFIG" in flags, file=rel))
+        for m in viatable.finditer(src):
+            name = m.group(1)
+            if name in table:
+                default, flag = table[name]
+                rows.setdefault(name, dict(name=name, default=default, saved=True, gl=flag == "PXR_CV_G", file=rel))
+    for name, (default, flag) in table.items():  # a row of the table no site names
+        rows.setdefault(name, dict(name=name, default=default, saved=True, gl=flag == "PXR_CV_G", file=header.relative_to(ROOT).as_posix()))
+    for r in rows.values():
+        notes = []
+        name = r["name"]
+        if name == "r_primext":
+            notes.append("start only: read from the command line, config.cfg and userconfig.cfg as the client loads")
+        elif name == "r_primext_restore":
+            notes.append("set by H9")
+        elif name == "px_quality":
+            notes.append("the client library's, so kept in both modes; sets the rows marked px_quality; one of them set by hand makes it 3")
+        elif name == "gl_hdr":
+            notes.append("opengl.cfg; held at 1 by H9 with r_primext 1 (0 draws a black screen)")
+        elif r["gl"]:
+            notes.append("opengl.cfg; read at start")
+        elif not r["saved"]:
+            notes.append("not saved")
+        if name in RENAMED:
+            notes.append(f"renamed from PrimeXT's {RENAMED[name]}, a ref_gl cvar")
+        if name in presets:
+            notes.append("px_quality 0/1/2: " + "/".join(presets[name]))
+        if name in table and r["default"] != "":
+            notes.append("kept with r_primext 0")
+        r["notes"] = "; ".join(notes)
+        r["desc"] = PRIMEXT_DESC.get(name, "debug view" if "debug" in name or name.startswith("r_show") or name in ("gl_show_basis", "r_pssm_show_split", "r_showlightmaps") else "")
+    return sorted(rows.values(), key=lambda r: r["name"])
+
+
 # ---- 3. the plugins -------------------------------------------------------------------------------------------
 REGISTER = re.compile(r'(?:register_cvar|create_cvar)\s*\(\s*"([^"]+)"\s*,\s*"([^"]*)"')
 STOCK = {"admin", "adminchat", "admincmd", "adminhelp", "adminslots", "adminvote", "antiflood", "cmdmenu", "imessage", "mapchooser", "mapsmenu",
@@ -278,6 +405,7 @@ def md_table(head, rows):
 def build():
     engine = engine_cvars()
     module = module_cvars()
+    primext = primext_cvars()
     plugins = plugin_cvars()
     known = {r["name"] for r in engine} | {r["name"] for r in module} | {r["name"] for p in plugins for r in p["rows"]}
     docs = doc_rows(known)
@@ -304,6 +432,7 @@ def build():
            "player's own and are kept in their `config.cfg`.", "",
            "- [Part 1: the engine](#part-1-the-engine)",
            "- [Part 2: the module](#part-2-the-module-the-mods-own-libraries)",
+           "  - [The PrimeXT renderer](#the-primext-renderer-r_primext-1)",
            "- [Part 3: the plugins](#part-3-the-plugins)", ""]
 
     # 1. engine
@@ -324,6 +453,19 @@ def build():
     out += md_table(["Cvar", "Default", "What it does", "In"],
                     [[f"`{r['name']}`", f"`{r['default']}`" if r["default"] != "" else "(empty)", cell(describe(r["name"], r["desc"])), r["where"]]
                      for r in module])
+    out += [""]
+
+    # 2b. the PrimeXT renderer
+    out += ["### The PrimeXT renderer (r_primext 1)", "",
+            "With `r_primext 1` the client library loads PrimeXT's renderer (`cl_dlls/pxrender.dll`, built from `reTS/cl_dll/primext`) and it",
+            "draws the scene. These are its cvars, and the client library's that drive it (`reTS/cl_dll/h9_primext.cpp`). While it draws, H9",
+            "holds the engine's `r_scene_msaa` at 0, `r_bloom` at 0 and `r_scene_scale` at 1 (Part 1), whose off-screen target would cover",
+            "its frame. Its saved settings are one table, `reTS/cl_dll/primext_cvars.h`, which the client library registers itself in a",
+            "session started with `r_primext 0`, so `config.cfg` keeps them (\"kept with r_primext 0\"). MSAA is the engine's",
+            "`gl_msaa_samples` (2 or more, at start). The cvars that name a GL extension (`gl_arb_*` and the like) are not listed.", ""]
+    out += md_table(["Cvar", "Default", "What it does", "Notes"],
+                    [[f"`{r['name']}`", f"`{r['default']}`" if r["default"] != "" else "(empty)", cell(brief(r["desc"])) if r["desc"] else "(no description yet)",
+                      cell(r["notes"])] for r in primext])
     out += [""]
 
     # 3. plugins
@@ -347,7 +489,7 @@ def build():
 def main():
     page, engine, module, plugins, docs = build()
     undescribed = sum(1 for p in plugins for r in p["rows"] if f"| `{r['name']}` |" in page and page.split(f"| `{r['name']}` |")[1].split("\n")[0].rstrip().endswith("| (no description yet) |"))
-    summary = f"engine {len(engine)}, module {len(module)}, plugins {sum(len(p['rows']) for p in plugins)} in {len(plugins)} files; {undescribed} plugin rows without a description"
+    summary = f"engine {len(engine)}, module {len(module)}, PrimeXT {len(primext_cvars())}, plugins {sum(len(p['rows']) for p in plugins)} in {len(plugins)} files; {undescribed} plugin rows without a description"
     if "--check" in sys.argv:
         current = OUT.read_text(encoding="utf-8").replace("\r\n", "\n") if OUT.exists() else ""
         if current != page:

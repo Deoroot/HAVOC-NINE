@@ -78,6 +78,7 @@ target_sources(hl PRIVATE
 	hldmcompat.cpp
 	ts_sharedemitter.cpp
 	ts_emitter.cpp
+	primext_server.cpp
 	ts_func_break.cpp
 	ts_gun.cpp
 	ts_mechrocket.cpp

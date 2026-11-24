@@ -1,0 +1,4320 @@
+// The Specialists' world textures and their material kind (scripts/materials.def), made by
+// px-data/src/gen_text.py from the texture types in TS's sound/materials.txt. A map's own .mat file
+// can override any of them. Textures not listed get the kind "default".
+
+"!3dm_swim02"
+{
+	"material" "water"
+}
+"3dm_sauna"
+{
+	"material" "wood"
+}
+"3dm_seasight03"
+{
+	"material" "dirt"
+}
+"3dm_stereo"
+{
+	"material" "computer"
+}
+"3dm_ab"
+{
+	"material" "computer"
+}
+"3dm_villaflo05"
+{
+	"material" "dirt"
+}
+"3dm_villaflo06"
+{
+	"material" "dirt"
+}
+"3dm_villaflo10"
+{
+	"material" "dirt"
+}
+"3dm_wine02"
+{
+	"material" "wood"
+}
+"3dm_wine03"
+{
+	"material" "wood"
+}
+"3dm_mac_f"
+{
+	"material" "metal"
+}
+"3dm_mac_s1"
+{
+	"material" "metal"
+}
+"3dm_mac_s2"
+{
+	"material" "metal"
+}
+"arc_sf2tfr"
+{
+	"material" "computer"
+}
+"arc_sfatfr"
+{
+	"material" "computer"
+}
+"3dm_roof01"
+{
+	"material" "dirt"
+}
+"dojo_ground_01"
+{
+	"material" "dirt"
+}
+"dojo_ground_02"
+{
+	"material" "dirt"
+}
+"dojo_ground_03"
+{
+	"material" "dirt"
+}
+"dojo_ground_04"
+{
+	"material" "dirt"
+}
+"dojo_ground_05"
+{
+	"material" "dirt"
+}
+"dojo_ground_06"
+{
+	"material" "dirt"
+}
+"dojo_ground_07"
+{
+	"material" "dirt"
+}
+"dojo_ground_08"
+{
+	"material" "dirt"
+}
+"dojo_wood_01"
+{
+	"material" "wood"
+}
+"dojo_wood_02"
+{
+	"material" "wood"
+}
+"dojo_wood_03"
+{
+	"material" "wood"
+}
+"dojo_wood_04"
+{
+	"material" "wood"
+}
+"dojo_wood_05"
+{
+	"material" "wood"
+}
+"dojo_wood_07"
+{
+	"material" "wood"
+}
+"dojo_thingy_01"
+{
+	"material" "wood"
+}
+"dojo_thingy_02"
+{
+	"material" "wood"
+}
+"cstrike_oe4pnl"
+{
+	"material" "metal"
+}
+"cstrike_oe4pnlh"
+{
+	"material" "metal"
+}
+"dod_crate11"
+{
+	"material" "metal"
+}
+"dod_crate12"
+{
+	"material" "metal"
+}
+"dod_door03"
+{
+	"material" "metal"
+}
+"dod_newlight01"
+{
+	"material" "computer"
+}
+"dod_platfond01"
+{
+	"material" "wood"
+}
+"{grate4a"
+{
+	"material" "grate"
+}
+"!3dm_watery"
+{
+	"material" "water"
+}
+"3dm_ateambigf"
+{
+	"material" "metal"
+}
+"3dm_ateambigs"
+{
+	"material" "metal"
+}
+"3dm_crate01"
+{
+	"material" "wood"
+}
+"3dm_crate04"
+{
+	"material" "wood"
+}
+"3dm_crate05"
+{
+	"material" "wood"
+}
+"3dm_drawer02"
+{
+	"material" "wood"
+}
+"3md_fire01"
+{
+	"material" "computer"
+}
+"3dm_fire02"
+{
+	"material" "metal"
+}
+"3dm_lamp01"
+{
+	"material" "computer"
+}
+"3dm_locker03"
+{
+	"material" "metal"
+}
+"3dm_locker04"
+{
+	"material" "metal"
+}
+"3dm_trash01"
+{
+	"material" "metal"
+}
+"3dm_trash02"
+{
+	"material" "metal"
+}
+"3dm_trash05"
+{
+	"material" "metal"
+}
+"3dm_trash06"
+{
+	"material" "metal"
+}
+"3dm_watery"
+{
+	"material" "water"
+}
+"3dm_watr05"
+{
+	"material" "water"
+}
+"3dm_watr06"
+{
+	"material" "water"
+}
+"3dm_watr07"
+{
+	"material" "water"
+}
+"arc_kitfr"
+{
+	"material" "computer"
+}
+"arc_mk2fr"
+{
+	"material" "computer"
+}
+"arc_mk2s"
+{
+	"material" "computer"
+}
+"armoredfrnt"
+{
+	"material" "metal"
+}
+"amrmoredside"
+{
+	"material" "metal"
+}
+"armoredtop"
+{
+	"material" "metal"
+}
+"exitsign2"
+{
+	"material" "computer"
+}
+"gold_f"
+{
+	"material" "metal"
+}
+"gold_s"
+{
+	"material" "metal"
+}
+"gold_t"
+{
+	"material" "metal"
+}
+"{3dmvent"
+{
+	"material" "grate"
+}
+"dod_crate01"
+{
+	"material" "wood"
+}
+"dod_towr02"
+{
+	"material" "wood"
+}
+"{dod_door04"
+{
+	"material" "metal"
+}
+"!sgwat"
+{
+	"material" "water"
+}
+"doors_metald"
+{
+	"material" "metal"
+}
+"metal2"
+{
+	"material" "metal"
+}
+"metal6a"
+{
+	"material" "metal"
+}
+"rtcorru2"
+{
+	"material" "metal"
+}
+"rtcorru_5"
+{
+	"material" "metal"
+}
+"metal_rusty"
+{
+	"material" "metal"
+}
+"door01"
+{
+	"material" "metal"
+}
+"sg_moddoor"
+{
+	"material" "metal"
+}
+"warehousedo"
+{
+	"material" "metal"
+}
+"sgmetal1"
+{
+	"material" "metal"
+}
+"sgmetal2"
+{
+	"material" "metal"
+}
+"sg_metal2bt"
+{
+	"material" "metal"
+}
+"sg_phone1"
+{
+	"material" "computer"
+}
+"wood4a"
+{
+	"material" "wood"
+}
+"wooddark"
+{
+	"material" "wood"
+}
+"wood01"
+{
+	"material" "wood"
+}
+"cf_m_wd1"
+{
+	"material" "wood"
+}
+"cf_m_wd2"
+{
+	"material" "wood"
+}
+"cf_m_wd3"
+{
+	"material" "wood"
+}
+"ts_panzibar"
+{
+	"material" "computer"
+}
+"+0~oventop"
+{
+	"material" "metal"
+}
+"sgovenfront"
+{
+	"material" "metal"
+}
+"sgcomp_fr"
+{
+	"material" "computer"
+}
+"sgcomp_mon"
+{
+	"material" "computer"
+}
+"sgcomp_kb"
+{
+	"material" "computer"
+}
+"sgcomp_r"
+{
+	"material" "computer"
+}
+"sgcomp_sd"
+{
+	"material" "computer"
+}
+"dm_canyonsand1"
+{
+	"material" "dirt"
+}
+"cg_buildmat05"
+{
+	"material" "wood"
+}
+"will_wood2_256"
+{
+	"material" "wood"
+}
+"mp_cardboard01b"
+{
+	"material" "wood"
+}
+"mp_cardobard02b"
+{
+	"material" "wood"
+}
+"mp_cardboard03b"
+{
+	"material" "wood"
+}
+"mp_cardboard09a"
+{
+	"material" "wood"
+}
+"mp_cardboardcom"
+{
+	"material" "wood"
+}
+"dm_cuwoodm"
+{
+	"material" "wood"
+}
+"TOL_oakDdesert"
+{
+	"material" "wood"
+}
+"mp_box12b"
+{
+	"material" "wood"
+}
+"mp_woodcrate1"
+{
+	"material" "wood"
+}
+"tankrear"
+{
+	"material" "metal"
+}
+"tankside"
+{
+	"material" "metal"
+}
+"tanktop"
+{
+	"material" "metal"
+}
+"tanktur"
+{
+	"material" "metal"
+}
+"c1a1_crate1"
+{
+	"material" "metal"
+}
+"c1a1_crate2"
+{
+	"material" "metal"
+}
+"dm_humvee_b"
+{
+	"material" "metal"
+}
+"dm_humvee_f"
+{
+	"material" "metal"
+}
+"dm_humvee_h"
+{
+	"material" "metal"
+}
+"dm_humvee_r"
+{
+	"material" "metal"
+}
+"dm_humvee_s"
+{
+	"material" "metal"
+}
+"dm_humvee_t"
+{
+	"material" "metal"
+}
+"dm_cs_me2ri"
+{
+	"material" "metal"
+}
+"dm_in_door7"
+{
+	"material" "metal"
+}
+"mp_metalbox02a"
+{
+	"material" "metal"
+}
+"mp_metcontain03"
+{
+	"material" "metal"
+}
+"mp_metcontain04"
+{
+	"material" "metal"
+}
+"mp_metcontain06"
+{
+	"material" "metal"
+}
+"bmw_back"
+{
+	"material" "metal"
+}
+"bmw_fron"
+{
+	"material" "metal"
+}
+"bmw_side"
+{
+	"material" "metal"
+}
+"corfam2_back"
+{
+	"material" "metal"
+}
+"corfam2_fron"
+{
+	"material" "metal"
+}
+"corfam2_side"
+{
+	"material" "metal"
+}
+"corola2_back"
+{
+	"material" "metal"
+}
+"corola2_fron"
+{
+	"material" "metal"
+}
+"corola2_side"
+{
+	"material" "metal"
+}
+"golf2_back"
+{
+	"material" "metal"
+}
+"golf2_fron"
+{
+	"material" "metal"
+}
+"golf2_side"
+{
+	"material" "metal"
+}
+"megane2_back"
+{
+	"material" "metal"
+}
+"megane2_fron"
+{
+	"material" "metal"
+}
+"megane2_side"
+{
+	"material" "metal"
+}
+"merc2_back"
+{
+	"material" "metal"
+}
+"merc2_fron"
+{
+	"material" "metal"
+}
+"merc2_side"
+{
+	"material" "metal"
+}
+"twingo_back"
+{
+	"material" "metal"
+}
+"twingo_fron"
+{
+	"material" "metal"
+}
+"twingo_side"
+{
+	"material" "metal"
+}
+"van_e_back"
+{
+	"material" "metal"
+}
+"van_e_fron"
+{
+	"material" "metal"
+}
+"van_e_roof"
+{
+	"material" "metal"
+}
+"van_e_side"
+{
+	"material" "metal"
+}
+"gpc_balk1"
+{
+	"material" "metal"
+}
+"gpc_balk1b"
+{
+	"material" "metal"
+}
+"gpc_bcontainer1"
+{
+	"material" "metal"
+}
+"gpc_bcontainer2"
+{
+	"material" "metal"
+}
+"gpc_bcontainer3"
+{
+	"material" "metal"
+}
+"gpc_box1a"
+{
+	"material" "metal"
+}
+"gpc_box1b"
+{
+	"material" "metal"
+}
+"gpc_box1c"
+{
+	"material" "metal"
+}
+"gpc_buis1"
+{
+	"material" "metal"
+}
+"gpc_door1"
+{
+	"material" "metal"
+}
+"gpc_doos3"
+{
+	"material" "metal"
+}
+"gpc_exit1"
+{
+	"material" "metal"
+}
+"gpc_gcontainer1"
+{
+	"material" "metal"
+}
+"gpc_gcontainer2"
+{
+	"material" "metal"
+}
+"gpc_gcontainer3"
+{
+	"material" "metal"
+}
+"gpc_gpc2"
+{
+	"material" "metal"
+}
+"gpc_metal1"
+{
+	"material" "metal"
+}
+"gpc_metal2"
+{
+	"material" "metal"
+}
+"gpc_metal3"
+{
+	"material" "metal"
+}
+"gpc_metal4"
+{
+	"material" "metal"
+}
+"gpc_metal5"
+{
+	"material" "metal"
+}
+"gpc_metal6"
+{
+	"material" "metal"
+}
+"gpc_metal7"
+{
+	"material" "metal"
+}
+"gpc_schutting1"
+{
+	"material" "wood"
+}
+"gpc_wood1"
+{
+	"material" "wood"
+}
+"gpc_gras1"
+{
+	"material" "dirt"
+}
+"gpc_glass1"
+{
+	"material" "glass"
+}
+"gpc_light1"
+{
+	"material" "glass"
+}
+"gpc_light2"
+{
+	"material" "glass"
+}
+"gpc_light3"
+{
+	"material" "glass"
+}
+"gpc_window1"
+{
+	"material" "glass"
+}
+"sp_stationkist"
+{
+	"material" "wood"
+}
+"crate002"
+{
+	"material" "wood"
+}
+"ts_wood1"
+{
+	"material" "wood"
+}
+"ts_lift1"
+{
+	"material" "metal"
+}
+"blaz_vent02"
+{
+	"material" "metal"
+}
+"C1A4_FUEL3"
+{
+	"material" "metal"
+}
+"container12"
+{
+	"material" "metal"
+}
+"sidecontainer"
+{
+	"material" "metal"
+}
+"topcontainer"
+{
+	"material" "metal"
+}
+"elev1"
+{
+	"material" "metal"
+}
+"elev2_flr"
+{
+	"material" "metal"
+}
+"fence001"
+{
+	"material" "metal"
+}
+"generic45"
+{
+	"material" "metal"
+}
+"lab1_trim3"
+{
+	"material" "metal"
+}
+"ts_garage"
+{
+	"material" "metal"
+}
+"ts_knop1"
+{
+	"material" "metal"
+}
+"ts_panels1"
+{
+	"material" "metal"
+}
+"ts_phone1"
+{
+	"material" "metal"
+}
+"ts_scratch3"
+{
+	"material" "metal"
+}
+"ts_scratch5"
+{
+	"material" "metal"
+}
+"ts_scratch6"
+{
+	"material" "metal"
+}
+"ts_rooster"
+{
+	"material" "metal"
+}
+"ts_verwarming"
+{
+	"material" "metal"
+}
+"xcrate9a"
+{
+	"material" "metal"
+}
+"xcrate9b"
+{
+	"material" "metal"
+}
+"xcrate9c"
+{
+	"material" "metal"
+}
+"grass1_mossy"
+{
+	"material" "dirt"
+}
+"blazgravel"
+{
+	"material" "dirt"
+}
+"kruxuscrate"
+{
+	"material" "wood"
+}
+"lngwoodencrate"
+{
+	"material" "wood"
+}
+"lngwoodencrate2"
+{
+	"material" "wood"
+}
+"lngwoodencrate3"
+{
+	"material" "wood"
+}
+"smlwoodcrate"
+{
+	"material" "wood"
+}
+"spotlight01"
+{
+	"material" "glass"
+}
+"win_light01"
+{
+	"material" "glass"
+}
+"city_monitor"
+{
+	"material" "glass"
+}
+"krux_hazard"
+{
+	"material" "glass"
+}
+"city_trans2"
+{
+	"material" "metal"
+}
+"city_trans4"
+{
+	"material" "metal"
+}
+"door_green"
+{
+	"material" "metal"
+}
+"blaz_metaldoor1"
+{
+	"material" "metal"
+}
+"pipe23"
+{
+	"material" "metal"
+}
+"krux_pipe"
+{
+	"material" "metal"
+}
+"krux-pipe23"
+{
+	"material" "metal"
+}
+"krux_metalbox4"
+{
+	"material" "metal"
+}
+"krux_metalboxb1"
+{
+	"material" "metal"
+}
+"krux_metalboxb2"
+{
+	"material" "metal"
+}
+"hl_barrel"
+{
+	"material" "metal"
+}
+"door002"
+{
+	"material" "metal"
+}
+"door005"
+{
+	"material" "metal"
+}
+"ts_books"
+{
+	"material" "wood"
+}
+"floor004"
+{
+	"material" "wood"
+}
+"bparquet"
+{
+	"material" "wood"
+}
+"ts_crate"
+{
+	"material" "wood"
+}
+"fo_cassa1"
+{
+	"material" "wood"
+}
+"fo_cassa1s"
+{
+	"material" "wood"
+}
+"fo_cassa2"
+{
+	"material" "wood"
+}
+"fo_cassa2b"
+{
+	"material" "wood"
+}
+"fo_cassa3"
+{
+	"material" "wood"
+}
+"fo_cil1"
+{
+	"material" "metal"
+}
+"fo_cil2"
+{
+	"material" "metal"
+}
+"fo_cil3"
+{
+	"material" "metal"
+}
+"fo_cil4"
+{
+	"material" "metal"
+}
+"fo_cilblu"
+{
+	"material" "metal"
+}
+"fo_ciltopblu"
+{
+	"material" "metal"
+}
+"fo_ciltop"
+{
+	"material" "metal"
+}
+"crate001"
+{
+	"material" "wood"
+}
+"doors_bigdoor4"
+{
+	"material" "metal"
+}
+"doors_metaldoo2"
+{
+	"material" "metal"
+}
+"metals_metal3"
+{
+	"material" "metal"
+}
+"panels_panels3"
+{
+	"material" "metal"
+}
+"panels_panels4"
+{
+	"material" "metal"
+}
+"out_dirt3"
+{
+	"material" "dirt"
+}
+"out_dirt4"
+{
+	"material" "dirt"
+}
+"out_dirt5"
+{
+	"material" "dirt"
+}
+"out_dirt6"
+{
+	"material" "dirt"
+}
+"out_dirt7"
+{
+	"material" "dirt"
+}
+"out_dirt8"
+{
+	"material" "dirt"
+}
+"out_grass1"
+{
+	"material" "dirt"
+}
+"out_rocks1"
+{
+	"material" "dirt"
+}
+"out_rocks2"
+{
+	"material" "dirt"
+}
+"wood2"
+{
+	"material" "wood"
+}
+"wood21"
+{
+	"material" "wood"
+}
+"wood3"
+{
+	"material" "wood"
+}
+"wood3a"
+{
+	"material" "wood"
+}
+"wood3b"
+{
+	"material" "wood"
+}
+"woods_wood3"
+{
+	"material" "wood"
+}
+"+0strat_screen2"
+{
+	"material" "computer"
+}
+"+0strat_scren_2"
+{
+	"material" "computer"
+}
+"blaz_elevdoor"
+{
+	"material" "metal"
+}
+"rs_woodwall2d"
+{
+	"material" "wood"
+}
+"rs_woodwall3d"
+{
+	"material" "wood"
+}
+"rs_woodwall_b"
+{
+	"material" "wood"
+}
+"smoe_freeze"
+{
+	"material" "metal"
+}
+"strat_door2_d"
+{
+	"material" "wood"
+}
+"strat_door2_e"
+{
+	"material" "wood"
+}
+"strat_door5"
+{
+	"material" "glass"
+}
+"strat_fire"
+{
+	"material" "metal"
+}
+"strat_fire2"
+{
+	"material" "metal"
+}
+"strat_multa"
+{
+	"material" "wood"
+}
+"strat_prqt_drk2"
+{
+	"material" "wood"
+}
+"strat_prqt_lit2"
+{
+	"material" "wood"
+}
+"strat_screen_b"
+{
+	"material" "wood"
+}
+"strat_test_tbl"
+{
+	"material" "wood"
+}
+"strat_wood4"
+{
+	"material" "wood"
+}
+"vh_ground3b"
+{
+	"material" "dirt"
+}
+"xen_ritila"
+{
+	"material" "metal"
+}
+"xen_tile5b"
+{
+	"material" "tile"
+}
+"xen_wood_cmpt"
+{
+	"material" "wood"
+}
+"xen_wood_test8"
+{
+	"material" "wood"
+}
+"~light3b"
+{
+	"material" "glass"
+}
+"hoglass1"
+{
+	"material" "glass"
+}
+"hokitchenmetal"
+{
+	"material" "metal"
+}
+"howood1"
+{
+	"material" "wood"
+}
+"po_ceilbar"
+{
+	"material" "wood"
+}
+"po_ventsdrust"
+{
+	"material" "vent"
+}
+"bl_crate01"
+{
+	"material" "wood"
+}
+"bl_crate03a"
+{
+	"material" "wood"
+}
+"bl_jakfloor01"
+{
+	"material" "tile"
+}
+"bl_jawfloor01"
+{
+	"material" "wood"
+}
+"bl_metal01"
+{
+	"material" "metal"
+}
+"bl_pipe03"
+{
+	"material" "metal"
+}
+"bl_roof01"
+{
+	"material" "metal"
+}
+"bl_window01a"
+{
+	"material" "glass"
+}
+"pk_sndfloor1a"
+{
+	"material" "tile"
+}
+"dumpsterfront"
+{
+	"material" "metal"
+}
+"dumpsterside"
+{
+	"material" "metal"
+}
+"gravel01"
+{
+	"material" "dirt"
+}
+"gravelgrass03"
+{
+	"material" "dirt"
+}
+"gravelgrass04"
+{
+	"material" "dirt"
+}
+"harborvent"
+{
+	"material" "metal"
+}
+"pipes3"
+{
+	"material" "metal"
+}
+"rd_busback"
+{
+	"material" "metal"
+}
+"rd_busfront"
+{
+	"material" "metal"
+}
+"rd_buslights"
+{
+	"material" "metal"
+}
+"rd_busside"
+{
+	"material" "metal"
+}
+"rd_bustop"
+{
+	"material" "metal"
+}
+"rd_door1"
+{
+	"material" "metal"
+}
+"rd_frontcabin"
+{
+	"material" "metal"
+}
+"rd_frontlight"
+{
+	"material" "metal"
+}
+"rd_frontwindow"
+{
+	"material" "metal"
+}
+"rd_fuel1"
+{
+	"material" "metal"
+}
+"rd_fuel2"
+{
+	"material" "metal"
+}
+"rd_fuel3"
+{
+	"material" "metal"
+}
+"rd_fuel3graf"
+{
+	"material" "metal"
+}
+"rd_galv1"
+{
+	"material" "metal"
+}
+"rd_metalrust"
+{
+	"material" "metal"
+}
+"rd_pipes01"
+{
+	"material" "metal"
+}
+"rd_side7337"
+{
+	"material" "metal"
+}
+"rd_side7337flip"
+{
+	"material" "metal"
+}
+"rd_t_crate12"
+{
+	"material" "metal"
+}
+"rd_t_crate13"
+{
+	"material" "metal"
+}
+"rd_t_crate16"
+{
+	"material" "metal"
+}
+"rd_t_crate17"
+{
+	"material" "metal"
+}
+"rd_t_crate18"
+{
+	"material" "metal"
+}
+"rd_t_crate19"
+{
+	"material" "metal"
+}
+"rd_thecrate1"
+{
+	"material" "wood"
+}
+"rd_thecrate2"
+{
+	"material" "wood"
+}
+"rd_thecratenorm"
+{
+	"material" "wood"
+}
+"rd_trailer_back"
+{
+	"material" "metal"
+}
+"rd_trailerside1"
+{
+	"material" "metal"
+}
+"rd_trailerside2"
+{
+	"material" "metal"
+}
+"rd_trailertop"
+{
+	"material" "metal"
+}
+"rd_trainyellow"
+{
+	"material" "metal"
+}
+"rd_truck_back"
+{
+	"material" "metal"
+}
+"rd_truck_front"
+{
+	"material" "metal"
+}
+"rd_truck_fside"
+{
+	"material" "metal"
+}
+"rd_truck_side"
+{
+	"material" "metal"
+}
+"rd_warehousedoor"
+{
+	"material" "metal"
+}
+"t_wall58"
+{
+	"material" "metal"
+}
+"warehousedoor"
+{
+	"material" "metal"
+}
+"strat_bigdoor"
+{
+	"material" "metal"
+}
+"go_gravel03_sz"
+{
+	"material" "dirt"
+}
+"mp_door57ba_b"
+{
+	"material" "metal"
+}
+"mp_door69"
+{
+	"material" "metal"
+}
+"mp_garagedoor3a"
+{
+	"material" "metal"
+}
+"mp_metalbox2a"
+{
+	"material" "metal"
+}
+"storm_dankgrass"
+{
+	"material" "dirt"
+}
+"will_walllining"
+{
+	"material" "wood"
+}
+"will_wood2b_256"
+{
+	"material" "wood"
+}
+"will_woodxb_256"
+{
+	"material" "wood"
+}
+"po_doorwood05"
+{
+	"material" "wood"
+}
+"po_metalwallgre"
+{
+	"material" "metal"
+}
+"hofloor8"
+{
+	"material" "tile"
+}
+"howoodtrim"
+{
+	"material" "wood"
+}
+"pfk_woodtrim1b"
+{
+	"material" "wood"
+}
+"pkw_crate01a"
+{
+	"material" "wood"
+}
+"pkw_crate01b"
+{
+	"material" "wood"
+}
+"pk_chcomwood2b"
+{
+	"material" "wood"
+}
+"avafloor1"
+{
+	"material" "wood"
+}
+"{pi_scaffold"
+{
+	"material" "metal"
+}
+"{plu_scaf02"
+{
+	"material" "metal"
+}
+"fl_tile1"
+{
+	"material" "tile"
+}
+"in_door7"
+{
+	"material" "metal"
+}
+"in_door8"
+{
+	"material" "metal"
+}
+"in_dumpster"
+{
+	"material" "metal"
+}
+"in_metal_rus1"
+{
+	"material" "metal"
+}
+"i_floor1"
+{
+	"material" "tile"
+}
+"i_floor2"
+{
+	"material" "tile"
+}
+"i_ground2"
+{
+	"material" "tile"
+}
+"patteson"
+{
+	"material" "glass"
+}
+"st_wind2"
+{
+	"material" "glass"
+}
+"grass3"
+{
+	"material" "dirt"
+}
+"drystonewall2"
+{
+	"material" "dirt"
+}
+"drystonewall3"
+{
+	"material" "dirt"
+}
+"embankment2"
+{
+	"material" "dirt"
+}
+"hay1"
+{
+	"material" "dirt"
+}
+"hay2"
+{
+	"material" "dirt"
+}
+"dmc_woo01"
+{
+	"material" "wood"
+}
+"door01a"
+{
+	"material" "wood"
+}
+"tabletop"
+{
+	"material" "wood"
+}
+"cipipe1"
+{
+	"material" "metal"
+}
+"cipipe2"
+{
+	"material" "metal"
+}
+"fap-dirt01"
+{
+	"material" "dirt"
+}
+"fap-elevat_"
+{
+	"material" "metal"
+}
+"far-fire01"
+{
+	"material" "metal"
+}
+"fap-fire02"
+{
+	"material" "metal"
+}
+"fap-floor01"
+{
+	"material" "tile"
+}
+"fap-floor02"
+{
+	"material" "tile"
+}
+"fap-floor03"
+{
+	"material" "tile"
+}
+"fap-floor04"
+{
+	"material" "tile"
+}
+"fap-furebox01"
+{
+	"material" "metal"
+}
+"fap-glass01"
+{
+	"material" "glass"
+}
+"fap-wood02"
+{
+	"material" "wood"
+}
+"fap-wood03"
+{
+	"material" "wood"
+}
+"fap-wood04"
+{
+	"material" "wood"
+}
+"fap-wood05"
+{
+	"material" "wood"
+}
+"enginemetal"
+{
+	"material" "metal"
+}
+"stripes2"
+{
+	"material" "metal"
+}
+"containerbl1"
+{
+	"material" "metal"
+}
+"containerbl2"
+{
+	"material" "metal"
+}
+"containergrn1"
+{
+	"material" "metal"
+}
+"containergrn2"
+{
+	"material" "metal"
+}
+"containergrn3"
+{
+	"material" "metal"
+}
+"containerred1"
+{
+	"material" "metal"
+}
+"containerred2"
+{
+	"material" "metal"
+}
+"containerred3"
+{
+	"material" "metal"
+}
+"kluisje"
+{
+	"material" "metal"
+}
+"kluisje2"
+{
+	"material" "metal"
+}
+"stationkist"
+{
+	"material" "wood"
+}
+"box_w_m2"
+{
+	"material" "wood"
+}
+"garage"
+{
+	"material" "metal"
+}
+"door_green_021"
+{
+	"material" "metal"
+}
+"zwood"
+{
+	"material" "wood"
+}
+"win3"
+{
+	"material" "glass"
+}
+"abv_square1b"
+{
+	"material" "tile"
+}
+"cuiflra"
+{
+	"material" "tile"
+}
+"cuiflrb"
+{
+	"material" "tile"
+}
+"cuiflrd"
+{
+	"material" "tile"
+}
+"cuiflre"
+{
+	"material" "tile"
+}
+"cxrockf"
+{
+	"material" "dirt"
+}
+"cxrockfbase"
+{
+	"material" "dirt"
+}
+"cxwoodl"
+{
+	"material" "wood"
+}
+"k_door01k"
+{
+	"material" "wood"
+}
+"tk_litecrate1"
+{
+	"material" "wood"
+}
+"win2_big"
+{
+	"material" "glass"
+}
+"!mtxwater"
+{
+	"material" "water"
+}
+"mz_corrug2"
+{
+	"material" "metal"
+}
+"mz_woodpln_v"
+{
+	"material" "wood"
+}
+"!pkf_water1"
+{
+	"material" "water"
+}
+"mod_lbmetal1c"
+{
+	"material" "metal"
+}
+"pkf_woodfloor1"
+{
+	"material" "wood"
+}
+"pkf_woodtrim1a"
+{
+	"material" "wood"
+}
+"pkf_woodtrim1b"
+{
+	"material" "wood"
+}
+"pkw_door01b"
+{
+	"material" "wood"
+}
+"pk_chcomwood1a"
+{
+	"material" "wood"
+}
+"pk_chcomwood1b"
+{
+	"material" "wood"
+}
+"pk_chcomwood2a"
+{
+	"material" "wood"
+}
+"pk_chwoodwall1b"
+{
+	"material" "wood"
+}
+"pk_dodmud01"
+{
+	"material" "dirt"
+}
+"pk_dodrubble02"
+{
+	"material" "dirt"
+}
+"frk_idoor02"
+{
+	"material" "metal"
+}
+"sg_wood"
+{
+	"material" "wood"
+}
+"silo2_wall2a2"
+{
+	"material" "metal"
+}
+"CLYLABMETAL03a"
+{
+	"material" "metal"
+}
+"Door57ba"
+{
+	"material" "metal"
+}
+"MEGALIFT"
+{
+	"material" "metal"
+}
+"MetalWall06_128"
+{
+	"material" "metal"
+}
+"PRXLABTRIM1"
+{
+	"material" "metal"
+}
+"PRXTECH11"
+{
+	"material" "metal"
+}
+"PRXTECH4B"
+{
+	"material" "metal"
+}
+"PRXTECH7A"
+{
+	"material" "metal"
+}
+"PRXTECH9A"
+{
+	"material" "metal"
+}
+"PRXTECH9B"
+{
+	"material" "metal"
+}
+"lobby_sunwin"
+{
+	"material" "glass"
+}
+"sg_light1b"
+{
+	"material" "glass"
+}
+"clylabcomp06b"
+{
+	"material" "computer"
+}
+"clylabcomp07b"
+{
+	"material" "computer"
+}
+"clylabcomp02c"
+{
+	"material" "computer"
+}
+"piedpiper"
+{
+	"material" "metal"
+}
+"clylabcomp05c"
+{
+	"material" "metal"
+}
+"clylight06b"
+{
+	"material" "metal"
+}
+"prxmetalwall1a"
+{
+	"material" "metal"
+}
+"prxmetal7a"
+{
+	"material" "metal"
+}
+"dm_humvee_b_sno"
+{
+	"material" "metal"
+}
+"dm_humvee_f_sno"
+{
+	"material" "metal"
+}
+"dm_humvee_h_sno"
+{
+	"material" "metal"
+}
+"dm_humvee_r_sno"
+{
+	"material" "metal"
+}
+"dm_humvee_s_sno"
+{
+	"material" "metal"
+}
+"dm_humvee_t_sno"
+{
+	"material" "metal"
+}
+"mod_celfloor1a"
+{
+	"material" "metal"
+}
+"mod_celfloor1e"
+{
+	"material" "metal"
+}
+"mod_labpipe1a"
+{
+	"material" "metal"
+}
+"mod_labpipe1c"
+{
+	"material" "metal"
+}
+"mod_trim_sg1"
+{
+	"material" "metal"
+}
+"prxdoor4"
+{
+	"material" "metal"
+}
+"prxdoor6a"
+{
+	"material" "metal"
+}
+"prxduct1c"
+{
+	"material" "metal"
+}
+"prxduct1k"
+{
+	"material" "metal"
+}
+"prxduct1g"
+{
+	"material" "metal"
+}
+"prxgirder3"
+{
+	"material" "metal"
+}
+"prxmetalwall7"
+{
+	"material" "metal"
+}
+"prxoutmetal1a"
+{
+	"material" "metal"
+}
+"prxoutmetal1c"
+{
+	"material" "metal"
+}
+"prxoutmetal2a"
+{
+	"material" "metal"
+}
+"prxtrim6"
+{
+	"material" "metal"
+}
+"prxtrim7"
+{
+	"material" "metal"
+}
+"sg_kkgril"
+{
+	"material" "metal"
+}
+"sg_kkgril_blu"
+{
+	"material" "metal"
+}
+"sg_kkgril_ora"
+{
+	"material" "metal"
+}
+"sg_kkgrilsn"
+{
+	"material" "metal"
+}
+"sg_kkgrilsta"
+{
+	"material" "metal"
+}
+"sg_ph_door"
+{
+	"material" "metal"
+}
+"sh_container_w2"
+{
+	"material" "metal"
+}
+"sh_container_w1"
+{
+	"material" "metal"
+}
+"generic117"
+{
+	"material" "metal"
+}
+"hlxpipechrome"
+{
+	"material" "metal"
+}
+"prxmetal10c"
+{
+	"material" "metal"
+}
+"prxmetal9"
+{
+	"material" "metal"
+}
+"prxlabwall1h"
+{
+	"material" "metal"
+}
+"prxmetalwall5"
+{
+	"material" "metal"
+}
+"prxvent4"
+{
+	"material" "metal"
+}
+"r25locker1"
+{
+	"material" "metal"
+}
+"r25locker2"
+{
+	"material" "metal"
+}
+"prxoutsand1c"
+{
+	"material" "dirt"
+}
+"prxoutsand1e"
+{
+	"material" "dirt"
+}
+"prxoutsand1b"
+{
+	"material" "dirt"
+}
+"prxoutsand4b"
+{
+	"material" "dirt"
+}
+"prxoutsand4a"
+{
+	"material" "dirt"
+}
+"prxoutsand4d"
+{
+	"material" "dirt"
+}
+"mp_drawer04b"
+{
+	"material" "wood"
+}
+"prxjunglbark1"
+{
+	"material" "wood"
+}
+"cg_buildmat04"
+{
+	"material" "wood"
+}
+"cg_buildmat03"
+{
+	"material" "wood"
+}
+"-0dsrt_rock2"
+{
+	"material" "dirt"
+}
+"-1dsrt_rock2"
+{
+	"material" "dirt"
+}
+"-2dsrt_rock2"
+{
+	"material" "dirt"
+}
+"-3dsrt_rock2"
+{
+	"material" "dirt"
+}
+"dm_crumble1"
+{
+	"material" "dirt"
+}
+"mp_filecab02"
+{
+	"material" "metal"
+}
+"{dm_cs_le6lad"
+{
+	"material" "metal"
+}
+"timorcontain06"
+{
+	"material" "metal"
+}
+"timorcontain07"
+{
+	"material" "metal"
+}
+"timorcontain08"
+{
+	"material" "metal"
+}
+"timorcrate01"
+{
+	"material" "wood"
+}
+"timorcrate02"
+{
+	"material" "wood"
+}
+"timorcrate04"
+{
+	"material" "wood"
+}
+"timorcrate05"
+{
+	"material" "wood"
+}
+"timorcrate06"
+{
+	"material" "wood"
+}
+"timorcrate07"
+{
+	"material" "wood"
+}
+"timorcrate19"
+{
+	"material" "wood"
+}
+"timorcrate20"
+{
+	"material" "wood"
+}
+"timorcrate21"
+{
+	"material" "wood"
+}
+"timorcrate22"
+{
+	"material" "wood"
+}
+"timordoor01"
+{
+	"material" "metal"
+}
+"timordoor02"
+{
+	"material" "metal"
+}
+"timordoor04"
+{
+	"material" "metal"
+}
+"timordoor07"
+{
+	"material" "metal"
+}
+"timordoor11"
+{
+	"material" "metal"
+}
+"timordoor12"
+{
+	"material" "metal"
+}
+"timordoor13"
+{
+	"material" "metal"
+}
+"timordumpster01"
+{
+	"material" "metal"
+}
+"timorfence01"
+{
+	"material" "metal"
+}
+"timorgrass01"
+{
+	"material" "dirt"
+}
+"timormetal02"
+{
+	"material" "metal"
+}
+"timormetal03"
+{
+	"material" "metal"
+}
+"timormetal04"
+{
+	"material" "metal"
+}
+"timormetal06"
+{
+	"material" "metal"
+}
+"timormetal07"
+{
+	"material" "metal"
+}
+"timormetal08"
+{
+	"material" "metal"
+}
+"timormetal09"
+{
+	"material" "metal"
+}
+"timormetal10"
+{
+	"material" "metal"
+}
+"timormetal11"
+{
+	"material" "metal"
+}
+"timormetal12"
+{
+	"material" "metal"
+}
+"timortrash01"
+{
+	"material" "metal"
+}
+"timortrash02"
+{
+	"material" "metal"
+}
+"timorvan04"
+{
+	"material" "metal"
+}
+"timorvan05"
+{
+	"material" "metal"
+}
+"timorvan06"
+{
+	"material" "metal"
+}
+"timorvent01"
+{
+	"material" "vent"
+}
+"timorvent04"
+{
+	"material" "vent"
+}
+"timorwindow02"
+{
+	"material" "glass"
+}
+"timorwindow04"
+{
+	"material" "glass"
+}
+"timorwindow05"
+{
+	"material" "glass"
+}
+"timorwindow06"
+{
+	"material" "glass"
+}
+"timorwindow08"
+{
+	"material" "glass"
+}
+"timorwindow10"
+{
+	"material" "glass"
+}
+"timorwindow11"
+{
+	"material" "glass"
+}
+"timorwood01"
+{
+	"material" "wood"
+}
+"timorwood02"
+{
+	"material" "wood"
+}
+"xt_m_door2"
+{
+	"material" "metal"
+}
+"xt_m_grass"
+{
+	"material" "dirt"
+}
+"xt_m_stagebox1"
+{
+	"material" "metal"
+}
+"xt_m_stagebox1b"
+{
+	"material" "metal"
+}
+"xt_m_stagebox1c"
+{
+	"material" "metal"
+}
+"cg_arccngr01"
+{
+	"material" "metal"
+}
+"ch_arccngr03"
+{
+	"material" "metal"
+}
+"cg_atm01"
+{
+	"material" "metal"
+}
+"cg_boxwc01"
+{
+	"material" "wood"
+}
+"cg_boxwc02"
+{
+	"material" "wood"
+}
+"cg_buildbtn01"
+{
+	"material" "metal"
+}
+"cg_builddr01"
+{
+	"material" "wood"
+}
+"cg_buildmat06"
+{
+	"material" "wood"
+}
+"cg_cardbox01"
+{
+	"material" "wood"
+}
+"cg_cardbox02"
+{
+	"material" "wood"
+}
+"cg_corrpldn01"
+{
+	"material" "metal"
+}
+"cg_davet00"
+{
+	"material" "metal"
+}
+"cg_davet01"
+{
+	"material" "metal"
+}
+"cg_elkybk"
+{
+	"material" "metal"
+}
+"cg_elkybkw"
+{
+	"material" "metal"
+}
+"cg_eklyft"
+{
+	"material" "metal"
+}
+"cg_elkyftw"
+{
+	"material" "metal"
+}
+"cg_elkyhd"
+{
+	"material" "metal"
+}
+"cg_elkylp"
+{
+	"material" "metal"
+}
+"cg_elkysd"
+{
+	"material" "metal"
+}
+"cg_fishtrk01"
+{
+	"material" "metal"
+}
+"cg_fishtrk02"
+{
+	"material" "metal"
+}
+"cg_fishtrk03"
+{
+	"material" "metal"
+}
+"cg_fishtrk05b"
+{
+	"material" "metal"
+}
+"cg_fishtrk07"
+{
+	"material" "metal"
+}
+"cg_gencrate01"
+{
+	"material" "wood"
+}
+"cg_gencrate04"
+{
+	"material" "wood"
+}
+"cg_medowgr1"
+{
+	"material" "dirt"
+}
+"cg_paintpal01"
+{
+	"material" "wood"
+}
+"cg_paintpal02"
+{
+	"material" "wood"
+}
+"cg_rictrk01"
+{
+	"material" "metal"
+}
+"cg_rictrk02"
+{
+	"material" "metal"
+}
+"cg_wctrk01"
+{
+	"material" "metal"
+}
+"cg_wctrk02"
+{
+	"material" "metal"
+}
+"cg_wctrk03"
+{
+	"material" "metal"
+}
+"subway_pho1"
+{
+	"material" "metal"
+}
+"subway_pho4"
+{
+	"material" "metal"
+}
+"door_roofdoor1"
+{
+	"material" "metal"
+}
+"pipe2"
+{
+	"material" "metal"
+}
+"pipe1"
+{
+	"material" "metal"
+}
+"woodflr"
+{
+	"material" "wood"
+}
+"hk_sign1"
+{
+	"material" "metal"
+}
+"hk_sign11"
+{
+	"material" "metal"
+}
+"hk_sign13"
+{
+	"material" "metal"
+}
+"hk_sign14"
+{
+	"material" "metal"
+}
+"hk_sign15"
+{
+	"material" "metal"
+}
+"hk_sign3"
+{
+	"material" "metal"
+}
+"hk_sign6"
+{
+	"material" "metal"
+}
+"hk_sign7"
+{
+	"material" "metal"
+}
+"hk_sign8"
+{
+	"material" "metal"
+}
+"hk_sign9"
+{
+	"material" "metal"
+}
+"om_hb_sign2"
+{
+	"material" "metal"
+}
+"om_hb_sign3"
+{
+	"material" "metal"
+}
+"om_hb_sign4"
+{
+	"material" "metal"
+}
+"om_payphone"
+{
+	"material" "metal"
+}
+"backofen_a"
+{
+	"material" "metal"
+}
+"backofen_c"
+{
+	"material" "metal"
+}
+"booth_wood_1"
+{
+	"material" "wood"
+}
+"booth_wood_1b"
+{
+	"material" "wood"
+}
+"citrashcans"
+{
+	"material" "metal"
+}
+"citrashcant"
+{
+	"material" "metal"
+}
+"door006"
+{
+	"material" "wood"
+}
+"door30_128x256"
+{
+	"material" "metal"
+}
+"door40ba"
+{
+	"material" "metal"
+}
+"doo51_128x256"
+{
+	"material" "metal"
+}
+"in_trans2"
+{
+	"material" "metal"
+}
+"in_trans3"
+{
+	"material" "metal"
+}
+"in_trans4"
+{
+	"material" "metal"
+}
+"in_window10c"
+{
+	"material" "glass"
+}
+"kuche_a"
+{
+	"material" "metal"
+}
+"kuche_e"
+{
+	"material" "metal"
+}
+"kuche_f"
+{
+	"material" "metal"
+}
+"kuche_g"
+{
+	"material" "metal"
+}
+"kuhlschrank_a"
+{
+	"material" "metal"
+}
+"kuhlschrank_b"
+{
+	"material" "metal"
+}
+"steeldoor02ba"
+{
+	"material" "metal"
+}
+"tile16b2"
+{
+	"material" "tile"
+}
+"tile31a"
+{
+	"material" "tile"
+}
+"tile41a2"
+{
+	"material" "tile"
+}
+"tile45_256x256"
+{
+	"material" "tile"
+}
+"wood4"
+{
+	"material" "wood"
+}
+"wood7"
+{
+	"material" "wood"
+}
+"wooden_doors"
+{
+	"material" "metal"
+}
+"wood_flr1_4"
+{
+	"material" "wood"
+}
+"xen1_door5"
+{
+	"material" "metal"
+}
+"xen1_tile3_2"
+{
+	"material" "tile"
+}
+"xen1_window4"
+{
+	"material" "glass"
+}
+"xen1_window6"
+{
+	"material" "glass"
+}
+"xen2_door5"
+{
+	"material" "metal"
+}
+"xen2_window2"
+{
+	"material" "glass"
+}
+"xen2_window2a"
+{
+	"material" "glass"
+}
+"zts_pillar2"
+{
+	"material" "wood"
+}
+"po_cratetop"
+{
+	"material" "wood"
+}
+"po_doormetal04"
+{
+	"material" "metal"
+}
+"po_doormetal05"
+{
+	"material" "metal"
+}
+"po_doormetal06"
+{
+	"material" "metal"
+}
+"po_doormtlsubw"
+{
+	"material" "metal"
+}
+"po_doorwood03"
+{
+	"material" "wood"
+}
+"po_winindus2"
+{
+	"material" "glass"
+}
+"po_winindus2a"
+{
+	"material" "glass"
+}
+"po_winindus4"
+{
+	"material" "glass"
+}
+"{po_centfrrst"
+{
+	"material" "grate"
+}
+"po_rustmetalblu"
+{
+	"material" "metal"
+}
+"hokitchenair2"
+{
+	"material" "metal"
+}
+"po_hardwdfloor"
+{
+	"material" "wood"
+}
+"po_wood2"
+{
+	"material" "wood"
+}
+"hb_sign_011"
+{
+	"material" "metal"
+}
+"hb_sign_014"
+{
+	"material" "metal"
+}
+"hb_sign_022"
+{
+	"material" "metal"
+}
+"hb_sign_028"
+{
+	"material" "metal"
+}
+"hb_sign_33"
+{
+	"material" "metal"
+}
+"hb_sign_026"
+{
+	"material" "metal"
+}
+"{om_tearail2"
+{
+	"material" "metal"
+}
+"DUCT_FLR01"
+{
+	"material" "vent"
+}
+"DUCT_FLR01A"
+{
+	"material" "vent"
+}
+"DUCT_FLR02A"
+{
+	"material" "vent"
+}
+"DUCT_VNT"
+{
+	"material" "vent"
+}
+"DUCT_VNT2"
+{
+	"material" "vent"
+}
+"DUCT_WALL01"
+{
+	"material" "vent"
+}
+"DUCT_WALL02"
+{
+	"material" "vent"
+}
+"DUCT_WALL03"
+{
+	"material" "vent"
+}
+"DUCT_WALL04"
+{
+	"material" "vent"
+}
+"SILO2_COR"
+{
+	"material" "vent"
+}
+"OUT_GRVL1"
+{
+	"material" "dirt"
+}
+"OUT_GRVL2"
+{
+	"material" "dirt"
+}
+"OUT_GRVL2B"
+{
+	"material" "dirt"
+}
+"OUT_GRVL3"
+{
+	"material" "dirt"
+}
+"OUT_MUD1"
+{
+	"material" "dirt"
+}
+"OUT_SND1"
+{
+	"material" "dirt"
+}
+"OUT_SND2"
+{
+	"material" "dirt"
+}
+"OUT_SND2B"
+{
+	"material" "dirt"
+}
+"OUT_SND2C"
+{
+	"material" "dirt"
+}
+"OUT_WLK"
+{
+	"material" "dirt"
+}
+"OUT_GRSS1"
+{
+	"material" "dirt"
+}
+"OUT_DIRT1"
+{
+	"material" "dirt"
+}
+"OUT_DIRT2"
+{
+	"material" "dirt"
+}
+"GENERIC48"
+{
+	"material" "dirt"
+}
+"GENERIC49"
+{
+	"material" "dirt"
+}
+"GENERIC51"
+{
+	"material" "dirt"
+}
+"GENERIC52"
+{
+	"material" "dirt"
+}
+"GENERIC93"
+{
+	"material" "dirt"
+}
+"OUT_PAVE2"
+{
+	"material" "dirt"
+}
+"OUT_SNBAG"
+{
+	"material" "dirt"
+}
+"OUT_SNBAG2"
+{
+	"material" "dirt"
+}
+"OUT_SNBAGB"
+{
+	"material" "dirt"
+}
+"OUT_SNBAGC"
+{
+	"material" "dirt"
+}
+"OUT_TNT2"
+{
+	"material" "dirt"
+}
+"OUT_TNT1"
+{
+	"material" "dirt"
+}
+"OUT_TNT1B"
+{
+	"material" "dirt"
+}
+"OUT_TNT1C"
+{
+	"material" "dirt"
+}
+"OUT_TNT3"
+{
+	"material" "dirt"
+}
+"OUT_TNT3B"
+{
+	"material" "dirt"
+}
+"OUT_NET1"
+{
+	"material" "dirt"
+}
+"OUT_NET1B"
+{
+	"material" "dirt"
+}
+"FROSTSEWFLR"
+{
+	"material" "dirt"
+}
+"GENERIC109"
+{
+	"material" "grate"
+}
+"GENERIC015C"
+{
+	"material" "grate"
+}
+"GENERIC015D"
+{
+	"material" "grate"
+}
+"GENERIC015E"
+{
+	"material" "grate"
+}
+"GENERIC015F"
+{
+	"material" "grate"
+}
+"GENERIC015G"
+{
+	"material" "grate"
+}
+"GENERIC015H"
+{
+	"material" "grate"
+}
+"GENERIC015I"
+{
+	"material" "grate"
+}
+"GENERIC015"
+{
+	"material" "grate"
+}
+"GENERIC015A"
+{
+	"material" "grate"
+}
+"GENERIC015B"
+{
+	"material" "grate"
+}
+"BABTECH_FLR02"
+{
+	"material" "grate"
+}
+"CRETE2_FLR03"
+{
+	"material" "grate"
+}
+"CRETE2_FLR03A"
+{
+	"material" "grate"
+}
+"CRETE2_FLR03B"
+{
+	"material" "grate"
+}
+"CRETE2_FLR03C"
+{
+	"material" "grate"
+}
+"ELEV1_FLR"
+{
+	"material" "grate"
+}
+"ELEV_FLR"
+{
+	"material" "grate"
+}
+"GRATE1"
+{
+	"material" "grate"
+}
+"GRATE2"
+{
+	"material" "grate"
+}
+"GRATE2A"
+{
+	"material" "grate"
+}
+"GRATE3A"
+{
+	"material" "grate"
+}
+"GRID1"
+{
+	"material" "grate"
+}
+"GRID2"
+{
+	"material" "grate"
+}
+"TNNL_FLR12"
+{
+	"material" "grate"
+}
+"TNNL_FLR12A"
+{
+	"material" "grate"
+}
+"TNNL_FLR1A"
+{
+	"material" "grate"
+}
+"LAB1_STAIR2A"
+{
+	"material" "grate"
+}
+"FROSTFLOOR"
+{
+	"material" "grate"
+}
+"GRATE4A"
+{
+	"material" "grate"
+}
+"GRATE3B"
+{
+	"material" "grate"
+}
+"GRATESTEP1"
+{
+	"material" "grate"
+}
+"GRATESTEP2"
+{
+	"material" "grate"
+}
+"GRATESTEP3"
+{
+	"material" "grate"
+}
+"GENERIC015V"
+{
+	"material" "grate"
+}
+"C1A1_FLR1"
+{
+	"material" "metal"
+}
+"BABFL"
+{
+	"material" "metal"
+}
+"C2A3TURBINE1"
+{
+	"material" "metal"
+}
+"C2A3TURBINE2"
+{
+	"material" "metal"
+}
+"C2A3TURBINE3"
+{
+	"material" "metal"
+}
+"C2A3TURBINE4"
+{
+	"material" "metal"
+}
+"SILO2_P2"
+{
+	"material" "metal"
+}
+"SILO2_P2B"
+{
+	"material" "metal"
+}
+"SILO2_P3"
+{
+	"material" "metal"
+}
+"SILO2_P4"
+{
+	"material" "metal"
+}
+"SILO2_PAN2"
+{
+	"material" "metal"
+}
+"SILO2_W1"
+{
+	"material" "metal"
+}
+"SILO2_W1A"
+{
+	"material" "metal"
+}
+"SILO2_WALL1"
+{
+	"material" "metal"
+}
+"SILO2_W2"
+{
+	"material" "metal"
+}
+"BABTECH_C5"
+{
+	"material" "metal"
+}
+"LAB3_FLR2A"
+{
+	"material" "metal"
+}
+"LAB3_FLR2B"
+{
+	"material" "metal"
+}
+"FIFTIES_CMP3"
+{
+	"material" "metal"
+}
+"LAB1_STAIR2B"
+{
+	"material" "metal"
+}
+"OUT_QUNST11"
+{
+	"material" "metal"
+}
+"FREEZER_FLR1"
+{
+	"material" "metal"
+}
+"GENERIC015N"
+{
+	"material" "metal"
+}
+"GENERIC015P"
+{
+	"material" "metal"
+}
+"GENERIC015R"
+{
+	"material" "metal"
+}
+"GENERIC0150"
+{
+	"material" "metal"
+}
+"GENERIC015S"
+{
+	"material" "metal"
+}
+"GENERIC015T"
+{
+	"material" "metal"
+}
+"GENERIC015U"
+{
+	"material" "metal"
+}
+"GENERIC015V2"
+{
+	"material" "metal"
+}
+"C1A4_DOME3"
+{
+	"material" "metal"
+}
+"GENERIC_114"
+{
+	"material" "water"
+}
+"WATERBLUE"
+{
+	"material" "water"
+}
+"WATERGREEN"
+{
+	"material" "water"
+}
+"TOXICGRN"
+{
+	"material" "water"
+}
+"FLUID1A"
+{
+	"material" "water"
+}
+"FLUID1B"
+{
+	"material" "water"
+}
+"FLUID2"
+{
+	"material" "water"
+}
+"FLUID3"
+{
+	"material" "water"
+}
+"FLUID4"
+{
+	"material" "water"
+}
+"WATERSILO"
+{
+	"material" "water"
+}
+"WATERSILO2"
+{
+	"material" "water"
+}
+"WATERF"
+{
+	"material" "water"
+}
+"FIFT_BLOODFLR"
+{
+	"material" "tile"
+}
+"FIFT_BLOODFLRA"
+{
+	"material" "tile"
+}
+"FIFTIES_F01"
+{
+	"material" "tile"
+}
+"FIFTIES_F02"
+{
+	"material" "tile"
+}
+"FIFTIES_F03"
+{
+	"material" "tile"
+}
+"FIFTIES_F03B"
+{
+	"material" "tile"
+}
+"FIFTIES_FLR01"
+{
+	"material" "tile"
+}
+"FIFTIES_FLR02"
+{
+	"material" "tile"
+}
+"FIFTIES_FLR02B"
+{
+	"material" "tile"
+}
+"FIFTIES_FLR02C"
+{
+	"material" "tile"
+}
+"FIFTIES_FLR03"
+{
+	"material" "tile"
+}
+"FIFTIES_FLR03B"
+{
+	"material" "tile"
+}
+"FIFTIES_FLR5"
+{
+	"material" "tile"
+}
+"LAB1_BLUXFLR1"
+{
+	"material" "tile"
+}
+"LAB1_BLUXFLR1B"
+{
+	"material" "tile"
+}
+"LAB1_BLUX1"
+{
+	"material" "tile"
+}
+"LAB1_BLUX1B"
+{
+	"material" "tile"
+}
+"LAB1_C4003"
+{
+	"material" "tile"
+}
+"LAB1_C4A001"
+{
+	"material" "tile"
+}
+"LAB1_C4B002"
+{
+	"material" "tile"
+}
+"LAB1_C4D2"
+{
+	"material" "tile"
+}
+"LAB1_CAB2"
+{
+	"material" "tile"
+}
+"LAB1_FLOOR2A"
+{
+	"material" "tile"
+}
+"LAB1_FLOOR2B"
+{
+	"material" "tile"
+}
+"LAB1_FLOOR3"
+{
+	"material" "tile"
+}
+"LAB1_FLOOR4"
+{
+	"material" "tile"
+}
+"LAB1_FLOOR5"
+{
+	"material" "tile"
+}
+"LAB1_FLOOR6"
+{
+	"material" "tile"
+}
+"LAB1_FLOOR10"
+{
+	"material" "tile"
+}
+"LAB1_FLR3"
+{
+	"material" "tile"
+}
+"LAB1_FLR4"
+{
+	"material" "tile"
+}
+"LAB1_FLR4B"
+{
+	"material" "tile"
+}
+"LAB1_FLR4C"
+{
+	"material" "tile"
+}
+"LAB1_FLR4D"
+{
+	"material" "tile"
+}
+"LAB1_FLR5B"
+{
+	"material" "tile"
+}
+"LAB1_FLR5C"
+{
+	"material" "tile"
+}
+"LAB1_FLR5D"
+{
+	"material" "tile"
+}
+"LAB1_FLR6B"
+{
+	"material" "tile"
+}
+"LAB1_FLR6C"
+{
+	"material" "tile"
+}
+"LAB1_FLR6D"
+{
+	"material" "tile"
+}
+"LAB1_W8FLR1"
+{
+	"material" "tile"
+}
+"LAB1_W8FLR1B"
+{
+	"material" "tile"
+}
+"LAB1_W8FLR1C"
+{
+	"material" "tile"
+}
+"LAB1_W8FLR1D"
+{
+	"material" "tile"
+}
+"C2A4_FLR6"
+{
+	"material" "tile"
+}
+"C1A2_FLR1"
+{
+	"material" "tile"
+}
+"C1A2_FLR2"
+{
+	"material" "tile"
+}
+"C1A0_LABFLRB"
+{
+	"material" "tile"
+}
+"C1A0_LABFLRC"
+{
+	"material" "tile"
+}
+"C1A0_LABFLRD"
+{
+	"material" "tile"
+}
+"C1A0_LABFLRE"
+{
+	"material" "tile"
+}
+"C1A0_LABFLR"
+{
+	"material" "tile"
+}
+"CRATE01"
+{
+	"material" "wood"
+}
+"CRATE02"
+{
+	"material" "wood"
+}
+"CRATE02B"
+{
+	"material" "wood"
+}
+"CRATE03"
+{
+	"material" "wood"
+}
+"CRATE04"
+{
+	"material" "wood"
+}
+"CRATE05"
+{
+	"material" "wood"
+}
+"CRATE06"
+{
+	"material" "wood"
+}
+"CRATE07"
+{
+	"material" "wood"
+}
+"CRATE08"
+{
+	"material" "wood"
+}
+"CRATE08B"
+{
+	"material" "wood"
+}
+"CRATE09"
+{
+	"material" "wood"
+}
+"CRATE09B"
+{
+	"material" "wood"
+}
+"CRATE09C"
+{
+	"material" "wood"
+}
+"CRATE19"
+{
+	"material" "wood"
+}
+"CRATE20"
+{
+	"material" "wood"
+}
+"CRATE21"
+{
+	"material" "wood"
+}
+"CRATE22"
+{
+	"material" "wood"
+}
+"CRATE23"
+{
+	"material" "wood"
+}
+"CRATE25"
+{
+	"material" "wood"
+}
+"FIFTIES_DR6"
+{
+	"material" "wood"
+}
+"FIFTIES_DR6A"
+{
+	"material" "wood"
+}
+"FIFTIES_CCH1"
+{
+	"material" "wood"
+}
+"FIFTIES_CCH2"
+{
+	"material" "wood"
+}
+"FIFTIES_CCH3"
+{
+	"material" "wood"
+}
+"FIFTIES_CCH4"
+{
+	"material" "wood"
+}
+"FIFTIES_DR1K"
+{
+	"material" "wood"
+}
+"FIFTIES_DR2"
+{
+	"material" "wood"
+}
+"FIFTIES_DR7"
+{
+	"material" "wood"
+}
+"FIFTIES_DR8"
+{
+	"material" "wood"
+}
+"FIFTIES_DR9"
+{
+	"material" "wood"
+}
+"FIFTIES_DSK1"
+{
+	"material" "wood"
+}
+"OUT_SLAT01"
+{
+	"material" "wood"
+}
+"OUT_WD"
+{
+	"material" "wood"
+}
+"OUT_CAC1"
+{
+	"material" "wood"
+}
+"OUT_CAC2"
+{
+	"material" "wood"
+}
+"BCRATE02"
+{
+	"material" "wood"
+}
+"BCRATE03"
+{
+	"material" "wood"
+}
+"BCRATE04"
+{
+	"material" "wood"
+}
+"BCRATE05"
+{
+	"material" "wood"
+}
+"BCRATE06"
+{
+	"material" "wood"
+}
+"BCRATE07"
+{
+	"material" "wood"
+}
+"BCRATE08"
+{
+	"material" "wood"
+}
+"BCRATE12"
+{
+	"material" "wood"
+}
+"BCRATE14"
+{
+	"material" "wood"
+}
+"BCRATE15"
+{
+	"material" "wood"
+}
+"BCRATE16"
+{
+	"material" "wood"
+}
+"BCRATE17"
+{
+	"material" "wood"
+}
+"BCRATE18"
+{
+	"material" "wood"
+}
+"BCRATE25"
+{
+	"material" "wood"
+}
+"BCRATE26"
+{
+	"material" "wood"
+}
+"CRATE10"
+{
+	"material" "wood"
+}
+"CRATE11"
+{
+	"material" "wood"
+}
+"CRATE12"
+{
+	"material" "wood"
+}
+"CRATE13"
+{
+	"material" "wood"
+}
+"CRATE24"
+{
+	"material" "wood"
+}
+"CRATE27"
+{
+	"material" "wood"
+}
+"C3A1_NRC2"
+{
+	"material" "computer"
+}
+"C1A1_GAD1"
+{
+	"material" "computer"
+}
+"C1A1_GAD2"
+{
+	"material" "computer"
+}
+"C1A1_GAD3"
+{
+	"material" "computer"
+}
+"C1A1_GAD4"
+{
+	"material" "computer"
+}
+"C1A1_GAD4A"
+{
+	"material" "computer"
+}
+"C1A1_GGT8"
+{
+	"material" "computer"
+}
+"C1A4_PAN1A"
+{
+	"material" "computer"
+}
+"C1A4_PAN1B"
+{
+	"material" "computer"
+}
+"C1A4_SWTCH1"
+{
+	"material" "computer"
+}
+"C2A2_SATORB"
+{
+	"material" "computer"
+}
+"C2A4_CMP1"
+{
+	"material" "computer"
+}
+"C2A4_GAD2"
+{
+	"material" "computer"
+}
+"C3A2A_W1D"
+{
+	"material" "computer"
+}
+"C3A2A_W1E"
+{
+	"material" "computer"
+}
+"C3A2A_W2D"
+{
+	"material" "computer"
+}
+"C3A2A_W2E"
+{
+	"material" "computer"
+}
+"DRKMTL_SCRN2"
+{
+	"material" "computer"
+}
+"DRKMTL_SCRN3"
+{
+	"material" "computer"
+}
+"DRKMTL_SCRN4"
+{
+	"material" "computer"
+}
+"DRKMTLT_WALL"
+{
+	"material" "computer"
+}
+"FIFTIES_GGT8"
+{
+	"material" "computer"
+}
+"FIFTIES_MON1"
+{
+	"material" "computer"
+}
+"FIFTIES_MON1B"
+{
+	"material" "computer"
+}
+"FIFTIES_MON2"
+{
+	"material" "computer"
+}
+"FIFTIES_MON2B"
+{
+	"material" "computer"
+}
+"FIFTIES_MON3"
+{
+	"material" "computer"
+}
+"FIFTIES_MON3B"
+{
+	"material" "computer"
+}
+"FIFTIES_MON4"
+{
+	"material" "computer"
+}
+"FIFTIES_PAN2"
+{
+	"material" "computer"
+}
+"GENERIC105"
+{
+	"material" "computer"
+}
+"GENERIC106"
+{
+	"material" "computer"
+}
+"GENERIC107"
+{
+	"material" "computer"
+}
+"GENERIC114"
+{
+	"material" "computer"
+}
+"GENERIC87A"
+{
+	"material" "computer"
+}
+"GENERIC88A"
+{
+	"material" "computer"
+}
+"GENERIC89A"
+{
+	"material" "computer"
+}
+"GENERIC113"
+{
+	"material" "computer"
+}
+"LAB1_CMPM1"
+{
+	"material" "computer"
+}
+"LAB1_CMPM2"
+{
+	"material" "computer"
+}
+"LAB1_CMPM3"
+{
+	"material" "computer"
+}
+"LAB1_CMPM4"
+{
+	"material" "computer"
+}
+"LAB1_CMPM5"
+{
+	"material" "computer"
+}
+"LAB1_CMPM6"
+{
+	"material" "computer"
+}
+"LAB1_CMPM7"
+{
+	"material" "computer"
+}
+"LAB1_CMPM8"
+{
+	"material" "computer"
+}
+"LAB1_COMP1"
+{
+	"material" "computer"
+}
+"LAB1_COMP2"
+{
+	"material" "computer"
+}
+"LAB1_COMP3"
+{
+	"material" "computer"
+}
+"LAB1_COMP2A"
+{
+	"material" "computer"
+}
+"LAB1_COMP10A"
+{
+	"material" "computer"
+}
+"LAB1_COMP10B"
+{
+	"material" "computer"
+}
+"LAB1_COMP10C"
+{
+	"material" "computer"
+}
+"LAB1_COMP10D"
+{
+	"material" "computer"
+}
+"LAB1_COMP10E"
+{
+	"material" "computer"
+}
+"LAB1_COMP7"
+{
+	"material" "computer"
+}
+"LAB1_COMP8"
+{
+	"material" "computer"
+}
+"LAB1_COMP9A"
+{
+	"material" "computer"
+}
+"LAB1_COMP9A2"
+{
+	"material" "computer"
+}
+"LAB1_COMP9B"
+{
+	"material" "computer"
+}
+"LAB1_COMP9C"
+{
+	"material" "computer"
+}
+"LAB1_COMP9D"
+{
+	"material" "computer"
+}
+"LAB1_GAD2"
+{
+	"material" "computer"
+}
+"LAB1_GAD3"
+{
+	"material" "computer"
+}
+"LAB1_GAD4"
+{
+	"material" "computer"
+}
+"LAB1_RADSCRN2"
+{
+	"material" "computer"
+}
+"LAB4_GAD3"
+{
+	"material" "computer"
+}
+"LAB4_GAD4"
+{
+	"material" "computer"
+}
+"LAB4_SWTCH"
+{
+	"material" "computer"
+}
+"LAB_COMPM4"
+{
+	"material" "computer"
+}
+"RECHARGEA"
+{
+	"material" "computer"
+}
+"TNNL_GAD1"
+{
+	"material" "computer"
+}
+"TNNL_GAD2"
+{
+	"material" "computer"
+}
+"TNNL_GAD4"
+{
+	"material" "computer"
+}
+"C2A4C2C"
+{
+	"material" "computer"
+}
+"C2A4W1B"
+{
+	"material" "computer"
+}
+"LAB1_CMP"
+{
+	"material" "computer"
+}
+"LAB1_CMP1"
+{
+	"material" "computer"
+}
+"LAB1_CMP2"
+{
+	"material" "computer"
+}
+"LAB1_COMP3A"
+{
+	"material" "computer"
+}
+"LAB1_COMP3B"
+{
+	"material" "computer"
+}
+"LAB1_COMP3C"
+{
+	"material" "computer"
+}
+"LAB1_COMP3D"
+{
+	"material" "computer"
+}
+"LAB1_COMP4"
+{
+	"material" "computer"
+}
+"LAB1_COMP5"
+{
+	"material" "computer"
+}
+"LAB1_SW1"
+{
+	"material" "computer"
+}
+"LAB_CRT1"
+{
+	"material" "computer"
+}
+"LAB_CRT10A"
+{
+	"material" "computer"
+}
+"LAB_CRT10B"
+{
+	"material" "computer"
+}
+"LAB_CRT10C"
+{
+	"material" "computer"
+}
+"LAB_CRT10D"
+{
+	"material" "computer"
+}
+"LAB_CRT2"
+{
+	"material" "computer"
+}
+"LAB_CRT3"
+{
+	"material" "computer"
+}
+"LAB_CRT4"
+{
+	"material" "computer"
+}
+"LAB_CRT5"
+{
+	"material" "computer"
+}
+"LAB_CRT6"
+{
+	"material" "computer"
+}
+"LAB_CRT7"
+{
+	"material" "computer"
+}
+"LAB_CRT8"
+{
+	"material" "computer"
+}
+"LAB_CRT9C"
+{
+	"material" "computer"
+}
+"CRETESTCH01A"
+{
+	"material" "computer"
+}
+"DRKMTLLGT1"
+{
+	"material" "computer"
+}
+"FIFTS_LGHT01"
+{
+	"material" "computer"
+}
+"FIFTS_LGHT3"
+{
+	"material" "computer"
+}
+"FIFTS_LGHT4"
+{
+	"material" "computer"
+}
+"FIFTIES_LGT2"
+{
+	"material" "computer"
+}
+"FIFTS_LGHT5"
+{
+	"material" "computer"
+}
+"GYMLIGHT"
+{
+	"material" "computer"
+}
+"LIGHT1"
+{
+	"material" "computer"
+}
+"LIGHT2A"
+{
+	"material" "computer"
+}
+"LIGHT3A"
+{
+	"material" "computer"
+}
+"LIGHT3B"
+{
+	"material" "computer"
+}
+"LIGHT3C"
+{
+	"material" "computer"
+}
+"LIGHT3D"
+{
+	"material" "computer"
+}
+"LIGHT3E"
+{
+	"material" "computer"
+}
+"LIGHT3F"
+{
+	"material" "computer"
+}
+"LIGHT4A"
+{
+	"material" "computer"
+}
+"LIGHT5A"
+{
+	"material" "computer"
+}
+"LIGHT5B"
+{
+	"material" "computer"
+}
+"LIGHT5C"
+{
+	"material" "computer"
+}
+"LIGHT5D"
+{
+	"material" "computer"
+}
+"LIGHT5E"
+{
+	"material" "computer"
+}
+"LIGHT5F"
+{
+	"material" "computer"
+}
+"LIGHT6A"
+{
+	"material" "computer"
+}
+"METALSTCH2"
+{
+	"material" "computer"
+}
+"TNNL_LGT1"
+{
+	"material" "computer"
+}
+"TNNL_LGT2"
+{
+	"material" "computer"
+}
+"TNNL_LGT3"
+{
+	"material" "computer"
+}
+"TNNL_LGT4"
+{
+	"material" "computer"
+}
+"ELEV1_DWN"
+{
+	"material" "computer"
+}
+"SPOTBLUE"
+{
+	"material" "computer"
+}
+"SPOTGREEN"
+{
+	"material" "computer"
+}
+"SPOTRED"
+{
+	"material" "computer"
+}
+"SPOTYELLOW"
+{
+	"material" "computer"
+}
+"LAB1_GAD3B"
+{
+	"material" "computer"
+}
+"ELEV2_PAN"
+{
+	"material" "computer"
+}
+"ELEV1_PAN"
+{
+	"material" "computer"
+}
+"C2A4X_C3"
+{
+	"material" "computer"
+}
+"C2A4X_C1"
+{
+	"material" "computer"
+}
+"MEDKIT"
+{
+	"material" "computer"
+}
+"GLASS_BRIGHT"
+{
+	"material" "glass"
+}
+"GLASS_DARK"
+{
+	"material" "glass"
+}
+"GLASS_MED"
+{
+	"material" "glass"
+}
+"GLASSBLUE1"
+{
+	"material" "glass"
+}
+"GLASSBLUE2"
+{
+	"material" "glass"
+}
+"GLASSGREEEN"
+{
+	"material" "glass"
+}

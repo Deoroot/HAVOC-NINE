@@ -51,6 +51,120 @@ int m_nPlayerGaitSequences[MAX_PLAYERS];
 // Global engine <-> studio model rendering code interface
 engine_studio_api_t IEngineStudio;
 
+/*
+====================
+TS_StudioViewModelRate
+
+client.dll's StudioDrawModel (0x10031b3d): with the double fire rate powerup or a slow factor
+away from 1 (outside 0.999..1.001), the view model animates at the slow factor times 3.5556 under
+slow pause, 1.7143 under slow motion and 1.5 under double fire rate; the rate is worked out once
+per frame, or again when the view model's animation restarts. (H9: taken out of StudioDrawModel so the
+PrimeXT renderer, r_primext 1, runs it too.)
+====================
+*/
+void TS_StudioViewModelRate(cl_entity_t* ent, int frameCount)
+{
+	extern float g_flClientSlow;
+	extern int g_iTSPowerups;
+	static int s_rateFrame = -1;
+	static float s_rateAnimtime = 0;
+	static float s_rate = 1.0f;
+	if (((g_iTSPowerups & 0x10) != 0 || g_flClientSlow < 0.999f || g_flClientSlow > 1.001f) &&
+		ent == gEngfuncs.GetViewModel())
+	{
+		float rate = g_flClientSlow;
+		if ((g_iTSPowerups & 8) != 0)
+			rate *= 3.5555558f;
+		if ((g_iTSPowerups & 1) != 0)
+			rate *= 1.7142859f;
+		if ((g_iTSPowerups & 0x10) != 0)
+			rate *= 1.5f;
+		if (s_rateFrame != frameCount || s_rateAnimtime + 0.001f < ent->curstate.animtime)
+			s_rate = rate;
+		ent->curstate.framerate = s_rate;
+		s_rateAnimtime = ent->curstate.animtime;
+		s_rateFrame = frameCount;
+	}
+}
+
+/*
+====================
+TS_DeadPlayerIndex
+
+TS contract (@0x70234): the dead player's INDEX rides rendercolor.r (renderamt is
+the fade alpha 255 — the stock renderamt-as-index read returned false on it and the
+corpse never drew: the round-8 vanishing body). Stock renderamt kept as a fallback.
+Returns 0 when neither is a player's.
+====================
+*/
+int TS_DeadPlayerIndex(const cl_entity_t* ent)
+{
+	int deadIdx = ent->curstate.rendercolor.r;
+	if (deadIdx <= 0 || deadIdx > gEngfuncs.GetMaxClients())
+		deadIdx = ent->curstate.renderamt;
+	if (deadIdx <= 0 || deadIdx > gEngfuncs.GetMaxClients())
+		return 0;
+	return deadIdx;
+}
+
+/*
+====================
+TS_StudioDeadLocalPlayer
+
+TS DEATH CAM: the LOCAL player's body is built from PREDICTION (the live view angles),
+so a server-side angle pin can't stop the dead body swiveling with the mouse — freeze
+the drawn angles CLIENT-side at the death pose until the observer snap (round 8).
+====================
+*/
+void TS_StudioDeadLocalPlayer(cl_entity_t* ent, entity_state_t* pplayer)
+{
+	static Vector s_vDeadAngles;
+	static bool s_bDeadLatch;
+	cl_entity_t* local = gEngfuncs.GetLocalPlayer();
+	extern int g_iUser1;
+	if (local && pplayer->number == local->index)
+	{
+		if (gHUD.m_Health.m_iHealth <= 0 && g_iUser1 == 0)
+		{
+			if (!s_bDeadLatch)
+			{
+				s_vDeadAngles = ent->angles;
+				s_bDeadLatch = true;
+			}
+			ent->angles = s_vDeadAngles;
+			ent->curstate.angles = s_vDeadAngles;
+			ent->latched.prevangles = s_vDeadAngles;
+			pplayer->angles = s_vDeadAngles;
+			pplayer->gaitsequence = 0;
+		}
+		else
+			s_bDeadLatch = false;
+	}
+}
+
+/*
+====================
+TS_StudioNotePlayerAttachments
+
+TS: compute the player's gun attachments EVERY frame and publish them into OUR anchor
+cache (the original's per-player table, dossier-attachments §4a). cl_entity.attachment
+belongs to the engine (xash resets/owns it — writing it did NOT survive to event time:
+the pelvis bug); the muzzle flare / brass / magazines / laser read the cache instead.
+====================
+*/
+void TS_StudioNotePlayerAttachments(cl_entity_t* ent)
+{
+	if (ent->index > 0 && ent->index <= 64)
+	{
+		for (int a = 0; a < 4; a++)
+			g_tsPlayerGunAtt[ent->index][a] = ent->attachment[a];
+		g_tsPlayerGunAttTime[ent->index] = gEngfuncs.GetClientTime();
+		cl_entity_t* engineEnt = gEngfuncs.GetEntityByIndex(ent->index);
+		if (engineEnt != NULL && engineEnt != ent)
+			memcpy(engineEnt->attachment, ent->attachment, sizeof(Vector) * 4);
+	}
+}
+
 /////////////////////
 // Implementation of CStudioModelRenderer.h
 
@@ -1193,33 +1307,7 @@ bool CStudioModelRenderer::StudioDrawModel(int flags)
 	IEngineStudio.GetViewInfo(m_vRenderOrigin, m_vUp, m_vRight, m_vNormal);
 	IEngineStudio.GetAliasScale(&m_fSoftwareXScale, &m_fSoftwareYScale);
 
-	// client.dll's StudioDrawModel (0x10031b3d): with the double fire rate powerup or a slow factor
-	// away from 1 (outside 0.999..1.001), the view model animates at the slow factor times 3.5556 under
-	// slow pause, 1.7143 under slow motion and 1.5 under double fire rate; the rate is worked out once
-	// per frame, or again when the view model's animation restarts.
-	{
-		extern float g_flClientSlow;
-		extern int g_iTSPowerups;
-		static int s_rateFrame = -1;
-		static float s_rateAnimtime = 0;
-		static float s_rate = 1.0f;
-		if (((g_iTSPowerups & 0x10) != 0 || g_flClientSlow < 0.999f || g_flClientSlow > 1.001f) &&
-			m_pCurrentEntity == gEngfuncs.GetViewModel())
-		{
-			float rate = g_flClientSlow;
-			if ((g_iTSPowerups & 8) != 0)
-				rate *= 3.5555558f;
-			if ((g_iTSPowerups & 1) != 0)
-				rate *= 1.7142859f;
-			if ((g_iTSPowerups & 0x10) != 0)
-				rate *= 1.5f;
-			if (s_rateFrame != m_nFrameCount || s_rateAnimtime + 0.001f < m_pCurrentEntity->curstate.animtime)
-				s_rate = rate;
-			m_pCurrentEntity->curstate.framerate = s_rate;
-			s_rateAnimtime = m_pCurrentEntity->curstate.animtime;
-			s_rateFrame = m_nFrameCount;
-		}
-	}
+	TS_StudioViewModelRate(m_pCurrentEntity, m_nFrameCount);
 
 	if (m_pCurrentEntity->curstate.renderfx == kRenderFxDeadPlayer)
 	{
@@ -1228,13 +1316,9 @@ bool CStudioModelRenderer::StudioDrawModel(int flags)
 		bool result;
 		bool save_interp;
 
-		// TS contract (@0x70234): the dead player's INDEX rides rendercolor.r (renderamt is
-		// the fade alpha 255 — the stock renderamt-as-index read returned false on it and the
-		// corpse never drew: the round-8 vanishing body). Stock renderamt kept as a fallback.
-		int deadIdx = m_pCurrentEntity->curstate.rendercolor.r;
-		if (deadIdx <= 0 || deadIdx > gEngfuncs.GetMaxClients())
-			deadIdx = m_pCurrentEntity->curstate.renderamt;
-		if (deadIdx <= 0 || deadIdx > gEngfuncs.GetMaxClients())
+		// TS contract (@0x70234): the dead player's index rides rendercolor.r (TS_DeadPlayerIndex)
+		const int deadIdx = TS_DeadPlayerIndex(m_pCurrentEntity);
+		if (deadIdx == 0)
 			return false;
 
 		// get copy of player
@@ -1551,33 +1635,8 @@ bool CStudioModelRenderer::StudioDrawPlayer(int flags, entity_state_t* pplayer)
 			return StudioDrawCar(flags, pplayer, car);
 	}
 
-	// TS DEATH CAM: the LOCAL player's body is built from PREDICTION (the live view angles),
-	// so a server-side angle pin can't stop the dead body swiveling with the mouse — freeze
-	// the drawn angles CLIENT-side at the death pose until the observer snap (round 8).
-	{
-		static Vector s_vDeadAngles;
-		static bool s_bDeadLatch;
-		cl_entity_t* local = gEngfuncs.GetLocalPlayer();
-		extern int g_iUser1;
-		if (local && pplayer->number == local->index)
-		{
-			if (gHUD.m_Health.m_iHealth <= 0 && g_iUser1 == 0)
-			{
-				if (!s_bDeadLatch)
-				{
-					s_vDeadAngles = m_pCurrentEntity->angles;
-					s_bDeadLatch = true;
-				}
-				m_pCurrentEntity->angles = s_vDeadAngles;
-				m_pCurrentEntity->curstate.angles = s_vDeadAngles;
-				m_pCurrentEntity->latched.prevangles = s_vDeadAngles;
-				pplayer->angles = s_vDeadAngles;
-				pplayer->gaitsequence = 0;
-			}
-			else
-				s_bDeadLatch = false;
-		}
-	}
+	// TS DEATH CAM: the dead local player's drawn angles frozen (TS_StudioDeadLocalPlayer)
+	TS_StudioDeadLocalPlayer(m_pCurrentEntity, pplayer);
 
 
 	m_pRenderModel = IEngineStudio.SetupPlayerModel(m_nPlayerIndex);
@@ -1647,14 +1706,7 @@ bool CStudioModelRenderer::StudioDrawPlayer(int flags, entity_state_t* pplayer)
 	// belongs to the engine (xash resets/owns it — writing it did NOT survive to event time:
 	// the pelvis bug); the muzzle flare / brass / magazines / laser read the cache instead.
 	StudioCalcAttachments();
-	if (m_pCurrentEntity->index > 0 && m_pCurrentEntity->index <= 64)
-	{
-		for (int a = 0; a < 4; a++)
-			g_tsPlayerGunAtt[m_pCurrentEntity->index][a] = m_pCurrentEntity->attachment[a];
-		g_tsPlayerGunAttTime[m_pCurrentEntity->index] = gEngfuncs.GetClientTime();
-		cl_entity_t* ent = gEngfuncs.GetEntityByIndex(m_pCurrentEntity->index);
-		memcpy(ent->attachment, m_pCurrentEntity->attachment, sizeof(Vector) * 4);
-	}
+	TS_StudioNotePlayerAttachments(m_pCurrentEntity);
 	if ((flags & STUDIO_EVENTS) != 0)
 	{
 		IEngineStudio.StudioClientEvents();

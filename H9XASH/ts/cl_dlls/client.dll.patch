@@ -983,3 +983,31 @@ Built from source rather than applied as a binary patch, so this entry's hash be
 the Patched line earlier in this file.
 
 client.dll MD5 : a8fdbfbbc69347deeae451f3725ad5b4
+
+The PrimeXT renderer behind r_primext, and the main of 2026-11-24 (2026-11-24)
+-------------------------------------------------------------
+
+Built from branch primext-hive-remaster: HAVOC-NINE main 87170691 with the branch primext-config
+(82fe2bfd) merged. CMake, Visual Studio 2026, Win32, Release, targets hl and client (client
+builds pxrender first). What this adds to the client:
+
+- HUD_GetRenderInterface (h9_primext.cpp): with r_primext 1 at start (-primext / -noprimext on the
+  command line win, then the last r_primext line of userconfig.cfg, then config.cfg) the client
+  loads cl_dlls\pxrender.dll, PrimeXT's renderer (its own note, pxrender.dll.patch), and hands it
+  the render interface; with r_primext 0 nothing is loaded and ref_gl draws as before.
+- PrimeXT's settings registered even when pxrender.dll is not loaded, so an r_primext 0 start keeps
+  them; r_primext_restore carries the engine's r_scene_msaa, r_bloom and r_scene_scale back.
+  PrimeXT's own bloom and shadow cvars are px_bloom, px_bloom_scale and px_shadows, so they no
+  longer overwrite ref_gl's r_bloom, r_bloom_scale and r_shadows.
+- px_quality 0-3 (low, medium, high, custom); gl_hdr held at 1 with PrimeXT, a change applied at
+  the next map load; multisampling only with gl_msaa_samples 2 or more.
+- The TS hooks the renderer needs: fog (ts_fog, gl_fog 2, the server fog), the view model rate,
+  the corpse index, the death cam, the player gun anchors, glow shells and H9's xray.
+- Every change main had made to the client up to 87170691.
+
+The cvars: CVARS.md, "The PrimeXT renderer". The sources: reTS\PRIMEXT-SOURCES.md and
+PRIMEXT-LICENCES.md.
+
+client.dll size   : 1404928 bytes
+client.dll SHA256 : A77F7E3418B272844644C9A29D9660656C313F5D10F9B26BB38F36DE1344C66B
+client.dll MD5    : 3190f300be6b58e11974d546f68e8842

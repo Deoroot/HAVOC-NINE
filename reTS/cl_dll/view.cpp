@@ -2176,6 +2176,9 @@ void DLLEXPORT V_CalcRefdef(struct ref_params_s* pparams)
 	// client.dll's last call here (0x10069e29): the fog pass, FUN_10056c20 (cl_dll/ts_emitter.cpp)
 	TS_ApplyFog();
 
+	extern void H9Pxr_ViewParams(struct ref_params_s * pparams);
+	H9Pxr_ViewParams(pparams); // H9: r_primext 1, the PrimeXT renderer keeps the view (h9_primext.cpp)
+
 	/*
 // Example of how to overlay the whole screen with red at 50 % alpha
 #define SF_TEST

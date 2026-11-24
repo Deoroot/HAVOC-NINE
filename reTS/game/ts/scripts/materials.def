@@ -1,0 +1,75 @@
+// H9 material kinds. Read at start-up (game_shared/material.cpp). A texture names its kind with
+// "material" "<kind>" in a scripts/*.mat file; "default" is used for every texture that names none.
+// Keys: impact_sound and step_sound, lists of wave files (also accepted: impact_decal <decal group>,
+// impact_parts <effect names>).
+
+// concrete, plaster and anything not listed
+"default"
+{
+	"impact_sound"	"debris/concrete1.wav" "debris/concrete2.wav" "debris/concrete3.wav"
+	"step_sound"	"player/pl_step1.wav" "player/pl_step2.wav" "player/pl_step3.wav" "player/pl_step4.wav"
+}
+
+// sheet and solid metal
+"metal"
+{
+	"impact_sound"	"debris/metal1.wav" "debris/metal2.wav" "debris/metal3.wav" "debris/metal4.wav" "debris/metal5.wav" "debris/metal6.wav"
+	"step_sound"	"player/pl_metal1.wav" "player/pl_metal2.wav" "player/pl_metal3.wav" "player/pl_metal4.wav"
+}
+
+// metal grating and mesh
+"grate"
+{
+	"impact_sound"	"debris/metal1.wav" "debris/metal3.wav" "debris/metal5.wav"
+	"step_sound"	"player/pl_grate1.wav" "player/pl_grate2.wav" "player/pl_grate3.wav" "player/pl_grate4.wav"
+}
+
+// ducts
+"vent"
+{
+	"impact_sound"	"debris/metal2.wav" "debris/metal4.wav" "debris/metal6.wav"
+	"step_sound"	"player/pl_duct1.wav" "player/pl_duct2.wav" "player/pl_duct3.wav" "player/pl_duct4.wav"
+}
+
+// planks, crates, furniture
+"wood"
+{
+	"impact_sound"	"debris/wood1.wav" "debris/wood2.wav" "debris/wood3.wav" "debris/wood4.wav"
+	"step_sound"	"player/pl_step1.wav" "player/pl_step2.wav" "player/pl_step3.wav" "player/pl_step4.wav"
+}
+
+// windows and glass panels
+"glass"
+{
+	"impact_sound"	"debris/glass1.wav" "debris/glass2.wav" "debris/glass3.wav" "debris/glass4.wav"
+	"step_sound"	"player/pl_tile1.wav" "player/pl_tile2.wav" "player/pl_tile3.wav" "player/pl_tile4.wav" "player/pl_tile5.wav"
+}
+
+// ceramic tiles
+"tile"
+{
+	"impact_sound"	"debris/concrete1.wav" "debris/concrete2.wav" "debris/concrete3.wav"
+	"step_sound"	"player/pl_tile1.wav" "player/pl_tile2.wav" "player/pl_tile3.wav" "player/pl_tile4.wav" "player/pl_tile5.wav"
+}
+
+// earth, sand, grass ground
+"dirt"
+{
+	"impact_sound"	"debris/concrete2.wav" "debris/concrete3.wav"
+	"step_sound"	"player/pl_dirt1.wav" "player/pl_dirt2.wav" "player/pl_dirt3.wav" "player/pl_dirt4.wav"
+}
+
+// shallow liquid
+"water"
+{
+	"impact_sound"	"debris/flesh1.wav" "debris/flesh2.wav" "debris/flesh3.wav"
+	"step_sound"	"player/pl_slosh1.wav" "player/pl_slosh2.wav" "player/pl_slosh3.wav" "player/pl_slosh4.wav"
+}
+
+// screens, machines, electronics
+"computer"
+{
+	"impact_sound"	"debris/glass1.wav" "debris/glass3.wav" "debris/metal2.wav" "debris/metal5.wav"
+	"step_sound"	"player/pl_metal1.wav" "player/pl_metal2.wav" "player/pl_metal3.wav" "player/pl_metal4.wav"
+}
+

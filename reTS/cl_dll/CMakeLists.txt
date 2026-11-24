@@ -164,6 +164,15 @@ endif()
 target_link_options(client PRIVATE
 	$<$<PLATFORM_ID:Darwin>:-framework Carbon>)
 
+# H9 PrimeXT renderer (r_primext 1): client.dll exports HUD_GetRenderInterface and, when r_primext is 1 at start,
+# loads cl_dlls/pxrender.dll (primext/, PrimeXT's renderer built with its own headers) and hands it the render
+# interface. Windows 32-bit only; elsewhere the client answers the engine with 0 and ref_gl draws as before.
+if(WIN32 AND MSVC AND CMAKE_SIZEOF_VOID_P EQUAL 4 AND NOT HALFLIFE_EMSCRIPTEN)
+	add_subdirectory(primext)
+	add_dependencies(client pxrender)
+	target_compile_definitions(client PRIVATE H9_PRIMEXT=1)
+endif()
+
 target_sources(client PRIVATE
 	ammo.cpp
 	ammohistory.cpp
@@ -199,6 +208,7 @@ target_sources(client PRIVATE
 	h9_tts_web.cpp
 	h9_tts_win.cpp
 	h9_vgui.cpp
+	h9_primext.cpp
 	health.cpp
 	hud.cpp
 	hud_msg.cpp

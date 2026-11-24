@@ -58,6 +58,7 @@ int gmsgTSPlayerInfo = 0;
 #include "netadr.h"
 #include "pm_shared.h"
 #include "UserMessages.h"
+#include "primext_server.h"
 
 DLL_GLOBAL unsigned int g_ulFrameCount;
 
@@ -1386,7 +1387,9 @@ int AddToFullPack(struct entity_state_s* state, int e, edict_t* ent, edict_t* ho
 	{
 		if (!ENGINE_CHECK_VISIBILITY((const struct edict_s*)ent, pSet))
 		{
-			return 0;
+			// a spotlight (env_dynlight) has a second PVS point where its cone ends
+			if (!PrimeXT_DynlightVisible(ent, pSet))
+				return 0;
 		}
 	}
 
@@ -1527,6 +1530,9 @@ int AddToFullPack(struct entity_state_s* state, int e, edict_t* ent, edict_t* ho
 		state->rendercolor.g = ent->v.rendercolor.y;
 		state->rendercolor.b = ent->v.rendercolor.z;
 	}
+
+	// PrimeXT's env_dynlight: its switches ride in controller[0] (effects is 8 bits on the wire)
+	PrimeXT_AddToFullPack(state, ent);
 
 	state->aiment = 0;
 	if (ent->v.aiment)

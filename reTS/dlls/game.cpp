@@ -22,6 +22,7 @@
 #include "filesystem_utils.h"
 #include "cbase.h"
 #include "ts_gamerules.h" // TSGameRules/WeaponRestrictionByID (cmd_weaponrestriction)
+#include "primext_server.h"
 
 cvar_t displaysoundlist = {"displaysoundlist", "0"};
 
@@ -250,6 +251,7 @@ static void cmd_saveweapons()
 
 void GameDLLInit()
 {
+	PrimeXT_GameInit();
 	// @0xb5aa0: the server commands first, then the engine cvar pointers, then the cvars
 	g_engfuncs.pfnAddServerCommand("addbot", cmd_addbot);
 	g_engfuncs.pfnAddServerCommand("addcustombot", cmd_addcustombot);

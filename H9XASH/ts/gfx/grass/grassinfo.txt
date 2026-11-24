@@ -1,0 +1,7 @@
+// H9 grass kinds. Read by the renderer for each map (gl_grass.cpp).
+//
+// One kind per line:
+//     <surface texture name>  <image>  <density>  <min scale>  <max scale>  [seed]
+// Faces whose texture is named <surface texture name> grow tufts of <image> (a .tga with alpha).
+//
+// H9 ships no grass images and no map asks for grass, so no kind is listed.

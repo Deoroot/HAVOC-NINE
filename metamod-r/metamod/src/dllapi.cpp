@@ -231,10 +231,27 @@ C_DLLEXPORT int Server_GetPhysicsInterface(int iVersion, server_physics_api_t *p
 	// we have linkent alternative, shutdown linkent replacement
 	meta_shutdown_linkent_replacement();
 
+	// H9: the engine asks only the library it loaded as the game, which is this one, so a game
+	// library's own Server_GetPhysicsInterface (SV_CheckFeatures: deluxemaps, large lightmaps; the
+	// other callbacks) never got the call. Forward it, and keep our SV_CreateEntity beside the
+	// game's. Plugins still do not see physint (the TODO above).
+	using PHYSFN = int (*)(int, server_physics_api_t *, physics_interface_t *);
+	static PHYSFN s_pfnGame = nullptr;
+	static physics_interface_t s_gameTable;
+
+	Q_memset(&s_gameTable, 0, sizeof(s_gameTable));
+	s_pfnGame = reinterpret_cast<PHYSFN>(g_GameDLL.sys_module.getsym("Server_GetPhysicsInterface"));
+	if (s_pfnGame && !s_pfnGame(iVersion, pfuncsFromEngine, &s_gameTable))
+		Q_memset(&s_gameTable, 0, sizeof(s_gameTable));
+
 	// engine always require for nullptr, only replace single function needed for linkent alternative
-	Q_memset(pFunctionTable, 0, sizeof(*pFunctionTable));
+	Q_memcpy(pFunctionTable, &s_gameTable, sizeof(*pFunctionTable));
 	pFunctionTable->SV_CreateEntity = [](edict_t *pent, const char *szName)
 	{
+		// the game library's own creator first, if it has one
+		if (s_gameTable.SV_CreateEntity && s_gameTable.SV_CreateEntity(pent, szName) == 0)
+			return 0;
+
 		// check if gamedll implements this entity
 		ENTITY_FN SpawnEdict = reinterpret_cast<ENTITY_FN>(g_GameDLL.sys_module.getsym(szName));
 

@@ -617,6 +617,8 @@ void TSEmitter_Frame(double frametime)
 // off at the end of its FX root; reTS goes through the engine's triangle API, whose Fog takes 0..255
 // colours.
 //-----------------------------------------------------------------------------
+static float g_fogLast[5];
+
 void TS_ApplyFog()
 {
 	g_fogOnThisFrame = false;
@@ -649,6 +651,25 @@ void TS_ApplyFog()
 
 	tri->Fog(color, start, end, 1);
 	g_fogOnThisFrame = true;
+	g_fogLast[0] = color[0];
+	g_fogLast[1] = color[1];
+	g_fogLast[2] = color[2];
+	g_fogLast[3] = start;
+	g_fogLast[4] = end;
+}
+
+// H9: the fog TS_ApplyFog set this frame (0..255 colour, start, end), for the PrimeXT renderer (h9_primext.cpp),
+// which does not draw with the engine's fog state. False when there is none.
+bool TS_FogThisFrame(float* color, float* start, float* end)
+{
+	if (!g_fogOnThisFrame)
+		return false;
+	color[0] = g_fogLast[0];
+	color[1] = g_fogLast[1];
+	color[2] = g_fogLast[2];
+	*start = g_fogLast[3];
+	*end = g_fogLast[4];
+	return true;
 }
 
 void TS_FogFrameEnd()

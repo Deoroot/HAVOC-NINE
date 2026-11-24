@@ -1,0 +1,26 @@
+// H9 decal groups. Read by the renderer at start-up (gl_decals.cpp).
+//
+// A group is one or more names, then a block of entries, one per line:
+//     <texture>  <width>  <height>  <overlay>
+// <texture> is gfx/decals/<texture>.tga (with optional _norm, _gloss and _hmap maps beside it); width and height
+// are the decal's size in world units, overlay how far it may lie off the surface. A '$' before the texture
+// name marks it as solid. Several entries in a group: one is picked at random each time.
+//
+// H9 places decals from the map only (env_static_decal, "texture" = a group name). A group whose name starts
+// with "puddle" is a puddle: traced straight down, drawn with reflections (gl_realtime_puddles).
+
+// hive v2 floor puddles
+puddle_hv1
+{
+	puddle1		192	192	0.2
+}
+
+puddle_hv2
+{
+	puddle2		256	160	0.2
+}
+
+puddle_hv3
+{
+	puddle3		224	176	0.2
+}

@@ -152,6 +152,9 @@ int DLLEXPORT Initialize(cl_enginefunc_t* pEnginefuncs, int iVersion)
 
 	memcpy(&gEngfuncs, pEnginefuncs, sizeof(cl_enginefunc_t));
 
+	extern cl_enginefunc_t* g_pH9EngineFuncs; // H9: h9_primext.cpp hands the engine's own table to the PrimeXT renderer
+	g_pH9EngineFuncs = pEnginefuncs;
+
 	const bool result = CL_InitClient();
 
 	if (!result)
@@ -182,6 +185,9 @@ int DLLEXPORT HUD_VidInit()
 
 	VGui_Startup();
 
+	extern void H9Pxr_VidInit();
+	H9Pxr_VidInit(); // H9: the PrimeXT renderer (r_primext 1), h9_primext.cpp
+
 	return 1;
 }
 
@@ -201,6 +207,9 @@ void DLLEXPORT HUD_Init()
 	InitInput();
 	gHUD.Init();
 	Scheme_Init();
+
+	extern void H9Pxr_HudInit();
+	H9Pxr_HudInit(); // H9: r_primext and, when it runs, the PrimeXT renderer's GL start (h9_primext.cpp)
 }
 
 
@@ -279,6 +288,8 @@ void DLLEXPORT HUD_Frame(double time)
 	gHUD.m_TSPowerUp.InterpolateSlow((float)time); // 0x10055ae0, the slow factor's easing
 	extern bool g_bTSKeyBound;
 	g_bTSKeyBound = false; // 0x1001ab27
+	extern void H9Pxr_Frame(double time);
+	H9Pxr_Frame(time); // H9: the PrimeXT renderer's held settings (h9_primext.cpp)
 }
 
 

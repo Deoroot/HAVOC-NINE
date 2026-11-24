@@ -13,11 +13,17 @@ patches in that folder (metamod-r\H9-SOURCE.txt):
                       Upstream sizes it from the HLSDK's MAX_CLIENTS (32) and bounds the
                       look-ups by maxClients only, so on a server past 32 slots a query from
                       slot 33 and up was written past the table.
+  h9-physint.patch    Server_GetPhysicsInterface forwarded to mp.dll's own, so the engine
+                      learns that the game wants deluxemaps and large lightmaps (the PrimeXT
+                      renderer, r_primext 1); Metamod's SV_CreateEntity kept on top, the game's
+                      tried first. Plugins still do not see physint. reTS\PRIMEXT-METAMOD.md.
 
 Deployed file : metamod.dll
-Size          : 353792 bytes
-SHA256        : 1463EFB298B065C7F76D47671477CD63998A3F0E9799080D5B98281DAEBE232E
-Built         : 2026-11-01, MSBuild metamod\msvc\metamod.vcxproj, Release|Win32, toolset
+Size          : 356864 bytes
+SHA256        : 8505BA49B476123839C2BD165B10C33DA32E05A3DD8B15966EA80463C60F3913
+Built         : 2026-11-24 (h9-physint.patch added; the 2026-11-01 build, 353792 bytes,
+                SHA256 1463EFB298B065C7F76D47671477CD63998A3F0E9799080D5B98281DAEBE232E, had
+                h9-slots128.patch alone), MSBuild metamod\msvc\metamod.vcxproj, Release|Win32, toolset
                 v145 (Visual Studio 2026), from a copy of TSM\metamod-r (its pre-build step
                 writes version files into the tree). Interface version 5:13; version string
                 1.3.0.0 (the copy has no git history to count).
@@ -38,4 +44,6 @@ nothing it relies on differs.
 Rollback
 --------
 
-Copy metamod.dll.bak_slots over metamod.dll with the server closed.
+Copy metamod.dll.bak_slots over metamod.dll with the server closed. To go back only to the
+2026-11-01 build (no physint forward; mp.dll then gets features 0, so no deluxe data), take
+metamod.dll from git before the 2026-11-24 commit.

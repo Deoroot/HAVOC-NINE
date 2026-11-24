@@ -1,0 +1,247 @@
+diff --git a/menus/VideoOptions.cpp b/menus/VideoOptions.cpp
+index cc4b1e2..5fceb05 100644
+--- a/menus/VideoOptions.cpp
++++ b/menus/VideoOptions.cpp
+@@ -24,12 +24,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ #include "Slider.h"
+ #include "CheckBox.h"
+ #include "YesNoMessageBox.h"
++#include "SpinControl.h"
++#include "StringArrayModel.h"
+ 
+ #define ART_BANNER	  	"gfx/shell/head_vidoptions"
+ #define ART_GAMMA		"gfx/shell/gamma"
+ 
+ #define LEGACY_VIEWSIZE 0
+ 
++// H9: the PrimeXT renderer's row (r_primext, px_quality). The browser build has no PrimeXT renderer: no row, and Smooth
++// edges and Glow keep driving ref_gl's r_scene_msaa and r_bloom.
++#if !defined( __EMSCRIPTEN__ )
++#define H9_VID_PRIMEXT 1
++#else
++#define H9_VID_PRIMEXT 0
++#endif
++
+ class CMenuVidOptions : public CMenuFramework
+ {
+ private:
+@@ -38,10 +48,13 @@ private:
+ 	void Reload() override;
+ 
+ public:
+-	CMenuVidOptions() : CMenuFramework( "CMenuVidOptions" ) { }
++	CMenuVidOptions() : CMenuFramework( "CMenuVidOptions" ), m_bPrimextMode( false ), m_bSyncing( false ) { }
+ 	void SaveAndPopMenu() override;
+ 	void UpdateConfig();
+ 	void GetConfig();
++	void SetRendererMode( bool primext ); // H9: what Smooth edges and Glow drive
++	void QualityChanged();
++	void GlowChanged();
+ 
+ 	int		outlineWidth;
+ 
+@@ -63,8 +76,12 @@ public:
+ 	CMenuCheckBox	filtering;
+ 	CMenuCheckBox	detailtex;
+ 	CMenuCheckBox	hudscale;
+-	CMenuCheckBox	smooth; // msr-web: r_scene_msaa
+-	CMenuCheckBox	bloom;  // msr-web: r_bloom
++	CMenuCheckBox	smooth; // msr-web: r_scene_msaa; H9, with r_primext 1: gl_msaa_samples 0/4 (next start)
++	CMenuCheckBox	bloom;  // msr-web: r_bloom; H9, with r_primext 1: px_bloom
++	CMenuCheckBox	primext; // H9: r_primext, the PrimeXT renderer (next start)
++	CMenuSpinControl	quality; // H9: px_quality, the PrimeXT renderer's preset: low, medium, high, custom
++	bool		m_bPrimextMode; // Smooth edges and Glow drive the PrimeXT renderer's cvars
++	bool		m_bSyncing;     // the page is reading the cvars: no change is the player's
+ 	CMenuYesNoMessageBox	msgBox;
+ 
+ 	HIMAGE		hTestImage;
+@@ -109,12 +126,87 @@ void CMenuVidOptions::SaveAndPopMenu( void )
+ 	filtering.WriteCvar();
+ 	hudscale.WriteCvar();
+ 	smooth.WriteCvar();
++#if H9_VID_PRIMEXT
++	primext.WriteCvar();
++	quality.WriteCvar(); // in the same frame as px_bloom: client.dll applies a new preset over it, or keeps it with 3
++#endif
+ 	bloom.WriteCvar();
+ 	// gamma and brightness is already written
+ 
+ 	CMenuFramework::SaveAndPopMenu();
+ }
+ 
++/*
++=================
++CMenuVidOptions::SetRendererMode
++
++H9: with r_primext 1 (as the page shows it) Smooth edges drives gl_msaa_samples, 0 or 4, which applies at the next
++start, and Glow drives px_bloom, which the quality presets set too. With 0 they drive H9's ref_gl cvars, r_scene_msaa
++and r_bloom, as before. Each relink reads the cvar again.
++=================
++*/
++void CMenuVidOptions::SetRendererMode( bool primextMode )
++{
++	m_bPrimextMode = primextMode;
++
++	if( primextMode )
++	{
++		smooth.szName = L( "Smooth edges (next start)" );
++		SET_EVENT_MULTI( smooth.onCvarGet,
++		{
++			CMenuCheckBox *cb = (CMenuCheckBox *)pSelf;
++			cb->SetOriginalValue( EngFuncs::GetCvarFloat( "gl_msaa_samples" ) >= 2.0f ? 1.0f : 0.0f );
++			cb->bChecked = cb->CvarValue() != 0.0f;
++		});
++		SET_EVENT_MULTI( smooth.onCvarWrite,
++		{
++			CMenuCheckBox *cb = (CMenuCheckBox *)pSelf;
++			const float samples = cb->bChecked ? 4.0f : 0.0f;
++			if( ( EngFuncs::GetCvarFloat( "gl_msaa_samples" ) >= 2.0f ) != cb->bChecked )
++				EngFuncs::CvarSetValue( "gl_msaa_samples", samples );
++		});
++		smooth.LinkCvar( "gl_msaa_samples" );
++
++		bloom.szName = L( "Glow" );
++		bloom.LinkCvar( "px_bloom" );
++	}
++	else
++	{
++		smooth.szName = L( "Smooth edges" );
++		smooth.onCvarGet.Reset();
++		smooth.onCvarWrite.Reset();
++		smooth.LinkCvar( "r_scene_msaa" );
++
++		bloom.szName = L( "Glow of magic" );
++		bloom.LinkCvar( "r_bloom" );
++	}
++
++	quality.SetGrayed( !primextMode );
++	quality.SetInactive( !primextMode );
++}
++
++// the player picked a preset: Glow shows what the preset gives px_bloom (low 0, medium and high 1)
++void CMenuVidOptions::QualityChanged()
++{
++	if( m_bSyncing || !m_bPrimextMode )
++		return;
++	const int level = (int)quality.GetCurrentValue();
++	if( level >= 0 && level <= 2 )
++	{
++		bloom.bChecked = level > 0;
++		bloom.SetCvarValue( bloom.bChecked ? 1.0f : 0.0f );
++	}
++}
++
++// the player set Glow by hand: the preset becomes custom, as client.dll would make it
++void CMenuVidOptions::GlowChanged()
++{
++	if( m_bSyncing || !m_bPrimextMode )
++		return;
++	if( quality.GetCurrentValue() != 3.0f )
++		quality.SetCurrentValue( 3.0f );
++}
++
+ /*
+ =================
+ CMenuVidOptions::Ownerdraw
+@@ -170,7 +262,7 @@ void CMenuVidOptions::_Init( void )
+ 	banner.SetPicture( ART_BANNER );
+ 
+ 	testImage.iFlags = QMF_INACTIVE;
+-	testImage.SetRect( 390, 225, 480, 450 );
++	testImage.SetRect( 390, 225, 480, 330 ); // H9: shorter, for the PrimeXT rows under it
+ 	testImage.SetPicture( ART_GAMMA );
+ 
+ 	int height = 280;
+@@ -228,11 +320,50 @@ void CMenuVidOptions::_Init( void )
+ 	hudscale.SetCoord( 72, height );
+ 	height += 50;
+ 
+-	// msr-web: the column is full: these two go under the test picture
++	// msr-web: the column is full: these two go under the test picture (H9: one above the other, under PrimeXT)
+ 	smooth.szName = L( "Smooth edges" );
+-	smooth.SetCoord( 390, 690 );
++	smooth.SetCoord( 390, 630 );
+ 	bloom.szName = L( "Glow of magic" );
+-	bloom.SetCoord( 640, 690 );
++	bloom.SetCoord( 390, 685 );
++	SET_EVENT_MULTI( bloom.onChanged,
++	{
++		((CMenuVidOptions *)pSelf->Parent())->GlowChanged();
++	});
++
++	// H9: the PrimeXT renderer above them, and its quality preset to the right
++	primext.szName = L( "PrimeXT renderer (next start)" );
++	primext.SetCoord( 390, 575 );
++	SET_EVENT_MULTI( primext.onChanged,
++	{
++		CMenuVidOptions *parent = (CMenuVidOptions *)pSelf->Parent();
++		parent->m_bSyncing = true;
++		parent->SetRendererMode( ((CMenuCheckBox *)pSelf)->bChecked );
++		parent->m_bSyncing = false;
++	});
++
++	static const char *qualityNames[] = { L( "Low" ), L( "Medium" ), L( "High" ), L( "Custom" ) };
++	static CStringArrayModel qualityModel( qualityNames, V_ARRAYSIZE( qualityNames ));
++	quality.szName = L( "PrimeXT quality" );
++	quality.Setup( &qualityModel );
++	quality.SetRect( 800, 605, 220, 32 );
++	SET_EVENT_MULTI( quality.onCvarGet,
++	{
++		CMenuSpinControl *spin = (CMenuSpinControl *)pSelf;
++		float level = EngFuncs::GetCvarFloat( "px_quality" );
++		if( level < 0.0f || level > 3.0f || level != (float)(int)level )
++			level = 3.0f; // not a preset: custom
++		spin->SetCurrentValue( level );
++	});
++	SET_EVENT_MULTI( quality.onCvarWrite,
++	{
++		CMenuSpinControl *spin = (CMenuSpinControl *)pSelf;
++		if( EngFuncs::GetCvarFloat( "px_quality" ) != spin->GetCurrentValue( ))
++			EngFuncs::CvarSetValue( "px_quality", spin->GetCurrentValue( ));
++	});
++	SET_EVENT_MULTI( quality.onChanged,
++	{
++		((CMenuVidOptions *)pSelf->Parent())->QualityChanged();
++	});
+ 
+ 	msgBox.SetMessage( L( "^1WARNING: This is an experimental option and turning it on might break mods!^7\n\nReload the game or reconnect to the server to apply the settings."));
+ 	msgBox.onNegative.pExtra = &hudscale;
+@@ -295,6 +426,10 @@ void CMenuVidOptions::_Init( void )
+ 	AddItem( hudscale );
+ 	AddItem( smooth );
+ 	AddItem( bloom );
++#if H9_VID_PRIMEXT
++	AddItem( primext );
++	AddItem( quality );
++#endif
+ 	AddItem( testImage );
+ 
+ #if LEGACY_VIEWSIZE
+@@ -310,8 +445,13 @@ void CMenuVidOptions::_Init( void )
+ 	overbright.LinkCvar( "gl_overbright" );
+ 	// skip filtering.LinkCvar, different names in ref_gl and ref_soft
+ 	hudscale.LinkCvar( "hud_scale" );
+-	smooth.LinkCvar( "r_scene_msaa" );
+-	bloom.LinkCvar( "r_bloom" );
++	// smooth and bloom: SetRendererMode, at each Reload
++#if H9_VID_PRIMEXT
++	m_bSyncing = true;
++	primext.LinkCvar( "r_primext" );
++	quality.LinkCvar( "px_quality", CMenuEditable::CVAR_VALUE );
++	m_bSyncing = false;
++#endif
+ }
+ 
+ void CMenuVidOptions::_VidInit()
+@@ -394,7 +534,11 @@ void CMenuVidOptions::Reload()
+ 		filtering.SetInactive( true );
+ 	}
+ 
++	// H9: each time the page opens (menu.dll starts before config.cfg runs): the renderer the saved r_primext names
++	m_bSyncing = true;
++	SetRendererMode( H9_VID_PRIMEXT && EngFuncs::GetCvarFloat( "r_primext" ) != 0.0f );
+ 	CMenuFramework::Reload();
++	m_bSyncing = false;
+ }
+ 
+ ADD_MENU( menu_vidoptions, CMenuVidOptions, UI_VidOptions_Menu );

@@ -107,6 +107,7 @@ about the first kind:
 | 59 | `engine-h9-userinfo-client.patch` | `client/cl_main.c` (`CL_H9PacketUserinfo`, `CL_H9SendLateUserinfo`, the two connect packets, `CL_SendCommand`), `client/client.h` (`cls.userinfo`), `common/common.h` (`H9_MAX_USERINFO`), `client/cl_presence.c`, `client/cl_travel.c`, `common/cvar.c`, `client/dll_int/cl_gameui.c` (`UI_UpdateUserinfo`), `common/infostring.c` (`Info_SetValueForStarKey`: `>=`) | the client keeps `H9_MAX_USERINFO` (512) of its own userinfo, where the 255 of before refused keys one by one (h9_clientid, even `_h9rel`); a connect packet gets the keys a server needs first and what else fits in 255, the rest goes with `setinfo` once connected |
 | 59a | `engine-h9-menubgvideo.patch` | `client/avi/avi_ffmpeg.c/.h`, `client/client.h`, `client/dll_int/cl_gameui.c`, `common/common.h`, `menu_int.h` | the native (non-browser) FFmpeg menu background video: `CIN_MENUBG`, the extended menu API v2 and its four `ui_extendedfuncs_t` pointers, the `menubg_*` gameui fields, the forced AVI demuxer and the `AVI_REWIND` loop-by-reopen that works around an FFmpeg `avio_seek` crash on long menu sessions, and the `UI_*MenuBgVideo` wiring. **Applies last** -- it edits lines #59 adds, so it is generated from the fully patched tree. Its mainui half is #49a |
 | 60 | `engine-h9-hdsky.patch` | `client/dll_int/ref_common.c` (`R_SetupSky`) | with texture replacement on, a whole sky set under `materials/gfx/env` is used before the game's own `gfx/env` one; a missing or half set falls back to the game's |
+| 61 | `mainui-h9-primext.patch` | `3rdparty/mainui/menus/VideoOptions.cpp` | Video options: "PrimeXT renderer (next start)" (`r_primext`) and a "PrimeXT quality" selector (`px_quality`: Low, Medium, High, Custom). While the page shows `r_primext` 1, "Smooth edges (next start)" drives `gl_msaa_samples` 0/4 and "Glow" drives `px_bloom`; with 0 they drive `r_scene_msaa` and `r_bloom` ("Glow of magic") as before. The page reads the cvars each time it opens (`Reload`), so the values config.cfg set after menu.dll loaded show. A preset picked sets Glow to what it gives `px_bloom`; Glow set by hand makes the selector Custom, as client.dll makes `px_quality` 3. The test picture is 330 high instead of 450, for the rows under it. The browser build (`__EMSCRIPTEN__`) has no PrimeXT row. Made on top of every mainui patch above (the tree `H9XASH\menu.dll.patch` records); independent of them, it touches only `VideoOptions.cpp`, which only `engine-mainui.patch` changes |
 
 Not tracked here (already committed on `h9`, see `git log` in `xash3d-fwgs`):
 `engine-h9-spraywad.patch` (the classic-HL "whatever's in tempdecal.wad IS
@@ -2204,6 +2205,19 @@ into `cls.userinfo` when it is missing there; it left the list of the keys that 
 4. `engine-h9-serverinfo.patch`, `server/sv_client.c`, `SV_RejectConnection`: the server sends "Server has rejected the connection:" in both packets; a server shows it once it runs this engine.
 
 Each change is inside the patch that owns the code (`cl_h9join.c` is that patch's own file); no patch name was added to `xash.bat`. Reverse-checks in place; needs the next engine build.
+
+### 2026-11-22 -- mainui-h9-primext.patch (new): the PrimeXT renderer in Video options
+
+Plan item 7 of the PrimeXT configuration review (branch `primext-config` of the reTS client). One file, `menus/VideoOptions.cpp`; see row 61 above for
+what the page does. Made against mainui `bb47191c` with the whole of `H9XASH\menu.dll.patch` (2026-11-05, every mainui patch of this chain and the
+webassembly one) applied: forward `git apply --check` clean on that tree, and `git apply --reverse --check` clean on the result. Added to the end of the
+chain in `xash.bat`, to its patch list and to the `menu.dll` description.
+
+Not built by `xash.bat`: this machine has no TSM `xash3d-fwgs` tree with the h9 branch, nor `webassembly-patch\`. The menu was built privately from
+that tree with mainui's own CMakeLists.txt (MSVC, Win32, static CRT, /GR-; the same imports and exports as `H9XASH\menu.dll`) and run in a test copy
+of the game: the page opens with the saved values, a preset picked and Glow and Smooth edges clicked write `px_quality`, `px_bloom` and
+`gl_msaa_samples` 4 (opengl.cfg kept it), and unchecking PrimeXT renders the old labels with the selector greyed. `H9XASH\menu.dll` and its
+`.patch` note are not replaced here: the next `xash.bat` build makes them.
 
 ### 2026-11-23 -- engine-h9-hdsky.patch (new): a sky set under materials/gfx/env is used before the game's own
 

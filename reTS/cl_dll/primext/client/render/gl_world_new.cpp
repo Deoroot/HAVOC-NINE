@@ -843,19 +843,13 @@ static word Mod_ShaderSceneForward( msurface_t *s )
 	bool additive_liquid = FBitSet( mat->flags, BRUSH_LIQUID ) && e->curstate.rendermode == kRenderTransAdd;
 	bool liquid = FBitSet( mat->flags, BRUSH_LIQUID ) && !additive_liquid;
 
-	// H9: a brush entity's water with rendermode normal (func_water) is opaque in the engine. As a liquid it
-	// only refracts the screen behind it, and where nothing is drawn behind it (no floor in the PVS, the void)
-	// that is the cleared screen: a white sheet. As the engine does, it is drawn opaque here: its texture,
-	// warped (LIQUID_WARP) and unlit, with PrimeXT's cubemap reflection over it.
-	bool liquid_body = liquid && FBitSet( s->flags, SURF_OF_SUBMODEL ) && e != GET_ENTITY( 0 ) && e->curstate.rendermode == kRenderNormal;
-
-	if( additive_liquid || liquid_body )
+	if( additive_liquid )
 	{
 		using_refractions = false;
 		using_aberrations = false;
 	}
 
-	if (liquid_body || ((FBitSet(mat->flags, BRUSH_FULLBRIGHT) || R_FullBright() || mirror) && !liquid)) {
+	if ((FBitSet(mat->flags, BRUSH_FULLBRIGHT) || R_FullBright() || mirror) && !liquid) {
 		fullbright = true;
 	}
 
@@ -971,7 +965,8 @@ static word Mod_ShaderSceneForward( msurface_t *s )
 		GL_AddShaderDirective( options, "LIQUID_SURFACE" );
 		if( tr.waterlevel >= 3 )
 			GL_AddShaderDirective( options, "LIQUID_UNDERWATER" );
-		// H9: the engine's warped texture, drawn where nothing is behind the water and on a liquid_body
+		// H9: the engine's warped texture: the colour of the water's body, seen where the water is deep or
+		// nothing is drawn behind it (scene_bmodel_fp, LIQUID_SURFACE)
 		GL_AddShaderDirective( options, "LIQUID_WARP" );
 
 		// world watery with compiler feature
@@ -982,6 +977,11 @@ static word Mod_ShaderSceneForward( msurface_t *s )
 		if (cubemaps_available && !RP_CUBEPASS())
 		{
 			GL_AddShaderDirective(options, "REFLECTION_CUBEMAP");
+			// H9: the reflection turns the normal into world space by the surface's tangents, which the
+			// vertex shader leaves at zero without COMPUTE_TBN (only deluxemapped faces asked for it): the
+			// world normal was NaN and the reflection black
+			if (!es->normals || fullbright)
+				GL_AddShaderDirective(options, "COMPUTE_TBN");
 			using_cubemaps = true;
 		}
 	}
@@ -2167,6 +2167,18 @@ static void Mod_LoadWorld( model_t *mod, const byte *buf )
 			SetBits(surf->flags, SURF_SCREEN);
 		}
 
+		// H9: the top of every liquid is a planar mirror (PrimeXT's mirror pass, RP_WATERPASS), so water reflects
+		// the city and the sky as they are; the cubemap stays the fallback (gl_allow_mirrors 0, too many passes)
+		if(( tex->name[0] == '!' || !Q_strnicmp( tex->name, "water", 5 )) && !FBitSet( surf->flags, SURF_DRAWSKY ))
+		{
+			float nz = FBitSet( surf->flags, SURF_PLANEBACK ) ? -surf->plane->normal[2] : surf->plane->normal[2];
+			if( nz > 0.99f )
+			{
+				SetBits( world->features, WORLD_HAS_MIRRORS );
+				SetBits( surf->flags, SURF_REFLECT );
+			}
+		}
+
 		if( FBitSet( surf->flags, SURF_REFLECT ))
 			GL_AllocOcclusionQuery( surf );
 	}
@@ -2537,6 +2549,10 @@ bool R_AddSurfaceToDrawList( msurface_t *surf, drawlist_t drawlist_type )
 		if ( RI->frame.num_subview_faces >= MAX_SUBVIEW_FACES )
 			return false;
 
+		// H9: an additive liquid (a !fog func_illusionary) is drawn as the engine draws it, with no mirror
+		if( FBitSet( surf->flags, SURF_REFLECT ) && FBitSet( R_TextureAnimation( surf )->material->flags, BRUSH_LIQUID ) && e->curstate.rendermode == kRenderTransAdd )
+			return false;
+
 		// check for restrictions
 		if (FBitSet(surf->flags, SURF_REFLECT) && !CVAR_TO_BOOL(r_allow_mirrors))
 			return false;
@@ -2593,6 +2609,17 @@ void R_SetSurfaceUniforms( word hProgram, msurface_t *surface, bool force )
 
 	material_t *mat = R_TextureAnimation( s )->material;
 	glsl_program_t *shader = RI->currentshader;
+	// H9: water takes the two probes nearest the eye, not the two nearest each face: the faces of one sea
+	// chose different pairs and showed seams along their edges
+	mcubemap_t *cubemap[2] = { es->cubemap[0], es->cubemap[1] };
+	float cubeLerp = es->lerpFactor;
+	if( FBitSet( mat->flags, BRUSH_LIQUID ) && world->num_cubemaps > 0 && !RP_CUBEPASS( ))
+	{
+		CL_FindTwoNearestCubeMap( GetVieworg(), &cubemap[0], &cubemap[1] );
+		float dist0 = ( cubemap[0]->origin - GetVieworg( )).Length();
+		float dist1 = ( cubemap[1]->origin - GetVieworg( )).Length();
+		cubeLerp = ( dist0 + dist1 ) > 0.0f ? dist0 / ( dist0 + dist1 ) : 0.0f;
+	}
 	CDynLight *pl = RI->currentlight; // may be NULL
 	gl_state_t *glm = GL_GetCache( e->hCachedMatrix );
 	mtexinfo_t *tx = s->texinfo;
@@ -2624,11 +2651,16 @@ void R_SetSurfaceUniforms( word hProgram, msurface_t *surface, bool force )
 		switch( u->type )
 		{
 		case UT_COLORMAP:
-			if( Surf_CheckSubview( es ))
+			if( Surf_CheckSubview( es ) && !FBitSet( mat->flags, BRUSH_LIQUID ))
 				u->SetValue( Surf_GetSubview( es )->texturenum.ToInt() );
 			else if( FBitSet( s->flags, SURF_MOVIE ) && RI->currententity->curstate.body )
 				u->SetValue( tr.cinTextures[es->cintexturenum-1].ToInt() );
 			else u->SetValue( mat->impl->gl_diffuse_id.ToInt() );
+			break;
+		case UT_MIRRORMAP:
+			if( Surf_CheckSubview( es ))
+				u->SetValue( Surf_GetSubview( es )->texturenum.ToInt() );
+			else u->SetValue( tr.blackTexture.ToInt() );
 			break;
 		case UT_NORMALMAP:
 			if( FBitSet( mat->flags, BRUSH_LIQUID ) && tr.waterTextures.Count() > 0 )
@@ -2685,32 +2717,32 @@ void R_SetSurfaceUniforms( word hProgram, msurface_t *surface, bool force )
 			break;
 		case UT_ENVMAP0:
 		case UT_ENVMAP:
-			if (!RP_CUBEPASS() && es->cubemap[0] != NULL) {
-				u->SetValue(es->cubemap[0]->texture.ToInt());
+			if (!RP_CUBEPASS() && cubemap[0] != NULL) {
+				u->SetValue(cubemap[0]->texture.ToInt());
 			}
 			else {
 				u->SetValue(world->defaultCubemap.texture.ToInt());
 			}
 			break;
 		case UT_ENVMAP1:
-			if (!RP_CUBEPASS() && es->cubemap[1] != NULL) {
-				u->SetValue(es->cubemap[1]->texture.ToInt());
+			if (!RP_CUBEPASS() && cubemap[1] != NULL) {
+				u->SetValue(cubemap[1]->texture.ToInt());
 			}
 			else {
 				u->SetValue(world->defaultCubemap.texture.ToInt());
 			}
 			break;
 		case UT_SPECULARMAPIBL0:
-			if (!RP_CUBEPASS() && es->cubemap[0] != NULL) {
-				u->SetValue(es->cubemap[0]->textureSpecularIBL.ToInt());
+			if (!RP_CUBEPASS() && cubemap[0] != NULL) {
+				u->SetValue(cubemap[0]->textureSpecularIBL.ToInt());
 			}
 			else {
 				u->SetValue(world->defaultCubemap.textureSpecularIBL.ToInt());
 			}
 			break;
 		case UT_SPECULARMAPIBL1:
-			if (!RP_CUBEPASS() && es->cubemap[1] != NULL) {
-				u->SetValue(es->cubemap[1]->textureSpecularIBL.ToInt());
+			if (!RP_CUBEPASS() && cubemap[1] != NULL) {
+				u->SetValue(cubemap[1]->textureSpecularIBL.ToInt());
 			}
 			else {
 				u->SetValue(world->defaultCubemap.textureSpecularIBL.ToInt());
@@ -2876,7 +2908,7 @@ void R_SetSurfaceUniforms( word hProgram, msurface_t *surface, bool force )
 			u->SetValue( tr.sun_refract );
 			break;
 		case UT_LERPFACTOR:
-			u->SetValue( es->lerpFactor );
+			u->SetValue( cubeLerp );
 			break;
 		case UT_REFRACTSCALE:
 			u->SetValue( bound( 0.0f, mat->impl->refractScale, 1.0f ));
@@ -2891,8 +2923,8 @@ void R_SetSurfaceUniforms( word hProgram, msurface_t *surface, bool force )
 			if( world->num_cubemaps > 0 )
 			{
 				Vector mins[2];
-				mins[0] = es->cubemap[0]->mins;
-				mins[1] = es->cubemap[1]->mins;
+				mins[0] = cubemap[0]->mins;
+				mins[1] = cubemap[1]->mins;
 				u->SetValue( &mins[0][0], 2 );
 			}
 			break;
@@ -2900,8 +2932,8 @@ void R_SetSurfaceUniforms( word hProgram, msurface_t *surface, bool force )
 			if( world->num_cubemaps > 0 )
 			{
 				Vector maxs[2];
-				maxs[0] = es->cubemap[0]->maxs;
-				maxs[1] = es->cubemap[1]->maxs;
+				maxs[0] = cubemap[0]->maxs;
+				maxs[1] = cubemap[1]->maxs;
 				u->SetValue( &maxs[0][0], 2 );
 			}
 			break;
@@ -2909,16 +2941,16 @@ void R_SetSurfaceUniforms( word hProgram, msurface_t *surface, bool force )
 			if( world->num_cubemaps > 0 )
 			{
 				Vector origin[2];
-				origin[0] = es->cubemap[0]->origin;
-				origin[1] = es->cubemap[1]->origin;
+				origin[0] = cubemap[0]->origin;
+				origin[1] = cubemap[1]->origin;
 				u->SetValue( &origin[0][0], 2 );
 			}
 			break;
 		case UT_CUBEMIPCOUNT:
 			if( world->num_cubemaps > 0 )
 			{
-				r = Q_max( 1, es->cubemap[0]->numMips - cv_cube_lod_bias->value );
-				g = Q_max( 1, es->cubemap[1]->numMips - cv_cube_lod_bias->value );
+				r = Q_max( 1, cubemap[0]->numMips - cv_cube_lod_bias->value );
+				g = Q_max( 1, cubemap[1]->numMips - cv_cube_lod_bias->value );
 				u->SetValue( r, g );
 			}
 			break;
@@ -3389,7 +3421,7 @@ void R_RenderTransSurface( CTransEntry *entry )
 	bool screenCopyRequired = ScreenCopyRequired(&glsl_programs[entry->m_hProgram]);
 
 	GL_DEBUG_SCOPE();
-	if (screenCopyRequired)
+	if (screenCopyRequired && !entry->m_bSharedCopy)
 	{
 		if( !FBitSet( s->flags, SURF_OCCLUDED ))
 		{

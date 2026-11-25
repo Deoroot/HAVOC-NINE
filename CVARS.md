@@ -235,10 +235,11 @@ session started with `r_primext 0`, so `config.cfg` keeps them ("kept with r_pri
 | `r_grass_fade_start` | `1024` | where grass starts to fade | kept with r_primext 0 |
 | `r_grass_lighting` | `1` | grass lit by the world | kept with r_primext 0 |
 | `r_grass_shadows` | `1` | grass in shadows | kept with r_primext 0 |
-| `r_lighting_brdf` | `0` | physically based shading, which reads the metalness of the _gloss maps; 0 is the classic model | kept with r_primext 0 |
+| `r_lighting_brdf` | `1` | physically based shading, which reads the metalness of the _gloss maps; 0 is the classic model | px_quality 0/1/2: 0/0/1; kept with r_primext 0 |
 | `r_occlusion_culling` | `0` | occlusion queries to skip hidden objects | kept with r_primext 0 |
 | `r_postfx_enable` | `1.0` | the post-processing pass | not saved |
-| `r_primext` | `0` | 1: PrimeXT's renderer (cl_dlls/pxrender.dll) draws the scene; 0: the engine's renderer, as before | start only: read from the command line, config.cfg and userconfig.cfg as the client loads |
+| `r_primext` | `1` | 1: PrimeXT's renderer (cl_dlls/pxrender.dll) draws the scene; 0: the engine's renderer, as before | start only: read from the command line, config.cfg and userconfig.cfg as the client loads; a config.cfg without r_primext_default 1 has its 0 read as an older build's default, and starts with 1 |
+| `r_primext_default` | `0` | 1: config.cfg's r_primext is the player's own choice (saved by a build where 1 is the default) | set by H9 |
 | `r_primext_restore` | (empty) | the engine's r_scene_msaa, r_bloom and r_scene_scale as they were before r_primext 1 held them, put back at the next start with 0 | set by H9 |
 | `r_pssm_show_split` | `0` | debug view | not saved |
 | `r_pssm_split_weight` | `0.9` | how the sun's shadow cascades are split | kept with r_primext 0 |

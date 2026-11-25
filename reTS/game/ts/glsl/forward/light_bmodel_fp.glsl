@@ -21,6 +21,9 @@ GNU General Public License for more details.
 #include "parallax.h"
 #include "material.h"
 
+// H9: see MaterialFetchTexture below
+#define BRUSH_METALNESS_SCALE	0.5
+
 // texture units
 #if defined( APPLY_TERRAIN )
 uniform sampler2DArray	u_ColorMap;
@@ -163,6 +166,12 @@ void main()
 #endif
 	// get params from texture
 	mat = MaterialFetchTexture( glossmap );
+#if defined( APPLY_PBS )
+	// H9: a brush has no image-based light (only models sample the probes' specular), so a metal brush got
+	// almost no diffuse and nothing else: a steel floor under a spot stood black. Half its metalness keeps
+	// PBR's tint and highlight and lets the light show
+	mat.metalness *= BRUSH_METALNESS_SCALE;
+#endif
 #else // !HAS_GLOSSMAP
 #if defined( APPLY_TERRAIN )
 	mat.smoothness = TerrainMixSmoothness( u_Smoothness, mask0, mask1, mask2, mask3 );
@@ -241,7 +250,8 @@ void main()
 
 #if !defined( LIQUID_SURFACE ) // disable diffuse lighting on liquid
 #if defined( APPLY_PBS )
-	result += (lighting.kD * albedo.rgb / M_PI) * lighting.diffuse;
+	// H9: no 1/pi: the lightmaps and the light values are the engine's, scaled for albedo * light (as without PBS); with it the world was a third as bright
+	result += (lighting.kD * albedo.rgb) * lighting.diffuse;
 #else
 	result += lighting.diffuse * albedo.rgb;
 #endif

@@ -14,6 +14,9 @@
 #include "filesystem_utils.h"
 #include "meshdesc_factory.h"
 #include "pxr_module.h"
+#include "parsemsg.h"
+#include "postfx_controller.h"
+#include "postfx_parameters.h"
 
 int developer_level;
 int g_iXashEngineBuildNumber;
@@ -144,8 +147,38 @@ static int PXR_Initialize(struct cl_enginefunc_s* pEnginefuncs, int iVersion, co
 	return 1;
 }
 
+// PrimeXT's CHud::MsgFunc_PostFxSettings (client/hud_msg.cpp): env_postfx_controller's look, 13 floats
+// H9: the last message, so that a trigger_multiple re-firing the same controller every `wait` seconds while the player
+// stands in its place does not restart the fade (PrimeXT's UpdateState starts each fade from its last target)
+static unsigned char s_lastPostFx[64];
+static int s_lastPostFxSize = 0;
+
+static int PXR_MsgPostFxSettings(const char* pszName, int iSize, void* pbuf)
+{
+	if (iSize > 0 && iSize <= (int)sizeof(s_lastPostFx) && iSize == s_lastPostFxSize && !memcmp(s_lastPostFx, pbuf, iSize))
+		return 1; // the look it already has or is fading to
+	if (iSize > 0 && iSize <= (int)sizeof(s_lastPostFx))
+	{
+		memcpy(s_lastPostFx, pbuf, iSize);
+		s_lastPostFxSize = iSize;
+	}
+
+	CPostFxParameters params;
+	BEGIN_READ(pszName, pbuf, iSize);
+	params.ParseMessage();
+	// H9: the new fade starts from what is on the screen now, not from the last target (a player who walks out of a
+	// place half way through its fade would otherwise see the look jump)
+	g_PostFxController.UpdateState(g_PostFxController.GetState(), false);
+	g_PostFxController.UpdateState(params);
+	END_READ();
+	return 1;
+}
+
 static void PXR_HudInit(void)
 {
+	// H9: hooked here, not in reTS's HUD: only a client that runs this renderer reads it (PRIMEXT-ENTITIES.md)
+	gEngfuncs.pfnHookUserMsg("PostFxSettings", PXR_MsgPostFxSettings);
+
 	// PrimeXT's V_Init (r_view.cpp) registers the renderer's cvars before GL_Init reads them
 	R_InitializeConVars();
 
@@ -182,6 +215,10 @@ static void PXR_VidInit(void)
 	gHUD.m_scrinfo.iSize = sizeof(gHUD.m_scrinfo);
 	GetScreenInfo(&gHUD.m_scrinfo);
 	R_VidInit();
+
+	// H9: a new map starts with the neutral look (an env_postfx_controller's state is not carried across maps)
+	g_PostFxController.UpdateState(CPostFxParameters::Defaults(), false);
+	s_lastPostFxSize = 0;
 }
 
 static void PXR_Shutdown(void)
@@ -200,6 +237,16 @@ static void PXR_AddEntity(int type, struct cl_entity_s* ent)
 
 	if (type == ET_BEAM)
 		return; // the engine draws beams
+
+	// H9: func_monitor / func_portal (renderfx 73, H9_RENDERFX_SUBVIEW in reTS/dlls/primext_server.h). H9's delta.lst
+	// has no fuser2 or iuser1 and an 8-bit sequence, so the server sends the camera in aiment (11 bits), the field of
+	// view in controller[1] and the switches in controller[0]; they go where PrimeXT's renderer reads them.
+	if (ent->curstate.renderfx == 73 && ent->model && ent->model->type == mod_brush)
+	{
+		ent->curstate.sequence = ent->curstate.aiment;
+		ent->curstate.fuser2 = (float)ent->curstate.controller[1];
+		ent->curstate.iuser1 = (ent->curstate.controller[0] & 0x01) ? CF_MONOCHROME : 0;
+	}
 
 	R_AddEntity(ent, type);
 }

@@ -5,6 +5,12 @@
 // startup setting: it is read here from the command line (-primext / -noprimext) or else from the last
 // `r_primext` line of config.cfg and userconfig.cfg, and a change while running takes effect at the next start.
 //
+// r_primext is 1 by default. Builds before that saved "r_primext 0" into every player's config.cfg as the default,
+// not as a choice; `r_primext_default 1`, saved beside it from this build on, marks a config.cfg whose r_primext is
+// the player's own. A config.cfg without it has its r_primext 0 read as that old default: the start is with 1, and
+// the 0 config.cfg then sets is put back to 1 (once, before the first map). userconfig.cfg, written by hand, is
+// always obeyed.
+//
 // r_primext 0: pxrender.dll is not loaded, HUD_GetRenderInterface answers 0, the engine clears the callbacks and
 // ref_gl draws everything as before (reTS's CStudioModelRenderer included).
 // r_primext 1: cl_dlls/pxrender.dll (PrimeXT's renderer, its own headers, reTS/cl_dll/primext) is loaded and given the
@@ -53,10 +59,12 @@ int TS_DeadPlayerIndex(const cl_entity_t* ent);
 cl_enginefunc_t* g_pH9EngineFuncs = nullptr; // the engine's own table (cdll_int.cpp Initialize), handed to pxrender.dll
 
 static cvar_t* r_primext = nullptr;
+static cvar_t* r_primext_default = nullptr; // 1: config.cfg's r_primext was saved by a build where 1 is the default
 static cvar_t* r_primext_restore = nullptr; // "msaa bloom scale" as they were before r_primext 1 held them
 static cvar_t* px_quality = nullptr;        // the quality preset, 0..3
 static bool s_active = false;               // pxrender.dll loaded and drawing
 static int s_startValue = 0;
+static bool s_oldDefaultPending = false; // config.cfg's r_primext 0 is the old default: put back to 1 when it runs
 static bool s_restoreDone = false;
 
 #ifdef H9_PRIMEXT
@@ -109,13 +117,17 @@ static int H9Pxr_StartValue()
 	if (gEngfuncs.CheckParm("-primext", nullptr))
 		return 1;
 
-	int value = 0;
+	int value = 1;
 	const int fromConfig = H9Pxr_ReadConfig("config.cfg", "r_primext");
-	if (fromConfig >= 0)
+	const bool ownChoice = H9Pxr_ReadConfig("config.cfg", "r_primext_default") >= 1;
+	if (fromConfig >= 0 && ownChoice)
 		value = fromConfig != 0 ? 1 : 0;
 	const int fromUser = H9Pxr_ReadConfig("userconfig.cfg", "r_primext");
 	if (fromUser >= 0)
 		value = fromUser != 0 ? 1 : 0;
+	s_oldDefaultPending = fromConfig == 0 && !ownChoice && fromUser < 0;
+	if (s_oldDefaultPending)
+		gEngfuncs.Con_Printf("r_primext: config.cfg's 0 is an older build's default, not a choice: starting with 1\n");
 	return value;
 }
 
@@ -123,7 +135,8 @@ static void H9Pxr_RegisterCvars()
 {
 	if (r_primext)
 		return;
-	r_primext = gEngfuncs.pfnRegisterVariable("r_primext", "0", FCVAR_ARCHIVE);
+	r_primext = gEngfuncs.pfnRegisterVariable("r_primext", "1", FCVAR_ARCHIVE);
+	r_primext_default = gEngfuncs.pfnRegisterVariable("r_primext_default", "0", FCVAR_ARCHIVE);
 	r_primext_restore = gEngfuncs.pfnRegisterVariable("r_primext_restore", "", FCVAR_ARCHIVE);
 	px_quality = gEngfuncs.pfnRegisterVariable("px_quality", "2", FCVAR_ARCHIVE);
 }
@@ -149,7 +162,8 @@ static const pxq_setting_t s_qualitySettings[] = {
 	{"gl_sunshafts", {"0", "1", "1"}},
 	{"r_grass", {"0", "1", "1"}},
 	{"px_bloom", {"0", "1", "1"}},
-	// r_lighting_brdf: to be decided (plan item 6, the owner's A/B comparison); no preset sets it yet
+	// r_lighting_brdf: PBR (GGX lights, split-sum IBL on models) at high; low and medium keep the classic lighting
+	{"r_lighting_brdf", {"0", "0", "1"}},
 };
 
 static void H9Pxr_ApplyQuality(int level)
@@ -387,6 +401,7 @@ extern "C" int DLLEXPORT HUD_GetRenderInterface(int version, struct render_api_s
 	H9Pxr_RegisterCvars();
 	s_startValue = H9Pxr_StartValue();
 	gEngfuncs.Cvar_Set("r_primext", s_startValue ? "1" : "0"); // the value in force, until config.cfg sets it again
+	gEngfuncs.Cvar_Set("r_primext_default", "1"); // config.cfg has no line for it to set back: saved as 1 at exit
 	if (s_startValue == 0)
 		return 0; // the engine draws (ref_gl), as before
 
@@ -455,6 +470,7 @@ static void H9Pxr_HoldHdr()
 
 void H9Pxr_VidInit()
 {
+	s_oldDefaultPending = false; // config.cfg has run: a 0 from here on is the player's
 	H9Pxr_QualityArmAtMapLoad();
 #ifdef H9_PRIMEXT
 	if (s_active)
@@ -525,6 +541,13 @@ void H9Pxr_Frame(double time)
 			gEngfuncs.Cvar_Set("r_bloom_scale", "1.0");
 			gEngfuncs.Con_Printf("r_bloom_scale: 0.7 was PrimeXT's default written over the engine's; set back to 1.0 (PrimeXT's is px_bloom_scale)\n");
 		}
+	}
+
+	// config.cfg's r_primext 0 from an older build's default: back to the value this start has
+	if (s_oldDefaultPending && r_primext->value == 0.0f)
+	{
+		s_oldDefaultPending = false;
+		gEngfuncs.Cvar_Set("r_primext", "1");
 	}
 
 	H9Pxr_QualityFrame();

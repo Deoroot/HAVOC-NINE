@@ -171,6 +171,9 @@ void main( void )
 #else
 	// sampling light probes
 	var_AmbientLight = SampleAmbientCube( srcN ) * u_LightShade.x;
+	// H9: and the model's light as without PBS: with the probes' ambient alone, models in a map whose probes
+	// are dim stood black
+	var_DiffuseLight = u_LightDiffuse * LIGHT_SCALE;
 #endif // LIGHTING_FALLBACK
 #endif // SURFACE_LIGHTING
 #endif // !LIGHTING_FULLBRIGHT 

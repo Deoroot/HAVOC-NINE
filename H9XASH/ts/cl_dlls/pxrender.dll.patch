@@ -35,3 +35,23 @@ Rollback
 --------
 
 Delete pxrender.dll, or set r_primext 0: client.dll then never loads it.
+
+The PrimeXT features (2026-11-25)
+---------------------------------
+
+Built from the reTS sources of this commit. CMake, Visual Studio 2026, Win32, Release, target
+pxrender. What changes (shaders in ts\glsl of the same commit; the DLL and the shaders go together):
+
+- Water: a planar mirror with Fresnel, fine ripples from gfx\water\water_normal_0..31.tga, the
+  texture only a tint, cubemap reflection, refraction, func_water on PrimeXT's path; under water a
+  fog; the mirror clip plane also on AMD.
+- Physically based shading (r_lighting_brdf 1) no longer turns the world black; metal brushes are
+  lit by dynamic lights (their metalness halved).
+- One shadow map per light a frame.
+- env_postfx_controller (PostFxSettings, with a fade from what is on screen), func_monitor (a
+  live camera on a screen texture) and func_portal; the look is reset at each map.
+
+Size          : 799744 bytes
+SHA256        : 0D1B197004C55DCDAEE1C1D8AE26B4B796E2544A44564A634807A739DBBE87A6
+MD5           : 2ac0f2d0af070d1375f4d20a15801f08
+Goes with     : the client.dll of the same commit (client.dll.patch, 2026-11-25 entry)

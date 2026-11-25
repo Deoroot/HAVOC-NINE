@@ -600,6 +600,9 @@ void R_RenderShadowCubeSide( CDynLight *pl, int side )
 		pl->shadowTexture[0] = R_AllocateShadowCubemap( side );
 }
 
+// H9: the frame each light's spot or omni shadow map was last drawn in
+static int s_shadowFrame[MAX_DLIGHTS];
+
 void R_RenderShadowmaps( void )
 {
 	ZoneScoped;
@@ -641,11 +644,16 @@ void R_RenderShadowmaps( void )
 					continue;
 			}
 
+			// H9: drawn once a frame (see LIGHT_SPOT below)
+			if( s_shadowFrame[i] == tr.realframecount && pl->shadowTexture[0].Initialized( ))
+				continue;
+
 			for( int j = 0; j < 6; j++ )
 			{
 				R_RenderShadowCubeSide( pl, j );
 				R_ResetRefState(); // restore ref instance
 			}
+			s_shadowFrame[i] = tr.realframecount;
         }
 		else if( pl->type == LIGHT_SPOT )
 		{
@@ -658,8 +666,16 @@ void R_RenderShadowmaps( void )
 					continue;
 			}
 
+			// H9: a spot's shadow map does not depend on the view, so it is drawn once a frame, not again in every
+			// pass. Each mirror pass (water, puddles) drew every visible light's map again from the one pool of
+			// MAX_SHADOWS textures: with a score of shadowed spots and a few mirrors the pool can run out before
+			// the main view, whose lights then get no texture (R_AllocateShadowTexture: "limit exceeded")
+			if( s_shadowFrame[i] == tr.realframecount && pl->shadowTexture[0].Initialized( ))
+				continue;
+
 			R_RenderShadowScene( pl );
 			R_ResetRefState(); // restore ref instance
+			s_shadowFrame[i] = tr.realframecount;
 		}
 		else if( pl->type == LIGHT_DIRECTIONAL )
 		{

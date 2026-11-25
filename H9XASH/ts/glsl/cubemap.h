@@ -33,6 +33,15 @@ vec3 CubemapBoxParallaxCorrected( const vec3 vReflVec, const vec3 vPosition, con
 {
 	// parallax correction for local cubemaps using a box as geometry proxy
 
+	// H9: the box stands for the room the probe was taken in, and the correction holds only inside it. From a
+	// point outside the box the nearest intersection lies behind the ray, and the lookup ran the wrong way
+	// (into the floor of the probe: black). Water far from every probe, a sea, met this. Outside the box the
+	// reflected ray is used as it is, and over the last 64 units inside it the two are blended, with no seam
+	vec3 vInside = min( vPosition - vBoxExtentsMin, vBoxExtentsMax - vPosition );
+	float fInside = saturate( min( min( vInside.x, vInside.y ), vInside.z ) / 64.0 );
+	if( fInside <= 0.0 )
+		return vReflVec;
+
 	// min/max intersection
 	vec3 vBoxIntersectionMax = (vBoxExtentsMax - vPosition) / vReflVec;
 	vec3 vBoxIntersectionMin = (vBoxExtentsMin - vPosition) / vReflVec;
@@ -46,7 +55,7 @@ vec3 CubemapBoxParallaxCorrected( const vec3 vReflVec, const vec3 vPosition, con
 
 	// apply new reflection position
 	vec3 vInterectionPos = vPosition + vReflVec * fDistance;
-	return (vInterectionPos - vCubePos);
+	return mix( vReflVec, normalize( vInterectionPos - vCubePos ), fInside );
 }
 
 vec3 CubemapProbeInternal( const vec3 vPos, const vec3 vView, const vec3 nWorld, const float smoothness, samplerCube cubemap0, samplerCube cubemap1 )
@@ -60,6 +69,16 @@ vec3 CubemapProbeInternal( const vec3 vPos, const vec3 vView, const vec3 nWorld,
 	vec3 srcColor1 = textureCubeLod( cubemap1, R2, u_CubeMipCount.y - smoothness * u_CubeMipCount.y ).rgb;
 	vec3 reflectance = mix( srcColor0, srcColor1, u_LerpFactor );
 	return reflectance;
+}
+
+// H9: the same from a reflected ray already made (water bends its own)
+vec3 CubemapReflectionProbeRay( const vec3 vPos, const vec3 wRef, const float smoothness )
+{
+	vec3 R1 = CubemapBoxParallaxCorrected( wRef, vPos, u_CubeOrigin[0], u_BoxMins[0], u_BoxMaxs[0] );
+	vec3 R2 = CubemapBoxParallaxCorrected( wRef, vPos, u_CubeOrigin[1], u_BoxMins[1], u_BoxMaxs[1] );
+	vec3 srcColor0 = textureCubeLod( u_EnvMap0, R1, u_CubeMipCount.x - smoothness * u_CubeMipCount.x ).rgb;
+	vec3 srcColor1 = textureCubeLod( u_EnvMap1, R2, u_CubeMipCount.y - smoothness * u_CubeMipCount.y ).rgb;
+	return mix( srcColor0, srcColor1, u_LerpFactor );
 }
 
 vec3 CubemapReflectionProbe( const vec3 vPos, const vec3 vView, const vec3 nWorld, const float smoothness )

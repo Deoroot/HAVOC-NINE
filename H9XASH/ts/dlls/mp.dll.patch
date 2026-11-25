@@ -680,3 +680,17 @@ Built from branch primext-hive-remaster: HAVOC-NINE main 87170691 with the branc
 mp.dll size   : 1127424 bytes
 mp.dll SHA256 : CA05969A8F66FFD6E8DF1E7AFBDEDA2A9BC81C0136E75D0D6B1E8C635E9D2B3C
 mp.dll MD5    : 22edcf0f6fddb3a4fd78a185ec51e9ac
+
+The PrimeXT server entities (2026-11-25)
+----------------------------------------
+
+Built from the reTS sources of this commit. CMake, Visual Studio 2026, Win32, Release, target hl.
+
+- env_postfx_controller, func_monitor, func_portal and info_portal_destination (PrimeXT's keys,
+  the code written new; the contract is reTS\PRIMEXT-ENTITIES.md). func_monitor thinks on its own
+  clock and merges the camera's view for every client that sees the screen, spectators too.
+- Test commands: h9_pxt_use <name> on|off|toggle [player], h9_pxt_screens, h9_pxt_touch.
+
+mp.dll size   : 1138176 bytes
+mp.dll SHA256 : 25C8B86CB10CACC4E929733A036F1AC77068254152D59C78DA0497221C41FFED
+mp.dll MD5    : 796a0966f3f9a089135e551dfc104a21

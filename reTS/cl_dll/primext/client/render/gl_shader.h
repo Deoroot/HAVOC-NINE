@@ -103,6 +103,7 @@ typedef enum
 	UT_HEIGHTMAP,
 	UT_LAYERMAP,
 	UT_FITNORMALMAP,
+	UT_MIRRORMAP,		// H9: a liquid's planar reflection (its u_ColorMap stays its texture)
 	UT_MODELMATRIX,
 	UT_REFLECTMATRIX,
 	UT_BONESARRAY,

@@ -19,6 +19,7 @@ only for the checks and pictures).
 | `gfx/brdf_approx.dds` | `src/gen_brdf.py` (`brdf_lut.py`, `bc6h.py`) | Split-sum environment BRDF, computed |
 | `gfx/normalsfitting.dds` | `src/gen_normalsfitting.py` | Best-fit-normals scale table, brute-force search |
 | `gfx/spotlight1..6.dds` | `src/gen_spotlights.py` (`dxt1.py`) | Light masks we drew (radial profiles) |
+| `gfx/water/water_normal_0..31.tga` | `src/gen_water_normals.py` | Travelling sine waves, written as normals |
 | `gfx/decals/decalinfo.txt`, `gfx/grass/grassinfo.txt`, `gfx/particles/effects.txt`, `scripts/materials.def`, `scripts/default_ts.mat` | `src/gen_text.py` | Written for H9, with only what H9 uses |
 
 Commands (from this folder):
@@ -26,6 +27,7 @@ Commands (from this folder):
     python src/gen_brdf.py out/ts/gfx/brdf_approx.dds 4096
     python src/gen_normalsfitting.py out/ts/gfx/normalsfitting.dds          # defaults: --sub 4 --min 128
     python src/gen_spotlights.py out/ts/gfx --png work
+    python src/gen_water_normals.py out/ts/gfx/water --png work/water.png
     python src/gen_text.py out/ts <TS install>/ts/sound/materials.txt
     python src/eval_normalsfitting.py <primext>/normalsfitting.dds out/ts/gfx/normalsfitting.dds
     python src/compare_brdf.py <primext>/brdf_approx.dds out/ts/gfx/brdf_approx.dds work/brdf_float.npy
@@ -93,6 +95,26 @@ Colours by lamp family, near the originals' so a map choosing an index keeps its
 orange, 3 mercury green-white, 4 warm incandescent, 5 neutral white; 6 is a small cyan-white glint (hot core, 12
 soft rays). Our spill ring is softer than PrimeXT's sharper two-step disc. No H9 map has an `env_dynlight` today,
 so the look of these is for the owner to judge when one is placed.
+
+## gfx/water/water_normal_0.tga .. water_normal_31.tga
+
+Not one of the 13 replaced files: PrimeXT's repository has no water normal maps (`gl_export.cpp` loads
+`gfx/water/water_normal_<i>` for i = 0, 1, ... and found none, so water had no waves). Added 2026-11-24.
+
+How they are read: loaded `TF_NORMALMAP` until one is missing; `gl_world_new.cpp` binds frame
+`int(time * WATER_ANIMTIME) % count` (20 frames a second: 32 frames loop in 1.6 s) as `u_NormalMap` of every liquid
+surface, at the surface's texture coordinates. Uncompressed RGB is read by `glsl/texfetch.h`, `normalmap2D`:
+`N = 2 * rgb - 1`, then `N.y = -N.y` (green down the texture). The renderer refracts the screen by `N.xy` and
+reflects the cubemap by the normal (`scene_bmodel_fp.glsl`, `LIQUID_SURFACE`).
+
+Format: 32 frames, 256x256, 24-bit uncompressed TGA (origin top-left), 196,626 bytes each.
+
+Maths: a height field that is a sum of 24 travelling sine waves; each has a whole number of cycles across the
+tile in x and y (the tile repeats without a seam) and a whole number of cycles over the 32 frames (the last frame
+runs into the first). Speeds follow deep-water dispersion (temporal frequency ~ sqrt of the spatial one); most
+waves run within 35-90 degrees of one wind direction, four cross it. The normals are the analytic gradient,
+scaled so the mean |N.xy| is 0.11 (`--tilt`): stronger, and PrimeXT's refraction (offset = N.xy times the
+screen coordinate) smears the floor. Seed 9; the output is the same byte for byte on every run.
 
 ## Text files
 

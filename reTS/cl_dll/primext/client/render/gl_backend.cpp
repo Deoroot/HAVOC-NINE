@@ -355,6 +355,32 @@ bool GL_BackendStartFrame( ref_viewpass_t *rvp, RefParams params )
 	tr.cached_viewangles = rvp->viewangles;
 	tr.waterlevel = tr.viewparams.waterlevel;
 
+	// H9: the eye in a liquid is under water whoever looks: a spectator, a camera, a dead player have no
+	// waterlevel of their own, and saw the water from below with no fog and no underwater shaders
+	// (asked of the map itself: the world's leaf, then a func_water, whose skin is its contents)
+	if( tr.waterlevel < 3 && worldmodel )
+	{
+		const Vector &eye = rvp->vieworigin;
+		mleaf_t *leaf = Mod_PointInLeaf( eye, worldmodel->nodes, worldmodel );
+		bool inLiquid = leaf && ( leaf->contents == CONTENTS_WATER || leaf->contents == CONTENTS_SLIME || leaf->contents == CONTENTS_LAVA );
+
+		for( int i = 1; !inLiquid && i < tr.viewparams.max_entities; i++ )
+		{
+			cl_entity_t *ent = GET_ENTITY( i );
+			if( !ent || !ent->model || ent->model->type != mod_brush || ent->curstate.messagenum != r_currentMessageNum )
+				continue;
+			int skin = ent->curstate.skin;
+			if( skin != CONTENTS_WATER && skin != CONTENTS_SLIME && skin != CONTENTS_LAVA )
+				continue;
+			Vector mins = ent->origin + ent->model->mins, maxs = ent->origin + ent->model->maxs;
+			if( eye.x > mins.x && eye.x < maxs.x && eye.y > mins.y && eye.y < maxs.y && eye.z > mins.z && eye.z < maxs.z )
+				inLiquid = true;
+		}
+
+		if( inLiquid )
+			tr.waterlevel = 3;
+	}
+
 	if(( tr.waterlevel >= 3 ) != ( waterlevel_old >= 3 ))
 	{
 		waterlevel_old = tr.waterlevel;
@@ -968,12 +994,22 @@ GL_ClipPlane
 */
 void GL_ClipPlane( bool enable )
 {
+	// H9: switching it off is always done, whatever pass asks: now that Radeon enables the plane (below), a pass
+	// ending after its ref state was popped (params without RP_CLIPPLANE) must not leave it on
+	if( !enable )
+	{
+		pglDisable( GL_CLIP_PLANE0 );
+		return;
+	}
+
 	// if cliplane was not set - do nothing
 	if( !FBitSet( RI->params, RP_CLIPPLANE ))
 		return;
 
-	if( glConfig.hardware_type == GLHW_RADEON )
-		return; // ATI doesn't need clip planes
+	// H9: PrimeXT skipped the clip plane on Radeon ("ATI doesn't need clip planes"). Today's AMD drivers do clip
+	// by gl_ClipVertex, which every scene shader writes, and need the plane enabled: without it a mirror pass
+	// drew what lies under the mirror too, seen from the mirrored eye under the floor (a channel's water on an
+	// RX 6600M reflected black)
 
 	if( enable )
 	{

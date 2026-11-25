@@ -245,6 +245,7 @@ static uniformTable_t glsl_uniformTable[] =
 { "u_HeightMap",		UT_HEIGHTMAP,		UFL_TEXTURE_UNIT },
 { "u_LayerMap",		UT_LAYERMAP,		UFL_TEXTURE_UNIT },
 { "u_FitNormalMap",		UT_FITNORMALMAP,		UFL_TEXTURE_UNIT },
+{ "u_MirrorMap",		UT_MIRRORMAP,		UFL_TEXTURE_UNIT },
 { "u_ModelMatrix",		UT_MODELMATRIX,		0 },
 { "u_ReflectMatrix",	UT_REFLECTMATRIX,		0 },
 { "u_BonesArray",		UT_BONESARRAY,		0 },	

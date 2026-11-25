@@ -45,6 +45,7 @@ void ApplyLightStyle( const vec3 lminfo, const vec3 N, const vec3 V, const vec4 
 #else
 	lighting.diffuse += lighting2.diffuse; // diffuse lighting
 	lighting.specular += lighting2.specular; // specular lighting
+	lighting.kD = lighting2.kD; // H9: the diffuse share, which the caller multiplies by (APPLY_PBS); it was left unset
 #endif
 
 #else // !HAS_DELUXEMAP

@@ -19,6 +19,10 @@ no licence: `common/exportdef.h`, `client/render/tri.h`, `game_shared/mathlib_de
 `game_shared/virtualfs.cpp`, `client/render/gl_studio_userdata.h`, `client/render/gl_cubemap.h`,
 `client/render/gl_debug.h` (all under `cl_dll/primext/`).
 
+In `pxr_main.cpp`, `PXR_MsgPostFxSettings` (the PostFxSettings hook) follows PrimeXT `client/hud_msg.cpp`
+`CHud::MsgFunc_PostFxSettings` (Valve HLSDK header there, as reTS): five lines, re-typed; the function body is the
+same calls (`BEGIN_READ`, `ParseMessage`, `UpdateState`, `END_READ`). The renderfx-73 field copy beside it is H9's.
+
 Totals as taken from PrimeXT: GPL-3.0+ 178, NONE 36, Valve HLSDK 42 (256 files). Of the 36 NONE: 8 replaced by new
 files, 1 public domain, 7 GPL by descent (provenance comment added), 7 code files kept as is by the owner with no licence statement found, 13 data files replaced with our own work (2026-11-24, reTS/tools/primext-data/).
 

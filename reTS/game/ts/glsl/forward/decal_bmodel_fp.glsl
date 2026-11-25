@@ -60,6 +60,7 @@ void main( void )
 	LightingData lighting;
 	lighting.diffuse = vec3(0.0);
 	lighting.specular = vec3(0.0);
+	lighting.kD = vec3(1.0); // H9: the diffuse share left by the specular one (PBS); it was never set here and read undefined (black)
 	
 #if defined( ALPHA_TEST )
 	if( colormap2D( u_ColorMap, var_TexDiffuse.zw ).a <= BMODEL_ALPHA_THRESHOLD )
@@ -137,7 +138,8 @@ void main( void )
 
 #if !defined( APPLY_COLORBLEND )
 #if defined( APPLY_PBS )
-	result.rgb = (lighting.kD * result.rgb / M_PI) * lighting.diffuse;
+	// H9: no 1/pi: the lightmaps and the light values are the engine's, scaled for albedo * light (as without PBS); with it the world was a third as bright
+	result.rgb = (lighting.kD * result.rgb) * lighting.diffuse;
 #else
 	result.rgb *= lighting.diffuse; // apply diffuse lighting
 #endif

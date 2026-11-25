@@ -34,7 +34,7 @@ typedef struct pxr_saved_cvar_s
 	X(gl_bump, "1", PXR_CV_A) \
 	X(gl_specular, "1", PXR_CV_A) \
 	X(gl_parallax, "2", PXR_CV_A) \
-	X(r_lighting_brdf, "0", PXR_CV_A) \
+	X(r_lighting_brdf, "1", PXR_CV_A) /* H9: on by default, as px_quality 2 (high) sets it */ \
 	X(gl_cube_lod_bias, "3", PXR_CV_A) \
 	X(r_cubemap_reflection, "1", PXR_CV_A) \
 	X(r_cubemap_realtime, "0", PXR_CV_A) \

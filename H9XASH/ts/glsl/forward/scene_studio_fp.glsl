@@ -71,6 +71,9 @@ void main( void )
 	vec4 albedo = vec4( 0.0 );
 	MaterialData mat;
 	LightingData lighting;
+	lighting.diffuse = vec3( 0.0 );
+	lighting.specular = vec3( 0.0 );
+	lighting.kD = vec3( 1.0 ); // H9: the diffuse share left by the specular one (PBS); it was never set here and read undefined (black)
 
 #if defined( PARALLAX_SIMPLE ) || defined( PARALLAX_OCCLUSION ) ||defined( REFLECTION_CUBEMAP ) || defined( APPLY_PBS )
 	mat3 tbnBasis = mat3(normalize(var_MatrixTBN[0]), normalize(var_MatrixTBN[1]), normalize(var_MatrixTBN[2]));
@@ -178,16 +181,20 @@ lighting.diffuse += var_AmbientLight;
 #endif
 #else // !LIGHTING_FALLBACK
 // sampling specular IBL and light probes
+	// H9: plus the direct light (GGX), as the fallback has it
+	LightingData direct = ComputeLighting( N, V, L, albedo.rgb, var_DiffuseLight * u_LightShade.y, mat );
 	vec3 prefilteredColor = CubemapSpecularIBLProbe( var_Position, u_ViewOrigin, worldNormal, mat.smoothness );
-	lighting.specular = ComputeSpecularIBL( N, V, albedo.rgb, prefilteredColor, mat ) * mat.ambientOcclusion;
-	lighting.diffuse = ComputeIndirectDiffuse( N, V, albedo.rgb, var_AmbientLight, mat ) * mat.ambientOcclusion;
+	lighting.specular = direct.specular + ComputeSpecularIBL( N, V, albedo.rgb, prefilteredColor, mat ) * mat.ambientOcclusion;
+	lighting.diffuse = direct.kD * direct.diffuse + ComputeIndirectDiffuse( N, V, albedo.rgb, var_AmbientLight, mat ) * mat.ambientOcclusion;
+	lighting.kD = vec3( 1.0 ); // H9: both terms carry their diffuse share already
 ///
 #endif
 
 #endif // SURFACE_LIGHTING
 
 #if defined( APPLY_PBS )
-	result.rgb = (lighting.kD * result.rgb / M_PI) * lighting.diffuse;
+	// H9: no 1/pi: the lightmaps and the light values are the engine's, scaled for albedo * light (as without PBS); with it the world was a third as bright
+	result.rgb = (lighting.kD * result.rgb) * lighting.diffuse;
 #else
 	result.rgb *= lighting.diffuse; // apply diffuse/ambient lighting
 #endif

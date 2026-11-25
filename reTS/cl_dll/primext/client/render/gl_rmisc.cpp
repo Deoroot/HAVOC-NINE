@@ -31,6 +31,7 @@ GNU General Public License for more details.
 #include "gl_debug_visualizer_backend.h"
 #include "gl_debug_overlay_2d.h"
 #include "r_weather.h"
+#include "brush_material.h" // H9: R_LiquidAverageColor
 
 #define DEFAULT_SMOOTHNESS			0.0f
 #define FILTER_SIZE					2
@@ -977,6 +978,100 @@ void GL_MapChanged( void )
 	GL_InitModelLightCache();
 }
 
+/*
+=================
+R_LiquidAverageColor
+
+H9: the average colour of a liquid's texture (its smallest mip, read back once and kept), linear
+=================
+*/
+static bool R_LiquidAverageColor( msurface_t *surf, Vector &color )
+{
+	static GLuint cachedTex = 0;
+	static Vector cachedColor;
+
+	material_t *mat = R_TextureAnimation( surf )->material;
+	if( !mat || !mat->impl || !mat->impl->gl_diffuse_id.Initialized( ))
+		return false;
+
+	GLuint tex = mat->impl->gl_diffuse_id.GetGlHandle();
+	if( tex != cachedTex )
+	{
+		GL_Bind( GL_TEXTURE0, mat->impl->gl_diffuse_id );
+		GLint level = 0, w = 0, h = 0;
+		for( ;; level++ )
+		{
+			pglGetTexLevelParameteriv( GL_TEXTURE_2D, level, GL_TEXTURE_WIDTH, &w );
+			pglGetTexLevelParameteriv( GL_TEXTURE_2D, level, GL_TEXTURE_HEIGHT, &h );
+			if( w <= 0 || h <= 0 ) { level--; break; }
+			if( w <= 1 && h <= 1 ) break;
+			if( level > 16 ) break;
+		}
+		if( level < 0 ) return false;
+		pglGetTexLevelParameteriv( GL_TEXTURE_2D, level, GL_TEXTURE_WIDTH, &w );
+		pglGetTexLevelParameteriv( GL_TEXTURE_2D, level, GL_TEXTURE_HEIGHT, &h );
+		if( w <= 0 || h <= 0 || w * h > 64 ) return false; // no mips: not worth reading the whole texture
+		float pixels[64 * 4];
+		pglGetTexImage( GL_TEXTURE_2D, level, GL_RGBA, GL_FLOAT, pixels );
+		Vector sum( 0.0f, 0.0f, 0.0f );
+		for( int i = 0; i < w * h; i++ )
+			sum += Vector( pixels[i * 4 + 0], pixels[i * 4 + 1], pixels[i * 4 + 2] );
+		sum *= 1.0f / ( w * h );
+		// sRGB texture values to linear, as the shaders' colormap2D does
+		cachedColor = Vector( powf( sum.x, 2.2f ), powf( sum.y, 2.2f ), powf( sum.z, 2.2f ));
+		cachedTex = tex;
+		GL_Bind( GL_TEXTURE0, TextureHandle::Null( ));
+	}
+
+	color = cachedColor;
+	return true;
+}
+
+/*
+=================
+R_UnderwaterFog
+
+H9: under a liquid with no fog colour of its own (the world's water, a func_water with no rendercolor) the
+view was not fogged at all, and the screen nothing draws held the cleared grey. The fog takes the colour of the
+liquid's texture, darkened, and hides what is about 600 units away
+=================
+*/
+static bool R_UnderwaterFog( cl_entity_t *waterEntity )
+{
+	msurface_t *liquid = NULL;
+
+	if( waterEntity && waterEntity->model && waterEntity->model->type == mod_brush )
+	{
+		model_t *mod = waterEntity->model;
+		for( int i = 0; i < mod->nummodelsurfaces && !liquid; i++ )
+		{
+			msurface_t *surf = mod->surfaces + mod->firstmodelsurface + i;
+			if( FBitSet( surf->flags, SURF_DRAWTURB ))
+				liquid = surf;
+		}
+	}
+	else if( worldmodel )
+	{
+		mleaf_t *leaf = Mod_PointInLeaf( RI->view.origin, worldmodel->nodes, worldmodel );
+		for( int i = 0; leaf && i < leaf->nummarksurfaces && !liquid; i++ )
+		{
+			if( FBitSet( leaf->firstmarksurface[i]->flags, SURF_DRAWTURB ))
+				liquid = leaf->firstmarksurface[i];
+		}
+	}
+
+	Vector color( 0.03f, 0.05f, 0.06f );
+	if( liquid && R_LiquidAverageColor( liquid, color ))
+		color *= 0.6f;
+
+	tr.fogColor[0] = color.x;
+	tr.fogColor[1] = color.y;
+	tr.fogColor[2] = color.z;
+	tr.fogDensity = 4.0f / 600.0f; // exp2(-density * distance): 1/16 left at 600 units
+	tr.fogEnabled = true;
+	return true;
+}
+
 void R_UpdateFogParameters()
 {
 	float tsFogColor[3], tsFogStart, tsFogEnd; // H9
@@ -992,7 +1087,10 @@ void R_UpdateFogParameters()
 	if (waterEntity)
 	{
 		const entity_state_t *state = &waterEntity->curstate;
-		if( state->rendercolor.r || state->rendercolor.g || state->rendercolor.b )
+		// H9: a rendercolor of pure white is taken as "none" too: h9_tsrp_hive_rm's func_waters say 0 0 0 in the
+		// map and arrive white, which fogged the view under them into a white sheet; they take the water's colour
+		bool whiteColor = state->rendercolor.r == 255 && state->rendercolor.g == 255 && state->rendercolor.b == 255;
+		if(( state->rendercolor.r || state->rendercolor.g || state->rendercolor.b ) && !whiteColor )
 		{
 			// enable global exponential color fog
 			tr.fogColor[0] = state->rendercolor.r / 255.0f;
@@ -1001,6 +1099,11 @@ void R_UpdateFogParameters()
 			tr.fogDensity = state->renderamt * WATER_FOG_DENSITY_FACTOR;
 			tr.fogEnabled = true;
 		}
+		else R_UnderwaterFog( waterEntity ); // H9
+	}
+	else if( tr.waterlevel >= 3 )
+	{
+		R_UnderwaterFog( NULL ); // H9: the world's water
 	}
 	else if (tr.movevars->fog_settings != 0)
 	{

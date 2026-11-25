@@ -101,6 +101,7 @@ void main( void )
 #if !defined( LIGHTING_FULLBRIGHT )
 	lighting.specular = vec3( 0.0 );
 	lighting.diffuse = vec3( 0.0 );
+	lighting.kD = vec3( 1.0 ); // H9: the diffuse share left by the specular one (PBS); it was never set here and read undefined (black)
 
 	vec3 L = normalize( var_LightDir );
 #if defined( LIGHTVEC_DEBUG )
@@ -121,7 +122,8 @@ void main( void )
 #endif // HAS_NORMALMAP
 #endif // LIGHTVEC_DEBUG
 #if defined( APPLY_PBS )
-	result.rgb = (lighting.kD * result.rgb / M_PI) * lighting.diffuse;
+	// H9: no 1/pi: the lightmaps and the light values are the engine's, scaled for albedo * light (as without PBS); with it the world was a third as bright
+	result.rgb = (lighting.kD * result.rgb) * lighting.diffuse;
 #else
 	result.rgb *= lighting.diffuse; // apply diffuse/ambient lighting
 #endif

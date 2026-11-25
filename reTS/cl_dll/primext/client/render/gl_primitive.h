@@ -72,6 +72,7 @@ public:
 	float		m_flViewDist;
 	Vector4D		m_vecRect;
 	bool		m_bScissorReady : 1;
+	bool		m_bSharedCopy : 1;	// H9: the screen copy made for the entry before it serves this one too (R_ShareWaterScreencopies)
 };
 //#pragma pack()
 

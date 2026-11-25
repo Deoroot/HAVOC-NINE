@@ -368,6 +368,16 @@ void R_DrawSkyBox()
 		hSkyShader = tr.skyboxEnv[type];
 	}
 
+	// H9: when any sky is seen, the whole box is drawn behind the world. Only the parts the visible sky
+	// faces cover were drawn, and the colour buffer is not cleared (r_clear 0): wherever the view ran past
+	// the world into the sky without meeting a sky face (under a sea that lies on a sky volume, past a
+	// water plane seen edge-on) it kept an old frame, black or white, and water refracted that
+	for (int i = 0; i < 6; i++)
+	{
+		RI->view.skyMins[0][i] = RI->view.skyMins[1][i] = -1.0f;
+		RI->view.skyMaxs[0][i] = RI->view.skyMaxs[1][i] = 1.0f;
+	}
+
 	for (int i = 0; i < 6; i++)
 	{
 		if( RI->view.skyMins[0][i] >= RI->view.skyMaxs[0][i] || RI->view.skyMins[1][i] >= RI->view.skyMaxs[1][i] )

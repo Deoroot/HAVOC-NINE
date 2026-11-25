@@ -174,7 +174,8 @@ void main( void )
 	light *= atten * shadow; // apply attenuation and shadowing
 	LightingData lighting = ComputeLighting(N, V, L, albedo, light, mat);
 #if defined( APPLY_PBS )
-	diffuse.rgb = (lighting.kD * albedo / M_PI) * lighting.diffuse;
+	// H9: no 1/pi: the lightmaps and the light values are the engine's, scaled for albedo * light (as without PBS); with it the world was a third as bright
+	diffuse.rgb = (lighting.kD * albedo) * lighting.diffuse;
 #else
 	diffuse.rgb = lighting.diffuse * albedo;
 #endif

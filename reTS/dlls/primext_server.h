@@ -11,6 +11,13 @@
 #define H9_RENDERFX_DYNLIGHT 71
 #define H9_RENDERFX_CINEMALIGHT 72 // reserved: env_dynlight with a movie; the server does not emit it
 
+// renderfx 73 marks a brush entity that shows another view: func_monitor (faces textured monitor*) and
+// func_portal (faces textured portal*). Its camera's entity number rides in aiment (11 bits on H9's delta.lst;
+// PrimeXT's sequence is 8 bits here), the field of view in controller[1], the switches in controller[0].
+// Not a PrimeXT value: PrimeXT marks these with EF_SCREEN / EF_PORTAL, which H9's 8-bit effects cannot carry.
+#define H9_RENDERFX_SUBVIEW 73
+#define H9_SUBVIEW_MONOCHROME 0x01 // controller[0]: draw the camera's picture black and white
+
 // entity_state_t.controller[0] of an env_dynlight carries these (effects is 8 bits on H9's delta.lst,
 // so Xash's EF_NOSHADOW (1<<28), EF_NOBUMP (1<<17) and EF_LENSFLARE (1<<18) would be lost)
 #define H9_DYNLIGHT_NOSHADOW 0x01
@@ -29,3 +36,6 @@ unsigned int PrimeXT_EngineFeatures();
 
 // GameDLLInit: registers the h9_pxt_lights server command
 void PrimeXT_GameInit();
+
+// LinkUserMessages, after every other message: registers "PostFxSettings" (env_postfx_controller)
+void PrimeXT_LinkUserMessages();

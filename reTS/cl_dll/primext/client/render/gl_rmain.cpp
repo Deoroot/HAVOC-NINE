@@ -428,6 +428,11 @@ static void R_SetupViewCache( const ref_viewpass_t *rvp )
 		if( CVAR_TO_BOOL( r_novis ) || FBitSet( RI->params, RP_DRAW_OVERVIEW ) || ( !RI->view.leaf ))
 			fullvis = true;
 
+		// H9: from a liquid leaf the PVS left out everything, its own surface too (h9_tsrp_hive_rm's sea: the
+		// cleared grey screen); under water the fog hides the distance anyway, so all is passed to the frustum
+		if( RI->view.leaf && ( RI->view.leaf->contents == CONTENTS_WATER || RI->view.leaf->contents == CONTENTS_SLIME || RI->view.leaf->contents == CONTENTS_LAVA ))
+			fullvis = true;
+
 		ENGINE_SET_PVS( RI->view.pvspoint, R_GetPVSRadius(), RI->view.pvsarray, mergevis, fullvis);
 		SetBits( RI->view.changed, RC_PVS_CHANGED );
 	}
@@ -879,6 +884,61 @@ static int R_SortTransMeshes( const CTransEntry *a, const CTransEntry *b )
 
 /*
 ===============
+R_ShareWaterScreencopies
+
+H9: faces of one water plane that are drawn one after another share one screen copy, made before the first
+of them over all their rectangles. A sea is a hundred faces, and each copied its own part of the screen: one
+blit each. Water faces of one plane never cover each other, and the copy made before any of them is also the
+right one to refract: a face no longer bends its neighbour's water into itself.
+===============
+*/
+static void R_ShareWaterScreencopies( void )
+{
+	CTransEntry *head = NULL;
+	const mplane_t *headPlane = NULL;
+	bool headBack = false;
+
+	for( int i = 0; i < RI->frame.trans_list.Count(); i++ )
+	{
+		CTransEntry *entry = &RI->frame.trans_list[i];
+		entry->m_bSharedCopy = false;
+
+		bool water = false;
+		if( entry->m_bDrawType == DRAWTYPE_SURFACE && entry->m_hProgram && entry->m_bScissorReady )
+		{
+			msurface_t *surf = entry->m_pSurf;
+			water = FBitSet( surf->flags, SURF_DRAWTURB ) && ScreenCopyRequired( &glsl_programs[entry->m_hProgram] )
+				&& !FBitSet( surf->flags, SURF_OCCLUDED ) && R_StaticEntity( surf->info->parent );
+		}
+
+		if( !water )
+		{
+			head = NULL; // anything else drawn between them needs a copy of its own
+			continue;
+		}
+
+		msurface_t *surf = entry->m_pSurf;
+		bool back = FBitSet( surf->flags, SURF_PLANEBACK ) != 0;
+		if( head && surf->plane == headPlane && back == headBack )
+		{
+			// widen the head's rectangle to this one's (x, y, width, height)
+			float x1 = Q_min( head->m_vecRect.x, entry->m_vecRect.x );
+			float y1 = Q_min( head->m_vecRect.y, entry->m_vecRect.y );
+			float x2 = Q_max( head->m_vecRect.x + head->m_vecRect.z, entry->m_vecRect.x + entry->m_vecRect.z );
+			float y2 = Q_max( head->m_vecRect.y + head->m_vecRect.w, entry->m_vecRect.y + entry->m_vecRect.w );
+			head->m_vecRect = Vector4D( x1, y1, x2 - x1, y2 - y1 );
+			entry->m_bSharedCopy = true;
+			continue;
+		}
+
+		head = entry;
+		headPlane = surf->plane;
+		headBack = back;
+	}
+}
+
+/*
+===============
 R_RenderTransList
 ===============
 */
@@ -900,6 +960,7 @@ void R_RenderTransList( void )
 
 	// sorting by distance
 	RI->frame.trans_list.Sort( R_SortTransMeshes );
+	R_ShareWaterScreencopies();
 
 	for( int i = 0; i < RI->frame.trans_list.Count(); i++ )
 	{

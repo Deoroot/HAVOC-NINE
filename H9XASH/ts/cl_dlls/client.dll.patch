@@ -1011,3 +1011,21 @@ PRIMEXT-LICENCES.md.
 client.dll size   : 1404928 bytes
 client.dll SHA256 : A77F7E3418B272844644C9A29D9660656C313F5D10F9B26BB38F36DE1344C66B
 client.dll MD5    : 3190f300be6b58e11974d546f68e8842
+
+PrimeXT on by default, and the client half of the PrimeXT features (2026-11-25)
+-------------------------------------------------------------
+
+Built from the reTS sources of this commit (branch primext-hive-remaster-review). CMake, Visual Studio
+2026, Win32, Release, target client. What changes:
+
+- r_primext is 1 by default. Older builds saved "r_primext 0" into every config.cfg as their default;
+  r_primext_default 1, saved from this build on, marks a config.cfg whose r_primext is the player's
+  own. Without it a saved 0 is read as the old default and the game starts with PrimeXT.
+  userconfig.cfg and -noprimext on the command line are always obeyed.
+- px_quality 2 (high) also sets r_lighting_brdf 1 (physically based shading).
+- The hooks pxrender.dll needs for env_postfx_controller's PostFxSettings message and the
+  func_monitor / func_portal fields (reTS\PRIMEXT-ENTITIES.md).
+
+client.dll size   : 1405440 bytes
+client.dll SHA256 : 1A4664876471CAD279DB187201C3E22554CC666749C9B5099D5BC90D67E84908
+client.dll MD5    : bae579694aa7be82dbd1f66ef6c12303

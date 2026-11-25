@@ -20,6 +20,7 @@
 #include "UserMessages.h"
 #include "race.h" // H9: RaceLinkUserMessages
 #include "h9_rally_srv.h" // H9: H9RallyLinkUserMessages
+#include "primext_server.h" // H9: PrimeXT_LinkUserMessages (PostFxSettings)
 
 // The TS gmsg globals are DEFINED in their original-file homes; they are all REGISTERED here,
 // centrally, exactly like the original's LinkUserMessages @0xc7db0 (star_LinkUserMessages.md):
@@ -126,6 +127,7 @@ void LinkUserMessages()
 	// H9: the race HUD's messages (race.cpp), after every one of the original's so that none of their numbers moves.
 	RaceLinkUserMessages();
 	H9RallyLinkUserMessages(); // H9RMoney, H9RParts, H9RCar (the rally car menu and shop)
+	PrimeXT_LinkUserMessages(); // PostFxSettings (env_postfx_controller), read by pxrender.dll
 }
 
 // Declared-only DEAD globals in the original (present in .data, ZERO references — no relocs,

@@ -2,33 +2,47 @@
 // No ReflectScale anywhere (the owner: floors were too reflective; the wood floor stays matte). smoothness scales the
 // _gloss map (R smoothness, G metalness). The wall and the gilt ceiling are hive v1's own howall3b and sinceiling3
 // redrawn with normal maps from their carving (mat/custom.mjs).
+// pxmat (2026-11-24): + ReliefScale (parallax, textures/<name>_hmap), ReflectScale on metal/glass/lamps (floors stay dry), detailmap.
 "hr_c19_wall"
 {
 	"material" "default"
 	"smoothness" "0.25"
+	"ReliefScale" "0.07"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "8"
 }
 "hr_c19_ceil"
 {
 	"material" "metal"
 	"smoothness" "0.5"
+	"ReliefScale" "0.06"
+	"ReflectScale" "0.35"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "8"
 }
 "hr_c19_gilt"
 {
 	"material" "metal"
 	"smoothness" "0.45"
+	"ReflectScale" "0.6"
 }
 "hr_c19_floor"
 {
 	"material" "wood"
 	"smoothness" "0.08"
+	"ReliefScale" "0.05"
 }
 "hr_c19_wood"
 {
 	"material" "wood"
 	"smoothness" "0.2"
+	"ReliefScale" "0.05"
 }
 "hr_c19_stone"
 {
 	"material" "default"
 	"smoothness" "0.2"
+	"ReliefScale" "0.06"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "4"
 }

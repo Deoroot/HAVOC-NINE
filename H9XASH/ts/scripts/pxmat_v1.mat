@@ -1,0 +1,673 @@
+// pxmat: the Hive's v1 textures (not in a zone): reflections on glass, polished metal, marble and screens; detail on the largest surfaces.
+"+0cpu27dn"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"+0cpu31dn"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"+0mother"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"+0noisecomp"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"+0~lab_crt2"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"+0~lab_crt7"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"+0~lab_crt8"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"+1noisecomp"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"+1~lab_crt2"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"+1~lab_crt7"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"+1~lab_crt8"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"+2noisecomp"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"+2~lab_crt2"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"+3noisecomp"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"+3~lab_crt2"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"+4noisecomp"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"+5noisecomp"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"+6noisecomp"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"+7noisecomp"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"+acpu27dn"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"+acpu31dn"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"+amother"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"alienmon1dn"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"au_stove"
+{
+	"material" "metal"
+	"ReflectScale" "0.8"
+	"smoothness" "0.85"
+}
+"ax_glassorienta"
+{
+	"material" "glass"
+	"ReflectScale" "1"
+	"smoothness" "1"
+}
+"bio00009"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "5"
+}
+"cds_greyscale1"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "3"
+}
+"cds_monitor15"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"cds_monitor17"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"cds_monitor2"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"cds_monitor3"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"cd_glass1"
+{
+	"material" "glass"
+	"ReflectScale" "1"
+	"smoothness" "1"
+}
+"cd_glass2"
+{
+	"material" "glass"
+	"ReflectScale" "1"
+	"smoothness" "1"
+}
+"cd_metalchr"
+{
+	"material" "metal"
+	"ReflectScale" "0.8"
+	"smoothness" "0.85"
+}
+"cd_metalshiny"
+{
+	"material" "metal"
+	"ReflectScale" "0.8"
+	"smoothness" "0.85"
+}
+"cd_metalshiny_s"
+{
+	"material" "metal"
+	"ReflectScale" "0.8"
+	"smoothness" "0.85"
+}
+"cd_metalsrf"
+{
+	"material" "metal"
+	"ReflectScale" "0.8"
+	"smoothness" "0.85"
+}
+"cd_monitor4"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"cd_monitor7"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"ceiling_panel1"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "3"
+}
+"chromebar"
+{
+	"material" "metal"
+	"ReflectScale" "0.8"
+	"smoothness" "0.85"
+}
+"comp_screen1"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"comp_screens03"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"conc_lnd_crete"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "5"
+}
+"congo6"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "5"
+}
+"CORE_URBAN_117"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "5"
+}
+"cpu13dn"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"cpu14dn"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"cpu42dn"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"cpu43dn"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"cpu4dn"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"cpu8dn"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"cpu9dn"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"cyberele"
+{
+	"material" "metal"
+	"ReflectScale" "0.8"
+	"smoothness" "0.85"
+}
+"cybermon"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"cyberwall1"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "5"
+}
+"cyberwall2"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "5"
+}
+"cyberwall3"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "5"
+}
+"cyberwall5"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "5"
+}
+"cyberwall6"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "5"
+}
+"cypermonitor"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"cypermonitorblu"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"dgrey7"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "3"
+}
+"dk_wall1"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "5"
+}
+"doortrack3"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "2"
+}
+"dtan3"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "3"
+}
+"dtanwall3"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "5"
+}
+"dwall2b"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "3"
+}
+"e6basegrate"
+{
+	"material" "metal"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "5"
+}
+"e6bmetal2"
+{
+	"material" "metal"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "5"
+}
+"fap-ceiling03"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "5"
+}
+"flr_diamond"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_floor"
+	"detailScale" "2"
+}
+"flr_grey02"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_floor"
+	"detailScale" "3"
+}
+"genoelev1b"
+{
+	"material" "metal"
+	"ReflectScale" "0.8"
+	"smoothness" "0.85"
+}
+"glass_a_03"
+{
+	"material" "glass"
+	"ReflectScale" "1"
+	"smoothness" "1"
+}
+"glass_dark"
+{
+	"material" "glass"
+	"ReflectScale" "1"
+	"smoothness" "1"
+}
+"glass_med"
+{
+	"material" "glass"
+	"ReflectScale" "1"
+	"smoothness" "1"
+}
+"gp_fridgebeer"
+{
+	"material" "metal"
+	"ReflectScale" "0.8"
+	"smoothness" "0.85"
+}
+"greywall2"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "5"
+}
+"grey_creteflr"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_floor"
+	"detailScale" "3"
+}
+"grey_screen"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"hMarb_surfaced3"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "3"
+}
+"hokitchenmetal"
+{
+	"material" "metal"
+	"ReflectScale" "0.8"
+	"smoothness" "0.85"
+}
+"howall7"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "3"
+}
+"KITCHEN-FRIDGE0"
+{
+	"material" "metal"
+	"ReflectScale" "0.8"
+	"smoothness" "0.85"
+}
+"kit_dishwasher"
+{
+	"material" "default"
+	"ReflectScale" "0.8"
+	"smoothness" "0.85"
+}
+"kit_oven1"
+{
+	"material" "metal"
+	"ReflectScale" "0.8"
+	"smoothness" "0.85"
+}
+"kit_stove"
+{
+	"material" "metal"
+	"ReflectScale" "0.8"
+	"smoothness" "0.85"
+}
+"md_sink"
+{
+	"material" "metal"
+	"ReflectScale" "0.8"
+	"smoothness" "0.85"
+}
+"metal13dn"
+{
+	"material" "metal"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "3"
+}
+"ob_13"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "3"
+}
+"Pared5d"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "3"
+}
+"pkf_concrete5a"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "3"
+}
+"po_slsidewlkg"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_floor"
+	"detailScale" "5"
+}
+"PRXMETAL10B"
+{
+	"material" "metal"
+	"ReflectScale" "0.8"
+	"smoothness" "0.85"
+}
+"pv_cooker"
+{
+	"material" "metal"
+	"ReflectScale" "0.8"
+	"smoothness" "0.85"
+}
+"pv_genmtlgrey"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "3"
+}
+"px_fox_techwall"
+{
+	"material" "metal"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "5"
+}
+"RD_CEILING01"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "5"
+}
+"ribbed_wall"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "5"
+}
+"rub-cover2"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "5"
+}
+"screens"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"singold"
+{
+	"material" "metal"
+	"ReflectScale" "0.45"
+	"smoothness" "0.8"
+}
+"sink"
+{
+	"material" "metal"
+	"ReflectScale" "0.8"
+	"smoothness" "0.85"
+}
+"vaultfloor"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_floor"
+	"detailScale" "5"
+}
+"wall_grey05"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "5"
+}
+"wht_monitors"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"wht_monitors2"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}
+"wht_pillar3"
+{
+	"material" "metal"
+	"ReflectScale" "0.8"
+	"smoothness" "0.85"
+}
+"wht_wall8"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "3"
+}
+"wm_79b"
+{
+	"material" "default"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "5"
+}
+"~lab_crt4"
+{
+	"material" "default"
+	"ReflectScale" "0.35"
+	"smoothness" "0.9"
+}

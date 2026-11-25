@@ -1,44 +1,72 @@
 // hr_c20: Hive City remaster, the red neon shop street (camera c20).
 // No ReflectScale anywhere (the owner: floors were too reflective). smoothness scales the _gloss map.
+// pxmat (2026-11-24): + ReliefScale (parallax, textures/<name>_hmap), ReflectScale on metal/glass/lamps (floors stay dry), detailmap.
 "hr_c20_floor"
 {
 	"material" "default"
 	"smoothness" "0.2"
+	"ReliefScale" "0.05"
+	"detailmap" "textures/detail/pxd_floor"
+	"detailScale" "8"
 }
 "hr_c20_wall"
 {
 	"material" "default"
 	"smoothness" "0.2"
+	"ReliefScale" "0.07"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "8"
 }
 "hr_c20_steel"
 {
 	"material" "metal"
 	"smoothness" "0.35"
+	"ReliefScale" "0.06"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "8"
 }
 "hr_c20_frame"
 {
 	"material" "metal"
 	"smoothness" "0.4"
+	"ReliefScale" "0.06"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
 }
 "hr_c20_trim"
 {
 	"material" "metal"
 	"smoothness" "0.4"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
 }
 "hr_c20_ceil"
 {
 	"material" "metal"
 	"smoothness" "0.35"
+	"ReliefScale" "0.06"
+	"ReflectScale" "0.35"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
 }
 "hr_c20_crate"
 {
 	"material" "metal"
 	"smoothness" "0.35"
+	"ReliefScale" "0.06"
+	"ReflectScale" "0.6"
 }
 "hr_c20_door"
 {
 	"material" "metal"
 	"smoothness" "0.4"
+	"ReliefScale" "0.06"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
 }
 "hr_c20_cable"
 {
@@ -49,6 +77,7 @@
 {
 	"material" "default"
 	"smoothness" "0.2"
+	"ReflectScale" "0.5"
 }
 "hr_c20_ribs"
 {
@@ -64,6 +93,7 @@
 {
 	"material" "metal"
 	"smoothness" "0.4"
+	"ReflectScale" "0.6"
 }
 "hr_c20_vsign"
 {

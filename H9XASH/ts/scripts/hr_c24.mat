@@ -1,28 +1,47 @@
 // hr_c24: Hive City remaster, the wood-panelled room with the glass wall (camera c24).
 // No ReflectScale anywhere: the floor stays dry and dull (the owner: no excessive floor reflections). smoothness scales
 // the _gloss map; a low value on the floor.
+// pxmat (2026-11-24): + ReliefScale (parallax, textures/<name>_hmap), ReflectScale on metal/glass/lamps (floors stay dry), detailmap.
 "hr_c24_wood"
 {
 	"material" "wood"
 	"smoothness" "0.35"
+	"ReliefScale" "0.05"
 }
 "hr_c24_steel"
 {
 	"material" "metal"
 	"smoothness" "0.4"
+	"ReliefScale" "0.06"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
 }
 "hr_c24_teal"
 {
 	"material" "metal"
 	"smoothness" "0.45"
+	"ReflectScale" "0.6"
 }
 "hr_c24_frame"
 {
 	"material" "metal"
 	"smoothness" "0.45"
+	"ReliefScale" "0.06"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
 }
 "hr_c24_floor"
 {
 	"material" "default"
 	"smoothness" "0.2"
+	"ReliefScale" "0.05"
+	"detailmap" "textures/detail/pxd_floor"
+	"detailScale" "8"
+}
+"hr_c24_tube"
+{
+	"material" "glass"
+	"ReflectScale" "0.5"
 }

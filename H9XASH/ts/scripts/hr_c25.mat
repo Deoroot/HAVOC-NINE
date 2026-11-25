@@ -1,18 +1,24 @@
 // hr_c25: Hive City remaster, the wooden steps (camera c25). No ReflectScale anywhere: treads and floor stay dull (low smoothness).
+// pxmat (2026-11-24): + ReliefScale (parallax, textures/<name>_hmap), ReflectScale on metal/glass/lamps (floors stay dry), detailmap.
 "hr_c25_tread"
 {
 	"material" "wood"
 	"smoothness" "0.12"
+	"ReliefScale" "0.05"
 }
 "hr_c25_riser"
 {
 	"material" "wood"
 	"smoothness" "0.12"
+	"ReliefScale" "0.05"
 }
 "hr_c25_wall"
 {
 	"material" "wood"
 	"smoothness" "0.3"
+	"ReliefScale" "0.07"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "4"
 }
 "hr_c25_drape"
 {
@@ -23,34 +29,52 @@
 {
 	"material" "wood"
 	"smoothness" "0.3"
+	"ReflectScale" "0.6"
 }
 "hr_c25_ceil"
 {
 	"material" "metal"
 	"smoothness" "0.3"
+	"ReliefScale" "0.06"
+	"ReflectScale" "0.35"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
 }
 "hr_c25_steel"
 {
 	"material" "metal"
 	"smoothness" "0.45"
+	"ReliefScale" "0.06"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "2"
 }
 "hr_c25_door"
 {
 	"material" "metal"
 	"smoothness" "0.45"
+	"ReliefScale" "0.06"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "8"
 }
 "hr_c25_trim"
 {
 	"material" "metal"
 	"smoothness" "0.4"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
 }
 "hr_c25_pipe"
 {
 	"material" "metal"
 	"smoothness" "0.45"
+	"ReflectScale" "0.6"
 }
 "hr_c25_lamp"
 {
 	"material" "glass"
 	"smoothness" "0.5"
+	"ReflectScale" "0.5"
 }

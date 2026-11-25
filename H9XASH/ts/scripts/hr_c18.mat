@@ -2,20 +2,30 @@
 // No ReflectScale anywhere (the owner: floors were too reflective). smoothness scales the _gloss map (R smoothness,
 // G metalness); "default" is the concrete-sound entry of materials.def. The lit windows (hr_c18_win) are an additive
 // func_illusionary panel and glow by their texture; hr_c18_lamp is lit by the zone's info_texlights.
+// pxmat (2026-11-24): + ReliefScale (parallax, textures/<name>_hmap), ReflectScale on metal/glass/lamps (floors stay dry), detailmap.
 "hr_c18_panel"
 {
 	"material" "default"
 	"smoothness" "0.2"
+	"ReliefScale" "0.07"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "8"
 }
 "hr_c18_conc"
 {
 	"material" "default"
 	"smoothness" "0.2"
+	"ReliefScale" "0.07"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "8"
 }
 "hr_c18_skirt"
 {
 	"material" "default"
 	"smoothness" "0.2"
+	"ReliefScale" "0.07"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "8"
 }
 "hr_c18_offic"
 {
@@ -26,4 +36,12 @@
 {
 	"material" "metal"
 	"smoothness" "0.35"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
+}
+"hr_c18_lamp"
+{
+	"material" "glass"
+	"ReflectScale" "0.5"
 }

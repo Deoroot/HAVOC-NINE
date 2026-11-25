@@ -1,35 +1,57 @@
 // hr_c05: Hive City remaster, the green corridor (camera c05).
 // No ReflectScale anywhere (the owner: floors were too reflective); the floor low in smoothness. smoothness scales the _gloss map
 // (R smoothness, G metalness); "default" is the concrete-sound entry of materials.def. The signs and the lamp are hive v1's own redrawn.
+// pxmat (2026-11-24): + ReliefScale (parallax, textures/<name>_hmap), ReflectScale on metal/glass/lamps (floors stay dry), detailmap.
 "hr_c05_wall"
 {
 	"material" "default"
 	"smoothness" "0.25"
+	"ReliefScale" "0.07"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "8"
 }
 "hr_c05_floor"
 {
 	"material" "default"
 	"smoothness" "0.2"
+	"ReliefScale" "0.05"
+	"detailmap" "textures/detail/pxd_floor"
+	"detailScale" "8"
 }
 "hr_c05_slope"
 {
 	"material" "metal"
 	"smoothness" "0.35"
+	"ReliefScale" "0.07"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "8"
 }
 "hr_c05_end"
 {
 	"material" "metal"
 	"smoothness" "0.4"
+	"ReliefScale" "0.07"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "8"
 }
 "hr_c05_upper"
 {
 	"material" "metal"
 	"smoothness" "0.35"
+	"ReliefScale" "0.07"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "8"
 }
 "hr_c05_trim"
 {
 	"material" "metal"
 	"smoothness" "0.45"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
 }
 "hr_c05_cable"
 {
@@ -40,6 +62,7 @@
 {
 	"material" "glass"
 	"smoothness" "0.4"
+	"ReflectScale" "0.5"
 }
 "{hr_c05_snack"
 {

@@ -1,19 +1,29 @@
 // hr_c15: Hive City remaster, the plaza with the two trees (camera c15).
 // No ReflectScale anywhere (the owner: floors were too reflective); the paving low in smoothness. smoothness scales the _gloss map.
+// pxmat (2026-11-24): + ReliefScale (parallax, textures/<name>_hmap), ReflectScale on metal/glass/lamps (floors stay dry), detailmap.
 "hr_c15_pave"
 {
 	"material" "default"
 	"smoothness" "0.12"
+	"ReliefScale" "0.06"
+	"detailmap" "textures/detail/pxd_floor"
+	"detailScale" "8"
 }
 "hr_c15_wall"
 {
 	"material" "default"
 	"smoothness" "0.15"
+	"ReliefScale" "0.07"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "8"
 }
 "hr_c15_curb"
 {
 	"material" "default"
 	"smoothness" "0.12"
+	"ReliefScale" "0.06"
+	"detailmap" "textures/detail/pxd_floor"
+	"detailScale" "4"
 }
 "hr_c15_grass"
 {
@@ -24,4 +34,23 @@
 {
 	"material" "metal"
 	"smoothness" "0.35"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
+}
+"hr_c15_glass"
+{
+	"material" "glass"
+	"ReflectScale" "1"
+	"smoothness" "1"
+}
+"hr_c15_lamp"
+{
+	"material" "glass"
+	"ReflectScale" "0.5"
+}
+"hr_c15_tube"
+{
+	"material" "glass"
+	"ReflectScale" "0.5"
 }

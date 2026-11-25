@@ -1,43 +1,70 @@
 // hr_c01: Hive City remaster, street outside Pawn Drawn.
 // No ReflectScale anywhere: floors and walls stay dry. smoothness scales the _gloss map (R smoothness,
 // G metalness, both from the CC0 sets); PrimeXT reads no metalness token; "default" is the concrete-sound entry of materials.def (shlak is flesh/slosh sounds), metalness lives in the _gloss maps.
+// pxmat (2026-11-24): + ReliefScale (parallax, textures/<name>_hmap), ReflectScale on metal/glass/lamps (floors stay dry), detailmap.
 "hr_wall_panel"
 {
 	"material" "default"
 	"smoothness" "0.45"
+	"ReliefScale" "0.07"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "4"
 }
 "hr_wall_conc"
 {
 	"material" "default"
 	"smoothness" "0.35"
+	"ReliefScale" "0.07"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "4"
 }
 "hr_floor_conc"
 {
 	"material" "default"
 	"smoothness" "0.3"
+	"ReliefScale" "0.07"
+	"detailmap" "textures/detail/pxd_floor"
+	"detailScale" "8"
 }
 "hr_ceil_metal"
 {
 	"material" "metal"
 	"smoothness" "0.6"
+	"ReliefScale" "0.07"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
 }
 "hr_frame"
 {
 	"material" "metal"
 	"smoothness" "0.45"
+	"ReliefScale" "0.06"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
 }
 "hr_shopfront"
 {
 	"material" "metal"
 	"smoothness" "0.55"
+	"ReliefScale" "0.07"
+	"ReflectScale" "0.6"
 }
 "hr_duct"
 {
 	"material" "metal"
 	"smoothness" "0.75"
+	"ReliefScale" "0.07"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
 }
 "hr_trim_hazard"
 {
 	"material" "metal"
 	"smoothness" "0.5"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
 }

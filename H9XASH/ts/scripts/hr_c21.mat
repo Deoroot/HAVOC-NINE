@@ -1,19 +1,29 @@
 // hr_c21: Hive City remaster, the walled garden with the big tree (camera c21).
 // No ReflectScale anywhere (the owner: floors were too reflective); the paving low in smoothness. smoothness scales the _gloss map.
+// pxmat (2026-11-24): + ReliefScale (parallax, textures/<name>_hmap), ReflectScale on metal/glass/lamps (floors stay dry), detailmap.
 "hr_c21_pave"
 {
 	"material" "default"
 	"smoothness" "0.12"
+	"ReliefScale" "0.06"
+	"detailmap" "textures/detail/pxd_floor"
+	"detailScale" "8"
 }
 "hr_c21_brick"
 {
 	"material" "default"
 	"smoothness" "0.1"
+	"ReliefScale" "0.16"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "6"
 }
 "hr_c21_cap"
 {
 	"material" "default"
 	"smoothness" "0.1"
+	"ReliefScale" "0.06"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "4"
 }
 "hr_c21_grass"
 {
@@ -24,4 +34,17 @@
 {
 	"material" "metal"
 	"smoothness" "0.35"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
+}
+"hr_c21_lamp"
+{
+	"material" "glass"
+	"ReflectScale" "0.5"
+}
+"hr_c21_tube"
+{
+	"material" "glass"
+	"ReflectScale" "0.5"
 }

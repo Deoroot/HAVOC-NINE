@@ -1,23 +1,44 @@
 // hr_c22: Hive City remaster, the blue office (camera c22).
 // No ReflectScale anywhere: the floor stays dry and dull (the owner: floors were too reflective). smoothness scales the
 // _gloss map (R smoothness, G metalness from the CC0 sets); "default" is the concrete-sound entry, "metal" the metal one.
+// pxmat (2026-11-24): + ReliefScale (parallax, textures/<name>_hmap), ReflectScale on metal/glass/lamps (floors stay dry), detailmap.
 "hr_c22_wall"
 {
 	"material" "metal"
 	"smoothness" "0.4"
+	"ReliefScale" "0.07"
+	"ReflectScale" "0.35"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "4"
 }
 "hr_c22_floor"
 {
 	"material" "default"
 	"smoothness" "0.25"
+	"ReliefScale" "0.05"
+	"detailmap" "textures/detail/pxd_floor"
+	"detailScale" "4"
 }
 "hr_c22_ceil"
 {
 	"material" "metal"
 	"smoothness" "0.5"
+	"ReliefScale" "0.06"
+	"ReflectScale" "0.35"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
 }
 "hr_c22_steel"
 {
 	"material" "metal"
 	"smoothness" "0.55"
+	"ReliefScale" "0.06"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
+}
+"hr_c22_door"
+{
+	"material" "default"
+	"ReflectScale" "0.6"
 }

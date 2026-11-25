@@ -1,29 +1,48 @@
 // hr_c06: Hive City remaster, the red corridor (camera c06).
 // No ReflectScale anywhere (the owner: floors too reflective); the floor kept low in smoothness. smoothness scales the _gloss map (R smoothness, G metalness, from the CC0 sets).
+// pxmat (2026-11-24): + ReliefScale (parallax, textures/<name>_hmap), ReflectScale on metal/glass/lamps (floors stay dry), detailmap.
 "hr_c06_wall"
 {
 	"material" "metal"
 	"smoothness" "0.4"
+	"ReliefScale" "0.07"
+	"ReflectScale" "0.35"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "8"
 }
 "hr_c06_armor"
 {
 	"material" "metal"
 	"smoothness" "0.4"
+	"ReliefScale" "0.06"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "8"
 }
 "hr_c06_floor"
 {
 	"material" "default"
 	"smoothness" "0.22"
+	"ReliefScale" "0.05"
+	"detailmap" "textures/detail/pxd_floor"
+	"detailScale" "8"
 }
 "hr_c06_ceil"
 {
 	"material" "metal"
 	"smoothness" "0.45"
+	"ReliefScale" "0.06"
+	"ReflectScale" "0.35"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
 }
 "hr_c06_trim"
 {
 	"material" "metal"
 	"smoothness" "0.5"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
 }
 "hr_c06_cable"
 {

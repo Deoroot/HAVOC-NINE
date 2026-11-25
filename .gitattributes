@@ -34,3 +34,4 @@ h9tts/** -text
 # The Hive City remaster's PrimeXT normal and gloss maps (H9XASH/ts/textures: about 350 files of up to 1 MB, 175 MB in all): plain blobs would add
 # all of it to every clone.
 H9XASH/ts/textures/*.tga filter=lfs diff=lfs merge=lfs -text
+H9XASH/ts/textures/detail/*.tga filter=lfs diff=lfs merge=lfs -text

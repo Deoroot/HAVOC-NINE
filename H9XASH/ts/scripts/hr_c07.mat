@@ -2,40 +2,64 @@
 // No ReflectScale anywhere (the owner: floors were too reflective). smoothness scales the _gloss map (R smoothness,
 // G metalness); "default" is the concrete-sound entry of materials.def. The relief, door, sign, glow and lamp are hive
 // v1's own pictures redrawn with normal maps from their carving (mat/custom.mjs).
+// pxmat (2026-11-24): + ReliefScale (parallax, textures/<name>_hmap), ReflectScale on metal/glass/lamps (floors stay dry), detailmap.
 "hr_c07_relief"
 {
 	"material" "default"
 	"smoothness" "0.2"
+	"ReliefScale" "0.06"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "8"
 }
 "hr_c07_floor"
 {
 	"material" "default"
 	"smoothness" "0.25"
+	"ReliefScale" "0.05"
+	"detailmap" "textures/detail/pxd_floor"
+	"detailScale" "8"
 }
 "hr_c07_panel"
 {
 	"material" "default"
 	"smoothness" "0.3"
+	"ReliefScale" "0.07"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "8"
 }
 "hr_c07_conc"
 {
 	"material" "default"
 	"smoothness" "0.25"
+	"ReliefScale" "0.07"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "4"
 }
 "hr_c07_ceil"
 {
 	"material" "metal"
 	"smoothness" "0.45"
+	"ReliefScale" "0.06"
+	"ReflectScale" "0.35"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "8"
 }
 "hr_c07_trim"
 {
 	"material" "metal"
 	"smoothness" "0.45"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
 }
 "hr_c07_door"
 {
 	"material" "metal"
 	"smoothness" "0.45"
+	"ReliefScale" "0.06"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "8"
 }
 "hr_c07_sign"
 {
@@ -51,6 +75,7 @@
 {
 	"material" "glass"
 	"smoothness" "0.4"
+	"ReflectScale" "0.5"
 }
 "hr_c07_hazard"
 {

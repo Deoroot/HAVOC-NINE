@@ -1,49 +1,76 @@
 // hr_c17: Hive City remaster, MIDGAR AREA 1, the red-lit street (camera c17).
 // No ReflectScale anywhere (the owner: floors were too reflective). smoothness scales the _gloss map.
+// pxmat (2026-11-24): + ReliefScale (parallax, textures/<name>_hmap), ReflectScale on metal/glass/lamps (floors stay dry), detailmap.
 "hr_c17_floor"
 {
 	"material" "default"
 	"smoothness" "0.15"
+	"ReliefScale" "0.05"
+	"detailmap" "textures/detail/pxd_floor"
+	"detailScale" "8"
 }
 "hr_c17_wall"
 {
 	"material" "metal"
 	"smoothness" "0.3"
+	"ReliefScale" "0.07"
+	"ReflectScale" "0.35"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "8"
 }
 "hr_c17_conc"
 {
 	"material" "default"
 	"smoothness" "0.15"
+	"ReliefScale" "0.07"
+	"detailmap" "textures/detail/pxd_concrete"
+	"detailScale" "8"
 }
 "hr_c17_band"
 {
 	"material" "default"
 	"smoothness" "0.15"
+	"ReliefScale" "0.07"
 }
 "hr_c17_ceil"
 {
 	"material" "default"
 	"smoothness" "0.15"
+	"ReliefScale" "0.06"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "8"
 }
 "hr_c17_duct"
 {
 	"material" "metal"
 	"smoothness" "0.35"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
 }
 "hr_c17_drum"
 {
 	"material" "metal"
 	"smoothness" "0.3"
+	"ReliefScale" "0.06"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
 }
 "hr_c17_ie33"
 {
 	"material" "metal"
 	"smoothness" "0.3"
+	"ReliefScale" "0.06"
+	"ReflectScale" "0.6"
 }
 "hr_c17_trim"
 {
 	"material" "metal"
 	"smoothness" "0.4"
+	"ReflectScale" "0.6"
+	"detailmap" "textures/detail/pxd_metal"
+	"detailScale" "4"
 }
 "hr_c17_cable"
 {
@@ -54,6 +81,7 @@
 {
 	"material" "default"
 	"smoothness" "0.2"
+	"ReflectScale" "0.5"
 }
 "hr_c17_steak"
 {
@@ -84,4 +112,5 @@
 {
 	"material" "metal"
 	"smoothness" "0.3"
+	"ReflectScale" "0.6"
 }

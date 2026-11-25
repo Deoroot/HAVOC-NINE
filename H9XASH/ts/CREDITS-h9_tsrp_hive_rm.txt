@@ -792,3 +792,13 @@ hr_c27_wall: Blue Metal Plate, Poly Haven material blue_metal_plate
 URL: https://polyhaven.com/a/blue_metal_plate
 Authors: Rob Tuytel (All)
 Licence: CC0 1.0 Universal (public domain): no attribution is required; this credit is given gladly.
+
+------------------------------------------------------------------------
+PrimeXT materials (2026-11-25)
+------------------------------------------------------------------------
+textures/*_luma.tga (glow) and textures/*_hmap.tga (relief for parallax) are made from the map's own textures by
+hive-remaster/pxmat/make.mjs: no outside source. scripts/pxmat_v1.mat and the hr_c*.mat lines they add name them.
+textures/detail/pxd_*.tga are detail textures cut from the zone sets credited above:
+pxd_concrete from hr_c16_conc, pxd_floor from hr_c02_floor, pxd_metal from hr_c02_steel, pxd_paint from hr_c08_blue
+(Poly Haven, CC0 1.0 Universal).
+gfx/water/water_normal_0..31.tga are generated (reTS/tools/primext-data/src/gen_water_normals.py).
